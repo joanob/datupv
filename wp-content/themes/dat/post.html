@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="post.css">
+    <script>
+        window.onload = ()=> {
+            let navOpen = false
+            const toggle = document.getElementsByClassName("nav-toggle")[0]
+            const nav = document.getElementsByClassName("nav")[0]
+
+            if (nav.classList.contains("nav-open")) {
+                navOpen = true
+            }
+
+            toggle.onclick =()=>{
+                if (navOpen) {
+                    nav.classList.remove("nav-open")
+                    toggle.classList.remove("nav-toggle-open")
+                } else {
+                    nav.classList.add("nav-open")
+                    toggle.classList.add("nav-toggle-open")
+                }
+                navOpen = !navOpen
+            }
+
+            nav.onclick = () => {
+                if (navOpen) {
+                    nav.classList.remove("nav-open")
+                    toggle.classList.remove("nav-toggle-open")
+                    navOpen = false
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="https://dat.webs.upv.es/wp-content/uploads/2018/03/Logo-Color-300.png" alt="Logo" />
+        </div>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav">
+            <a href="http://localhost:5500/wp-content/themes/dat/assets/static/">Inicio</a>
+            <a href="http://localhost:5500/wp-content/themes/dat/assets/static/">Secutel</a>
+            <a href="http://localhost:5500/wp-content/themes/dat/assets/static/">Servicios</a>
+            <a class="active" href="http://localhost:5500/wp-content/themes/dat/assets/static/">Programación</a>
+            <a href="http://localhost:5500/wp-content/themes/dat/assets/static/">Conócenos</a>
+            <a href="http://localhost:5500/wp-content/themes/dat/assets/static/">Contacto</a>
+        </div>
+    </header>
+    <main>
+        <header class="main-header">
+            <h1 class="main-header-title">Dos premios Nobel en la UPV</h1>
+            <p class="main-header-subtitle">Roger Kornberg, Química 2006, y Ben Feringa, Química 2016, han visitado el campus de Vera y han charlado con el alumnado sobre la aventura de la investigación</p>
+            <p class="main-header-date">08/11/2022</p>
+        </header>
+        <article class="article">
+            <p>
+            Roger Kornberg (St. Louis, EEUU, 1947) fue galardonado con el Nobel de Química 2006,¿ por su trabajo sobre la estructura tridimensional del ARN polimerasa II de la levadura, un estudio fundamental para entender el proceso mediante el cual se copia la información del ADN al ARN.</p>
+            
+            <p>Se da la circunstancia de que Roger Kornberg es hijo de Arthur Kornberg, que recibió el Nobel de Medicina, junto a Severo Ochoa, en 1959. Padre e hijo protagonizan, pues, uno de los pocos casos de Nobel en familia (a lo largo de su historia, los premios Nobel han laureado a 850 personas, lo que incluye once familias con más de un galardonado).</p>
+
+            <p class="bold">Kornberg: “la investigación aplicada es como un maratón”</p>
+                
+            <p>Hoy, Kornberg ha charlado con el alumnado de la UPV reunido en el salón de actos de la Escuela Técnica Superior de Ingeniería Industrial. “Investigar es, ni más ni menos, tener curiosidad. Querer saber más sobre la naturaleza y sus fenómenos. Es buscar principios subyacentes y descubrir verdades fundamentales. Es una actividad interminable porque sabemos muy poco y queda casi todo por explorar”, ha explicado Kornberg.</p>
+
+                
+            <p>En opinión del Nobel de Química 2006, la investigación básica es solo recomendable a aquellas personas con una vocación probada. “Se lo aconsejo solo a quienes, de verdad, se sienten atraídos por esta actividad. A ellos, les animo a que sigan, aunque sea difícil. Pero, para aquellos que tienen una inclinación diferente, les pido que busquen otras alternativas como la ciencia aplicada en la industria o la educación. Porque, en la investigación básica, encontrarán demasiados obstáculos”.</p>
+        </article>
+    </main>
+    <!-- <header class="header">
+        <div class="logo"><img src="../img/logo.png" alt="Logo" /></div>
+        <div class="nav">
+            <a href="">Inicio</a>
+            <a href="">Secutel</a>
+            <a href="">Servicios</a>
+            <a class="active" href="">Programación</a>
+            <a href="">Conócenos</a>
+            <a href="">Contacto</a>
+        </div>
+    </header>
+    <main>
+        <header class="main-header">
+            <h1 class="main-header-title">Dos premios Nobel en la UPV</h1>
+            <p class="main-header-subtitle">Roger Kornberg, Química 2006, y Ben Feringa, Química 2016, han visitado el campus de Vera y han charlado con el alumnado sobre la aventura de la investigación</p>
+            <p class="main-header-date">08/11/2022</p>
+        </header>
+        <article class="article">
+            <p>
+            Roger Kornberg (St. Louis, EEUU, 1947) fue galardonado con el Nobel de Química 2006,¿ por su trabajo sobre la estructura tridimensional del ARN polimerasa II de la levadura, un estudio fundamental para entender el proceso mediante el cual se copia la información del ADN al ARN.</p>
+            
+            <p>Se da la circunstancia de que Roger Kornberg es hijo de Arthur Kornberg, que recibió el Nobel de Medicina, junto a Severo Ochoa, en 1959. Padre e hijo protagonizan, pues, uno de los pocos casos de Nobel en familia (a lo largo de su historia, los premios Nobel han laureado a 850 personas, lo que incluye once familias con más de un galardonado).</p>
+
+            <img src="../img/int_nobel.jpg" />
+
+            <p class="bold">Kornberg: “la investigación aplicada es como un maratón”</p>
+                
+            <p>Hoy, Kornberg ha charlado con el alumnado de la UPV reunido en el salón de actos de la Escuela Técnica Superior de Ingeniería Industrial. “Investigar es, ni más ni menos, tener curiosidad. Querer saber más sobre la naturaleza y sus fenómenos. Es buscar principios subyacentes y descubrir verdades fundamentales. Es una actividad interminable porque sabemos muy poco y queda casi todo por explorar”, ha explicado Kornberg.</p>
+
+                
+            <p>En opinión del Nobel de Química 2006, la investigación básica es solo recomendable a aquellas personas con una vocación probada. “Se lo aconsejo solo a quienes, de verdad, se sienten atraídos por esta actividad. A ellos, les animo a que sigan, aunque sea difícil. Pero, para aquellos que tienen una inclinación diferente, les pido que busquen otras alternativas como la ciencia aplicada en la industria o la educación. Porque, en la investigación básica, encontrarán demasiados obstáculos”.</p>
+                
+            <p>“Y es que la investigación es como un maratón. Implica asumir riesgos de futuro, porque no sabes qué te encontrarás por el camino o si lograrás llegar a algún fin. La ciencia aplicada o la formación universitaria, en cambio, son opciones menos expuestas, porque auguran resultados más predecibles,” ha explicado Kornberg.</p>
+        </article>
+    </main> -->
+</body>
+</html>
