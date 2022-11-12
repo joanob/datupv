@@ -96,3 +96,19 @@ function react_enqueue_scripts() {
 }
 
 add_action("wp_enqueue_scripts", "react_enqueue_scripts");
+
+
+/**
+ * Custom enpoint for getting window.wp_config data
+ */
+function react_api_routes_endpoint() {
+    return array("routes" => react_generate_routes());
+}
+
+add_action( 'rest_api_init', function () {
+  // /wp-json/api/v1/routes
+  register_rest_route( 'api/v1', '/routes', array(
+    'methods' => 'GET',
+    'callback' => 'react_api_routes_endpoint',
+  ) );
+} );
