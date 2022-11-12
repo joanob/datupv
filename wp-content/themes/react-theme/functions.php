@@ -14,6 +14,38 @@ function react_strip_site_url($url) {
     return $url;
 }
 
+
+/**
+ * Register main menu
+ */
+function react_register_menus() {
+    register_nav_menus(array("main-menu" => "Main Menu"));
+}
+add_action("init", "react_register_menus");
+
+/**
+ * Get wordpress menu by location
+ */
+function react_get_menu($location) {
+    $output = [];
+    $locations = get_nav_menu_locations();
+    $menu = wp_get_nav_menu_object($locations[$location]);
+    $menu_items = wp_get_nav_menu_items($menu);
+
+    foreach ($menu_items as $item) {
+
+        $data = [
+            'ID' => $item->ID,
+            'title' => $item->title,
+            'url' => '/' . react_strip_site_url($item->url),
+            'parent' => intval($item->menu_item_parent),
+        ];
+        $output[] = $data;
+    }
+
+    return $output;
+}
+
 /**
  * Generate list of post type archive routes.
  * 
@@ -89,7 +121,8 @@ function react_enqueue_scripts() {
     wp_enqueue_style("theme", get_stylesheet_directory_uri() . "/dist/assets/index.css", array(), "1.0");
 
     $config = array(
-        "routes" => react_generate_routes()
+        "routes" => react_generate_routes(),
+        "menu" => react_get_menu() 
     );
     wp_localize_script('theme', 'wp_config', $config); 
     
@@ -97,12 +130,15 @@ function react_enqueue_scripts() {
 
 add_action("wp_enqueue_scripts", "react_enqueue_scripts");
 
-
 /**
  * Custom enpoint for getting window.wp_config data
  */
 function react_api_routes_endpoint() {
-    return array("routes" => react_generate_routes());
+    return array(
+        "routes" => react_generate_routes(), "menus" => array(
+            "main" => react_get_menu("main-menu")
+        )
+    );
 }
 
 add_action( 'rest_api_init', function () {
