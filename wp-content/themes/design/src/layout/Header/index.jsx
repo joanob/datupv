@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {AiFillCaretDown, AiFillCaretUp} from "react-icons/ai"
 
 const NavLink = ({href, text}) => {
@@ -87,6 +87,16 @@ const Header = () => {
                 <img src="https://dat.webs.upv.es/wp-content/uploads/2018/03/Logo-Color-300.png" alt="Logo" />
             </a>
         </div>
+        <ul className='nav nav-desktop'>
+            {
+            nav.map(item => 
+                item.items ?
+                <NavLinkWithSubmenu key={item.text} text={item.text} items={item.items} />
+                :
+                    <NavLink key={item.text} text={item.text} href={item.href} />
+            )
+            }
+        </ul>
         <div className={isOpen ? "nav-toggle nav-toggle-open" : "nav-toggle"} onClick={()=>{setIsOpen(!isOpen)}}>
             <span></span>
             <span></span>

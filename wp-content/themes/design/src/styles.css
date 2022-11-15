@@ -27,9 +27,9 @@ a, a:hover, a:active {
     display: grid;
     grid-template-columns: 80px 1fr;
     grid-template-rows: 66px auto;
-    justify-content: space-between;
     align-items: center;
     background-color: var(--primary);
+    user-select: none;
 }
 
 .logo img {
@@ -98,6 +98,54 @@ a, a:hover, a:active {
     list-style: none;
     font-size: 20px;
     padding: 0 20px;
+}
+
+.nav-desktop {
+    display: none;
+}
+
+@media screen and (min-width: 950px) {
+    .nav {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: none;
+    }
+
+    .nav-desktop {
+        grid-column: auto;
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+        position: relative;
+    }
+
+    .nav-desktop .nav-link {
+        margin: 0 5px;
+        padding: 0 20px;
+    }
+
+    .nav-desktop .nav-link-with-submenu {
+        position: relative;
+        margin: 0 5px;
+        padding: 0 20px;
+    }
+
+    .nav-desktop .nav-link-items {
+        position: absolute;
+        top: 25px;
+        left: 0;
+        right: 0px;
+        margin: 0;
+        box-shadow: inset 0px #eee;
+        background-color: var(--primary);
+    }
+
+    .nav-desktop .nav-link-items .nav-link {
+        margin: 15px 0;
+    }
+
 }
 
 .nav ul {
