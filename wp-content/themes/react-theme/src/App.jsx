@@ -11,6 +11,10 @@ function App() {
   
   console.log(posts)
 
+  if (posts.length > 0) {
+    console.log(posts[0].content.rendered)
+  }
+
   return (
     <div className="App">
       

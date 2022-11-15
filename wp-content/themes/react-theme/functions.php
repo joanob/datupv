@@ -1,5 +1,10 @@
 <?php
 
+function react_theme_support() {
+    add_theme_support("title-tag");
+}
+add_action("after_setup_theme", "react_theme_support");
+
 /**
  * Remove WP site url an trailing slash from url
  * 
@@ -122,7 +127,7 @@ function react_enqueue_scripts() {
 
     $config = array(
         "routes" => react_generate_routes(),
-        "menu" => react_get_menu() 
+        "menu" => react_get_menu("main-menu") 
     );
     wp_localize_script('theme', 'wp_config', $config); 
     
