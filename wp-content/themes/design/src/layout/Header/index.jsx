@@ -34,7 +34,26 @@ const NavLinkWithSubmenu = ({text, items}) => {
 }
 
 const Header = () => {
+    const [desktopMinWidth, setDesktopMinWidth] = useState(null)
+    const [headerWidth, setHeaderWidth] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
+    const headerRef = useRef(null)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setHeaderWidth(headerRef.current.clientWidth)
+            if (headerRef.current.scrollWidth > headerRef.current.clientWidth) {
+                if (desktopMinWidth == null) {
+                    setDesktopMinWidth(headerRef.current.clientWidth)
+                }
+            }
+        }
+
+        if (desktopMinWidth === null) {
+            handleResize()
+        }
+        window.addEventListener("resize", handleResize)
+    }, [headerRef.current, desktopMinWidth])
 
     const nav = [
         {
@@ -80,41 +99,49 @@ const Header = () => {
             href: ""
         },
     ]
+
   return (
-    <header className="header">
+    <header ref={headerRef} className="header">
         <div className="logo">
             <a href="#">
                 <img src="https://dat.webs.upv.es/wp-content/uploads/2018/03/Logo-Color-300.png" alt="Logo" />
             </a>
         </div>
-        <ul className='nav nav-desktop'>
-            {
-            nav.map(item => 
-                item.items ?
-                <NavLinkWithSubmenu key={item.text} text={item.text} items={item.items} />
-                :
-                    <NavLink key={item.text} text={item.text} href={item.href} />
-            )
-            }
-        </ul>
-        <div className={isOpen ? "nav-toggle nav-toggle-open" : "nav-toggle"} onClick={()=>{setIsOpen(!isOpen)}}>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
         {
-            !isOpen ?
-            null :
-            <ul className='nav'>
-                {
+            desktopMinWidth == null || headerWidth > desktopMinWidth ?
+            <ul className='nav nav-desktop'>
+            {
                 nav.map(item => 
                     item.items ?
-                    <NavLinkWithSubmenu key={item.text} text={item.text} items={item.items} />
+                        <NavLinkWithSubmenu key={item.text} text={item.text} items={item.items} />
                     :
-                     <NavLink key={item.text} text={item.text} href={item.href} />
+                    <NavLink key={item.text} text={item.text} href={item.href} />
                 )
-                }
+            }
             </ul>
+        :
+        <>
+            <div className={isOpen ? "nav-toggle nav-toggle-open" : "nav-toggle"} onClick={()=>{setIsOpen(!isOpen)}}>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        {
+            !isOpen ?
+                null 
+            :
+                <ul className='nav'>
+                {
+                    nav.map(item => 
+                        item.items ?
+                        <NavLinkWithSubmenu key={item.text} text={item.text} items={item.items} />
+                        :
+                        <NavLink key={item.text} text={item.text} href={item.href} />
+                    )
+                }
+                </ul>
+        }
+        </>
         }
     </header>
   )
