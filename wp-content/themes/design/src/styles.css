@@ -20,14 +20,6 @@ a, a:hover, a:active {
     --text: #fafafa;
 }
 
-#root {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
 /* HEADER */
 
 .header {
@@ -38,7 +30,6 @@ a, a:hover, a:active {
     align-items: center;
     background-color: var(--primary);
     user-select: none;
-    overflow-x: scroll;
 }
 
 .logo img {
@@ -111,12 +102,11 @@ a, a:hover, a:active {
 
 .nav-desktop {
     grid-column: auto;
-        display: flex;
-        flex-direction: row;
-        margin-left: auto;
-        position: relative;
-        min-width: fit-content;
-        width: fit-content;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    min-width: fit-content;
+    width: fit-content;
 }
 
 .nav-desktop .nav-link {
@@ -130,6 +120,10 @@ a, a:hover, a:active {
     padding: 0 20px;
 }
 
+.nav-desktop .nav-link-with-submenu:hover .nav-link-items {
+    display: block !important;
+}
+
 .nav-desktop .nav-link-with-submenu p {
     white-space: nowrap;
 }
@@ -138,9 +132,8 @@ a, a:hover, a:active {
     position: absolute;
     top: 25px;
     left: 0;
-    right: 0px;
+    right: 0;
     margin: 0;
-    box-shadow: inset 0px #eee;
     background-color: var(--primary);
 }
 

@@ -17,29 +17,35 @@ const NavLinkWithSubmenu = ({text, items}) => {
                 {text}
                 <span>{isOpen ? <AiFillCaretUp width={15} /> : <AiFillCaretDown /> }</span>
             </p>
-            {
-                !isOpen ? null : 
-                <ul className='nav-link-items'>
+            <ul style={{display: isOpen ? "block" : "none"}} className='nav-link-items' >
                 {
                     items.map(item => 
                         <NavLink key={item.text} text={item.text} href={item.href} />
                     )
                 }
             </ul>
-            }
-            
         </ul>
-        
     )
 }
 
 const Header = () => {
+    // DesktopMinWidth is the minimun header width to display navbar horizontally without overflow
     const [desktopMinWidth, setDesktopMinWidth] = useState(null)
+    // HeaderWidth is current header width. Triggers render to compare to desktopMinWidth
     const [headerWidth, setHeaderWidth] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
     const headerRef = useRef(null)
 
     useEffect(() => {
+        /**
+         * Initial render: headerRef gets its value,
+         * handler is created with desktopMinWidth == null (initial value)
+         * and handler is called to check if header is overflowing at first
+         * Horizontal navbar overflowing is visible for a brief time
+         * 
+         * Handler saves current headerWidth always and desktopMinWidth if header overflows
+         * 
+         */
         const handleResize = () => {
             setHeaderWidth(headerRef.current.clientWidth)
             if (headerRef.current.scrollWidth > headerRef.current.clientWidth) {
@@ -109,7 +115,7 @@ const Header = () => {
         </div>
         {
             desktopMinWidth == null || headerWidth > desktopMinWidth ?
-            <ul className='nav nav-desktop'>
+            <ul style={{visibility: headerWidth == null ? "hidden" : "visible"}} className='nav nav-desktop'>
             {
                 nav.map(item => 
                     item.items ?
