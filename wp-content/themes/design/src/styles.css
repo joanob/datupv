@@ -20,6 +20,12 @@ a, a:hover, a:active {
     --text: #fafafa;
 }
 
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 /* HEADER */
 
 .header {
@@ -167,4 +173,17 @@ a, a:hover, a:active {
 
 .nav-link-items {
     margin-left: 10px;
+}
+
+/* MAIN */
+
+.main {
+    flex-grow: 1;
+}
+
+/* FOOTER */
+
+.footer {
+    height: 50px;
+    background-color: red;
 }

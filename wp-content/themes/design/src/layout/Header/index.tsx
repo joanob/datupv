@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { Nav } from "../../data/nav";
+import { Link } from "react-router-dom";
 
 const NavLink = ({ href, text }: Nav) => {
   return (
@@ -80,12 +81,12 @@ const Header = ({ nav }: HeaderProps) => {
   return (
     <header ref={headerRef} className="header">
       <div className="logo">
-        <a href="#">
+        <Link to="/">
           <img
             src="https://dat.webs.upv.es/wp-content/uploads/2018/03/Logo-Color-300.png"
             alt="Logo"
           />
-        </a>
+        </Link>
       </div>
       {desktopMinWidth == null || headerWidth > desktopMinWidth ? (
         <ul
