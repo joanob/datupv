@@ -5,10 +5,10 @@ import Home from "./pages/Home";
 
 const App = () => {
   /* gh-pages basename: /datupv/ */
-  const baseUrl = "/datupv";
+  const baseUrl = import.meta.env.DEV ? "/datupv" : "/";
 
   return (
-    <BrowserRouter basename={baseUrl}>
+    <BrowserRouter basename={"/datupv" + baseUrl}>
       <Header nav={nav} />
       <Routes>
         <Route path="/" element={<Home />} />
