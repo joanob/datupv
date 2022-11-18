@@ -6,10 +6,9 @@ set -e
 # build
 yarn run build
 
-# move build to root folder
-cp -a ./dist ../../../docs
-
 cd ../../..
+rm -rf docs
+cp -a wp-content/themes/design/dist ./docs
 
 ## commit and push
 git add .
