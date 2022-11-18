@@ -4,8 +4,11 @@ import Header from "./layout/Header";
 import Home from "./pages/Home";
 
 const App = () => {
+  /* gh-pages basename: /datupv/ */
+  const baseUrl = "/datupv/";
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={baseUrl}>
       <Header nav={nav} />
       <Routes>
         <Route path="/" element={<Home />} />
