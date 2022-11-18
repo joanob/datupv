@@ -9,6 +9,8 @@ yarn run build
 # move build to root folder
 cp -a ./dist ../../../docs
 
+cd ../../..
+
 ## commit and push
 git add .
 git commit -m "deploy"
