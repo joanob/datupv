@@ -7,7 +7,7 @@ set -e
 yarn run build
 
 # move build to root folder
-cp -a ./dist ../../../dist
+cp -a ./dist ../../../docs
 
 ## commit and push
 git add .
