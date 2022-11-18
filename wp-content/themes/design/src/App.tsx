@@ -8,9 +8,9 @@ const App = () => {
 
   return (
     <HashRouter basename={import.meta.env.BASE_URL}>
-      {import.meta.env.BASE_URL}
       <Header nav={nav} />
       <Routes>
+        {import.meta.env.BASE_URL}
         <Route path="/" element={<Home />} />
       </Routes>
       <footer className="footer"></footer>
