@@ -4,9 +4,8 @@ import Header from "./layout/Header";
 import Home from "./pages/Home";
 
 const App = () => {
-  console.log(import.meta.env.BASE_URL);
-
-  return (
+  <p>{JSON.stringify(import.meta.env)}</p>;
+  /* return (
     <HashRouter basename={import.meta.env.BASE_URL}>
       <Header nav={nav} />
       <Routes>
@@ -15,7 +14,7 @@ const App = () => {
       </Routes>
       <footer className="footer"></footer>
     </HashRouter>
-  );
+  ); */
 };
 
 export default App;
