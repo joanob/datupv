@@ -1,20 +1,19 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { nav } from "./data/nav";
 import Header from "./layout/Header";
 import Home from "./pages/Home";
 
 const App = () => {
-  <p>{JSON.stringify(import.meta.env)}</p>;
-  /* return (
-    <HashRouter basename={import.meta.env.BASE_URL}>
+  return (
+    <BrowserRouter basename="/datupv">
       <Header nav={nav} />
       <Routes>
         {import.meta.env.BASE_URL}
         <Route path="/" element={<Home />} />
       </Routes>
       <footer className="footer"></footer>
-    </HashRouter>
-  ); */
+    </BrowserRouter>
+  );
 };
 
 export default App;
