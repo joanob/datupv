@@ -5,25 +5,30 @@ export type News = {
   date: string;
 };
 
+import imgConcursoHalloween from "../public/img/concurso-chuches-halloween.jfif";
+
+import imgCharlaQuantumFracture from "../public/img/charla-quantum-fracture.jfif";
+
+import imgCEETZaragoza from "../public/img/ceet-zaragoza.jfif";
+
 export const feed: News[] = [
   {
-    title: "Instagram sucks",
-    subtitle: "Instagram keeps copying from other apps to maintain its status",
-    imgSrc:
-      "https://newsfeed.org/wp-content/uploads/Facebook-blueprint-520x245.jpg",
-    date: "17/11/2022",
+    title: "Adivina cuántas chuches hay",
+    subtitle: "Envía tu respuesta hasta el 3 de noviembre y llévatelas todas",
+    imgSrc: imgConcursoHalloween,
+    date: "26/10/2022",
   },
   {
-    title: "Twitter se está hundiendo",
-    subtitle: "Las acciones de Elon Musk están llevando Twitter a pique",
-    imgSrc: "https://smartslider3.com/wp-content/uploads/2019/06/image3.png",
-    date: "15/11/2022",
+    title: "Charla de Quantum Fracture",
+    subtitle: "Te traemos las fotos de la charla de Quantum Fracture",
+    imgSrc: imgCharlaQuantumFracture,
+    date: "25/10/2022",
   },
   {
-    title: "Cómo poner rumbo a tu vida",
-    subtitle: "¿No has estado en ningún laberinto? No sabes lo que te pierdes",
-    imgSrc:
-      "https://smartslider3.com/wp-content/uploads/slider/cache/dbfa60fb928cbf8bcaa9db0159e4ed89/fullwidthbg3.webp",
-    date: "12/10/2022",
+    title: "XXXIII Congreso CEET",
+    subtitle:
+      "Nuestros compañeros Diego Orts y Oxana asistieron al CEET en Zaragoza",
+    imgSrc: imgCEETZaragoza,
+    date: "13/10/2022",
   },
 ];
