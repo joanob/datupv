@@ -183,12 +183,38 @@ a, a:hover, a:active {
     flex-grow: 1;
 }
 
-/* news slider */
+/* swiper news feed */
 
 .swiper {
     width: 100%;
     aspect-ratio: 4 / 5;
-    margin: 0 auto;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    display: none;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fafafabb;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after {
+    font-size: 18px;
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+.swiper-pagination-bullet {
+    background: var(--secondary);
+    opacity: 0.2;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: var(--secondary) 1;
 }
 
 .swiper-slide {
@@ -216,33 +242,6 @@ a, a:hover, a:active {
     width: 100%;
     height: 100%;
     object-fit: fill;
-}
-
-.swiper-button-prev, .swiper-button-next {
-    display: none;
-}
-
-.swiper-button-prev, .swiper-button-next {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #fafafa44;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.swiper-button-prev::after, .swiper-button-next::after {
-    font-size: 18px;
-    color: var(--secondary);
-    font-weight: 900;
-}
-
-.swiper-pagination-bullet {
-    background: var(--secondary);
-    opacity: 0.4;
-}
-
-.swiper-pagination-bullet-active {
-    opacity: var(--secondary) 1;
 }
 
 .news-slide {
@@ -280,13 +279,37 @@ a, a:hover, a:active {
 
 .news-slide-date {
     text-align: right;
-    font-size: 10px;
+    font-size: 12px;
     margin-right: 10px;
+}
+
+@media screen and (min-width: 500px) {
+    .swiper {
+        margin: 0 auto;
+        height: 400px;
+    }
+
+    .swiper-button-prev, .swiper-button-next {
+        display: flex;
+    }
+
+    .swiper-button-disabled {
+        display: none;
+    }
+
+    .swiper-slide {
+        width: 320px;
+        height: 400px;
+        opacity: 0.6;
+    }
+
+    .swiper-slide-active {
+        opacity: 1;
+    }
 }
 
 /* FOOTER */
 
 .footer {
     height: 50px;
-    background-color: red;
 }
