@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper";
 
@@ -6,6 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { feed } from "../../data/feed";
 import { Link } from "react-router-dom";
+import AutoEllipsisParagraph from "../../components/AutoEllipsisParagraph";
 
 const NewsCarousel = () => {
   const news = feed.length > 5 ? feed.slice(0, 5) : feed;
@@ -55,10 +57,48 @@ const NewsCarousel = () => {
   );
 };
 
+const NewsFeed = () => {
+  const [page, setPage] = useState(1);
+
+  const newsPerPage = 1;
+
+  const newsInPage = feed.slice((page - 1) * newsPerPage, page * newsPerPage);
+
+  const titleFontSize = 16;
+  const subtitleFontSize = 15;
+
+  return (
+    <section className="news-feed">
+      {newsInPage.map((article) => {
+        return (
+          <article key={article.href}>
+            <img src={article.imgSrc} />
+            <div className="news-feed-data">
+              <AutoEllipsisParagraph
+                className="news-feed-data-title"
+                fontSize={titleFontSize}
+                text="Lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
+              />
+              <AutoEllipsisParagraph
+                className="news-feed-data-title"
+                fontSize={subtitleFontSize}
+                text="Lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
+              />
+              <p></p>
+              <p className="news-feed-data-date">{article.date}</p>
+            </div>
+          </article>
+        );
+      })}
+    </section>
+  );
+};
+
 const Home = () => {
   return (
     <main className="main">
       <NewsCarousel />
+      <NewsFeed />
     </main>
   );
 };

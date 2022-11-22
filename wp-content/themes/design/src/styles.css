@@ -331,6 +331,39 @@ a, a:hover, a:active {
     }
 }
 
+/* news feed */
+
+.news-feed article {
+    margin: 10px 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-rows: calc(100vw * 5 / 12);
+}
+
+.news-feed img {
+    width: 100%;
+    aspect-ratio: 4/5;
+}
+
+.news-feed-data {
+    width: 100%;
+    padding: 5px;
+    background-color: #fafafa;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 14px;
+}
+
+.news-feed-data-title {
+    font-weight: 600;
+}
+
+.news-feed-data-date {
+    text-align: right;
+    font-size: 14px;
+}
+
 /* FOOTER */
 
 .footer {
