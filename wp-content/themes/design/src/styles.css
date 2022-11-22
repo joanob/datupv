@@ -165,6 +165,7 @@ a, a:hover, a:active {
     color: var(--secondary);
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .nav-link-with-submenu span {
@@ -175,6 +176,10 @@ a, a:hover, a:active {
 
 .nav-link-items {
     margin-left: 10px;
+}
+
+.nav-link-with-submenu {
+    z-index: 2;
 }
 
 /* MAIN */
