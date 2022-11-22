@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { feed } from "../../data/feed";
+import { Link } from "react-router-dom";
 
 const NewsCarousel = () => {
   const news = feed.length > 5 ? feed.slice(0, 5) : feed;
@@ -38,13 +39,15 @@ const NewsCarousel = () => {
       {news.map((article) => (
         <SwiperSlide key={article.title}>
           <div className="news-slide">
-            <div className="news-slide-data">
-              <p className="news-slide-title">{article.title}</p>
-              <p className="news-slide-subtitle">{article.subtitle}</p>
-              <p className="news-slide-date">{article.date}</p>
-            </div>
+            <Link to={"/noticias/" + article.href}>
+              <div className="news-slide-data">
+                <p className="news-slide-title">{article.title}</p>
+                <p className="news-slide-subtitle">{article.subtitle}</p>
 
-            <img src={article.imgSrc} />
+                <p className="news-slide-date">{article.date}</p>
+              </div>
+              <img src={article.imgSrc} draggable={false} />
+            </Link>
           </div>
         </SwiperSlide>
       ))}

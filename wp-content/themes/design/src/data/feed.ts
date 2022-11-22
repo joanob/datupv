@@ -3,6 +3,7 @@ export type News = {
   subtitle: string;
   imgSrc: string;
   date: string;
+  href: string; // without initial /
 };
 
 import imgConcursoHalloween from "../public/img/concurso-chuches-halloween.jfif";
@@ -17,12 +18,14 @@ export const feed: News[] = [
     subtitle: "Envía tu respuesta hasta el 3 de noviembre y llévatelas todas",
     imgSrc: imgConcursoHalloween,
     date: "26/10/2022",
+    href: "adivina-cuantas-chuches-hay",
   },
   {
     title: "Charla de Quantum Fracture",
     subtitle: "Te traemos las fotos de la charla de Quantum Fracture",
     imgSrc: imgCharlaQuantumFracture,
     date: "25/10/2022",
+    href: "charla-quantum-fracture",
   },
   {
     title: "XXXIII Congreso CEET",
@@ -30,5 +33,6 @@ export const feed: News[] = [
       "Nuestros compañeros Diego Orts y Oxana asistieron al CEET en Zaragoza",
     imgSrc: imgCEETZaragoza,
     date: "13/10/2022",
+    href: "congreso-ceet-zaragoza",
   },
 ];

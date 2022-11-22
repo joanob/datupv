@@ -3,10 +3,13 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { Nav } from "../../data/nav";
 import { Link } from "react-router-dom";
 
+import instagramSVG from "../../public/icons/instagram.svg";
+import twitterSVG from "../../public/icons/twitter.svg";
+
 const NavLink = ({ href, text }: Nav) => {
   return (
     <li className="nav-link">
-      <a href={href}>{text}</a>
+      <Link to={href ? href : ""}>{text}</Link>
     </li>
   );
 };
@@ -104,6 +107,16 @@ const Header = ({ nav }: HeaderProps) => {
               <NavLink key={item.text} text={item.text} href={item.href} />
             )
           )}
+          <li className="nav-link nav-link-social">
+            <a href="https://www.instagram.com/datupv" target="_blank">
+              <img src={instagramSVG} alt="Síguenos en Instagram" />
+            </a>
+          </li>
+          <li className="nav-link nav-link-social">
+            <a href="https://twitter.com/datupv" target="_blank">
+              <img src={twitterSVG} alt="Síguenos en Twitter" />
+            </a>
+          </li>
         </ul>
       ) : (
         <>
@@ -130,6 +143,14 @@ const Header = ({ nav }: HeaderProps) => {
                   <NavLink key={item.text} text={item.text} href={item.href} />
                 )
               )}
+              <li className="nav-link nav-link-social">
+                <a href="https://www.instagram.com/datupv" target="_blank">
+                  <img src={instagramSVG} alt="Síguenos en Instagram" />
+                </a>
+                <a href="https://twitter.com/datupv" target="_blank">
+                  <img src={twitterSVG} alt="Síguenos en Twitter" />
+                </a>
+              </li>
             </ul>
           )}
         </>

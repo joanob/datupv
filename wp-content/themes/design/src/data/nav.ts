@@ -13,15 +13,15 @@ export const nav: Nav[] = [
     items: [
       {
         text: "Qué es la delegación",
-        href: "#",
+        href: "delegacion/que-es",
       },
       {
         text: "Qué hacemos",
-        href: "#",
+        href: "delegacion/que-hacemos",
       },
       {
         text: "El equipo",
-        href: "#",
+        href: "delegacion/equipo",
       },
     ],
   },
@@ -30,24 +30,24 @@ export const nav: Nav[] = [
     items: [
       {
         text: "Normativa",
-        href: "#",
+        href: "asuntos-academicos/normativa",
       },
       {
         text: "Mistral",
-        href: "#",
+        href: "asuntos-academicos/mistral",
       },
     ],
   },
   {
     text: "Actividades",
-    href: "",
+    href: "actividades",
   },
   {
     text: "Guías",
-    href: "",
+    href: "guias",
   },
   {
     text: "Contacto",
-    href: "",
+    href: "contacto",
   },
 ];

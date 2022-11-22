@@ -40,6 +40,10 @@ a, a:hover, a:active {
     user-select: none;
 }
 
+.logo {
+    -webkit-tap-highlight-color: transparent;
+}
+
 .logo img {
     width: 80px;
     height: 66px;
@@ -179,7 +183,17 @@ a, a:hover, a:active {
 }
 
 .nav-link-with-submenu {
+    -webkit-tap-highlight-color: transparent;
     z-index: 2;
+}
+
+.nav-link-social img {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-link-social img:first-of-type {
+    margin-right: 10px;
 }
 
 /* MAIN */
@@ -267,6 +281,10 @@ a, a:hover, a:active {
     flex-direction: column;
     color: var(--text);
     background-image: linear-gradient(#fafafa, #fafafa00);
+}
+
+.news-slide-data a {
+    color: var(--text);
 }
 
 .news-slide-title, .news-slide-subtitle, .news-slide-date {
