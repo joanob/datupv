@@ -8,12 +8,13 @@ interface Props {
 
 const AutoEllipsisParagraph = ({ className, fontSize, text }: Props) => {
   const pRef = useRef<HTMLParagraphElement>(null);
-  const [clampedText, setClampedText] = useState("");
-  const [isClamped, setIsClamped] = useState(false);
+  const [lines, setLines] = useState(0);
+
+  console.log(lines);
 
   useEffect(() => {
     if (pRef.current === null) return;
-    if (clampedText !== "") return;
+    if (lines !== 0) return;
 
     // Line height: fontSize + 3px
     let maxLines = 0;
@@ -24,23 +25,22 @@ const AutoEllipsisParagraph = ({ className, fontSize, text }: Props) => {
       maxLines--;
     }
 
-    // Adapt chars per line
-    const charsPerLine = 20;
-    const maxChars = charsPerLine * maxLines;
-
-    if (text.length < maxChars) {
-      setClampedText(text);
-      return;
-    }
-
-    setClampedText(text.slice(0, charsPerLine * maxLines - 3));
-    setIsClamped(true);
+    setLines(maxLines);
   }, [pRef.current]);
 
   return (
-    <p ref={pRef} className={className} style={{ fontSize: fontSize }}>
-      {clampedText} {isClamped ? "..." : ""}
-    </p>
+    <div ref={pRef}>
+      <p
+        className={className}
+        style={{
+          fontSize: fontSize,
+          lineClamp: lines,
+          WebkitLineClamp: lines,
+        }}
+      >
+        {lines === 0 ? "" : text}
+      </p>
+    </div>
   );
 };
 

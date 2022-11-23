@@ -60,7 +60,7 @@ const NewsCarousel = () => {
 const NewsFeed = () => {
   const [page, setPage] = useState(1);
 
-  const newsPerPage = 1;
+  const newsPerPage = 5;
 
   const newsInPage = feed.slice((page - 1) * newsPerPage, page * newsPerPage);
 
@@ -71,23 +71,26 @@ const NewsFeed = () => {
     <section className="news-feed">
       {newsInPage.map((article) => {
         return (
-          <article key={article.href}>
-            <img src={article.imgSrc} />
-            <div className="news-feed-data">
-              <AutoEllipsisParagraph
-                className="news-feed-data-title"
-                fontSize={titleFontSize}
-                text="Lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
-              />
-              <AutoEllipsisParagraph
-                className="news-feed-data-title"
-                fontSize={subtitleFontSize}
-                text="Lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
-              />
-              <p></p>
-              <p className="news-feed-data-date">{article.date}</p>
-            </div>
-          </article>
+          <Link to={"/noticias/" + article.href}>
+            <article key={article.href}>
+              <img src={article.imgSrc} />
+              <div className="news-feed-data">
+                <AutoEllipsisParagraph
+                  className="news-feed-data-title"
+                  fontSize={titleFontSize}
+                  text={article.title}
+                />
+                <div></div> {/* 5px margin */}
+                <AutoEllipsisParagraph
+                  className="news-feed-data-subtitle"
+                  fontSize={subtitleFontSize}
+                  text={article.subtitle}
+                />
+                <div></div> {/* 5px margin */}
+                <p className="news-feed-data-date">{article.date}</p>
+              </div>
+            </article>
+          </Link>
         );
       })}
     </section>

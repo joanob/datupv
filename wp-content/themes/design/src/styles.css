@@ -6,6 +6,7 @@
 }
 
 a, a:hover, a:active {
+    color: var(--text);
     text-decoration: none;
 }
 
@@ -352,7 +353,19 @@ a, a:hover, a:active {
     background-color: #fafafa;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 2fr 14px;
+    grid-template-rows: 1fr 5px 2fr 5px 14px;
+}
+
+.news-feed-data > div {
+    width: 100%;
+}
+
+.news-feed-data-title, .news-feed-data-subtitle {
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    overflow: hidden;
 }
 
 .news-feed-data-title {
