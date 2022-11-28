@@ -30,10 +30,10 @@ const NewsCarousel = () => {
       pagination={{
         clickable: true,
       }}
-      autoplay={{
+      /* autoplay={{
         delay: 5000,
         disableOnInteraction: false,
-      }}
+      }} */
       navigation={true}
       modules={[Pagination, Navigation, Autoplay]}
       style={{ maxWidth: maxWidth }}
@@ -43,9 +43,18 @@ const NewsCarousel = () => {
           <div className="news-slide">
             <Link to={"/noticias/" + article.href}>
               <div className="news-slide-data">
-                <p className="news-slide-title">{article.title}</p>
-                <p className="news-slide-subtitle">{article.subtitle}</p>
-
+                <AutoEllipsisParagraph
+                  className="news-slide-title"
+                  fontSize={16}
+                  text={article.title}
+                />
+                <div></div>
+                <AutoEllipsisParagraph
+                  className="news-slide-subtitle"
+                  fontSize={12}
+                  text={article.subtitle}
+                />
+                <div></div>
                 <p className="news-slide-date">{article.date}</p>
               </div>
               <img src={article.imgSrc} draggable={false} />
@@ -71,7 +80,7 @@ const NewsFeed = () => {
     <section className="news-feed">
       {newsInPage.map((article) => {
         return (
-          <Link to={"/noticias/" + article.href}>
+          <Link key={article.href} to={"/noticias/" + article.href}>
             <article key={article.href}>
               <img src={article.imgSrc} />
               <div className="news-feed-data">

@@ -10,11 +10,8 @@ const AutoEllipsisParagraph = ({ className, fontSize, text }: Props) => {
   const pRef = useRef<HTMLParagraphElement>(null);
   const [lines, setLines] = useState(0);
 
-  console.log(lines);
-
-  useEffect(() => {
+  const computeLines = () => {
     if (pRef.current === null) return;
-    if (lines !== 0) return;
 
     // Line height: fontSize + 3px
     let maxLines = 0;
@@ -24,8 +21,15 @@ const AutoEllipsisParagraph = ({ className, fontSize, text }: Props) => {
     if (maxLines * (fontSize + 3) > pRef.current.offsetHeight) {
       maxLines--;
     }
+    maxLines = maxLines === 0 ? 1 : maxLines;
 
     setLines(maxLines);
+  };
+
+  useEffect(() => {
+    computeLines();
+
+    window.onresize = computeLines;
   }, [pRef.current]);
 
   return (
