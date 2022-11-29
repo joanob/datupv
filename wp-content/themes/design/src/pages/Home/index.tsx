@@ -85,6 +85,9 @@ const NewsFeed = () => {
 
   return (
     <section className="news-feed">
+      <div className="news-feed-title">
+        <h2>Últimas noticias</h2>
+      </div>
       <Pagination page={page} totalPages={totalPages} setPage={setPage} />
       {newsInPage.map((article) => (
         <Link key={article.href} to={"/noticias/" + article.href}>

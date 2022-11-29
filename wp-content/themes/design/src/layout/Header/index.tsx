@@ -3,6 +3,7 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { Nav } from "../../data/nav";
 import { Link } from "react-router-dom";
 
+import logoTransparent from "../../public/icons/logoTransparent.png";
 import instagramSVG from "../../public/icons/instagram.svg";
 import twitterSVG from "../../public/icons/twitter.svg";
 
@@ -85,10 +86,7 @@ const Header = ({ nav }: HeaderProps) => {
     <header ref={headerRef} className="header">
       <div className="logo">
         <Link to="/">
-          <img
-            src="https://dat.webs.upv.es/wp-content/uploads/2018/03/Logo-Color-300.png"
-            alt="Logo"
-          />
+          <img src={logoTransparent} alt="Logo de la delegación" />
         </Link>
       </div>
       {desktopMinWidth == null || headerWidth > desktopMinWidth ? (
