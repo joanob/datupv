@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Autoplay } from "swiper";
+import { Pagination as SwiperPagination, Navigation, Autoplay } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import { feed } from "../../data/feed";
 import { Link } from "react-router-dom";
 import AutoEllipsisParagraph from "../../components/AutoEllipsisParagraph";
+import Pagination from "../../components/Pagination";
 
 const NewsCarousel = () => {
   const news = feed.length > 5 ? feed.slice(0, 5) : feed;
@@ -35,7 +36,7 @@ const NewsCarousel = () => {
         disableOnInteraction: false,
       }} */
       navigation={true}
-      modules={[Pagination, Navigation, Autoplay]}
+      modules={[SwiperPagination, Navigation, Autoplay]}
       style={{ maxWidth: maxWidth }}
     >
       {news.map((article) => (
@@ -71,6 +72,12 @@ const NewsFeed = () => {
 
   const newsPerPage = 5;
 
+  let totalPages = Math.floor(feed.length / newsPerPage);
+
+  if (totalPages * newsPerPage < feed.length) {
+    totalPages++;
+  }
+
   const newsInPage = feed.slice((page - 1) * newsPerPage, page * newsPerPage);
 
   const titleFontSize = 16;
@@ -78,30 +85,32 @@ const NewsFeed = () => {
 
   return (
     <section className="news-feed">
-      {newsInPage.map((article) => {
-        return (
-          <Link key={article.href} to={"/noticias/" + article.href}>
-            <article key={article.href}>
-              <img src={article.imgSrc} />
-              <div className="news-feed-data">
-                <AutoEllipsisParagraph
-                  className="news-feed-data-title"
-                  fontSize={titleFontSize}
-                  text={article.title}
-                />
-                <div></div> {/* 5px margin */}
-                <AutoEllipsisParagraph
-                  className="news-feed-data-subtitle"
-                  fontSize={subtitleFontSize}
-                  text={article.subtitle}
-                />
-                <div></div> {/* 5px margin */}
-                <p className="news-feed-data-date">{article.date}</p>
-              </div>
-            </article>
-          </Link>
-        );
-      })}
+      <Pagination page={page} totalPages={totalPages} setPage={setPage} />
+      {newsInPage.map((article) => (
+        <Link key={article.href} to={"/noticias/" + article.href}>
+          <article key={article.href}>
+            <img src={article.imgSrc} />
+            <div className="news-feed-data">
+              <AutoEllipsisParagraph
+                className="news-feed-data-title"
+                fontSize={titleFontSize}
+                text={article.title}
+              />
+              <div></div> {/* 5px margin */}
+              <AutoEllipsisParagraph
+                className="news-feed-data-subtitle"
+                fontSize={subtitleFontSize}
+                text={article.subtitle}
+              />
+              <div></div> {/* 5px margin */}
+              <p className="news-feed-data-date">{article.date}</p>
+            </div>
+          </article>
+        </Link>
+      ))}
+      {newsInPage.length > 4 ? (
+        <Pagination page={page} totalPages={totalPages} setPage={setPage} />
+      ) : null}
     </section>
   );
 };
