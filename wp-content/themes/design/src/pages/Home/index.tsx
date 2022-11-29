@@ -31,10 +31,10 @@ const NewsCarousel = () => {
       pagination={{
         clickable: true,
       }}
-      /* autoplay={{
+      autoplay={{
         delay: 5000,
         disableOnInteraction: false,
-      }} */
+      }}
       navigation={true}
       modules={[SwiperPagination, Navigation, Autoplay]}
       style={{ maxWidth: maxWidth }}
