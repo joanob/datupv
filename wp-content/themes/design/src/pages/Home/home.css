@@ -1,0 +1,77 @@
+/* NEWS CAROUSEL */
+
+.swiper {
+    width: 100%;
+    background-color: var(--secondary);
+    padding-bottom: 25px;
+}
+
+.swiper-wrapper {
+    align-items: stretch;
+}
+
+.swiper-slide {
+    height: auto;
+}
+
+/* swiper buttons */
+
+.swiper-button-prev, .swiper-button-next {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fafafabb;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after {
+    font-size: 18px;
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+.swiper-pagination {
+    bottom: 5px !important;
+}
+
+.swiper-pagination-bullet {
+    background: var(--primary);
+    opacity: 0.2;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: var(--primary) 1;
+}
+
+/* news slide */
+
+.news-slide {
+    width: 100%;
+    height: 100%;
+}
+
+.news-slide a {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.news-slide img {
+    width: 100%;
+    max-height: calc(100vw * 9 / 16);
+    object-fit: contain;
+}
+
+.news-slide-data {
+   flex: 1;
+    color: var(--primary);
+    padding: 0 10px;
+    display: grid;
+    align-items: center;
+}
+
+.news-slide-data-title {
+    font-size: 16px;
+}

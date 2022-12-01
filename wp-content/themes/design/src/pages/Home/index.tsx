@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import AutoEllipsisParagraph from "../../components/AutoEllipsisParagraph";
 import Pagination from "../../components/Pagination";
 
+import "./home.css";
+
 const NewsCarousel = () => {
   const news = feed.length > 5 ? feed.slice(0, 5) : feed;
 
@@ -31,34 +33,27 @@ const NewsCarousel = () => {
       pagination={{
         clickable: true,
       }}
-      autoplay={{
+      /* autoplay={{
         delay: 5000,
         disableOnInteraction: false,
-      }}
+      }} */
       navigation={true}
       modules={[SwiperPagination, Navigation, Autoplay]}
       style={{ maxWidth: maxWidth }}
     >
       {news.map((article) => (
-        <SwiperSlide key={article.title}>
+        <SwiperSlide key={article.href}>
           <div className="news-slide">
             <Link to={"/noticias/" + article.href}>
+              <img src={article.imgSrc} draggable={false} />
               <div className="news-slide-data">
                 <AutoEllipsisParagraph
-                  className="news-slide-title"
+                  className="news-slide-data-title"
                   fontSize={16}
                   text={article.title}
                 />
-                <div></div>
-                <AutoEllipsisParagraph
-                  className="news-slide-subtitle"
-                  fontSize={12}
-                  text={article.subtitle}
-                />
-                <div></div>
-                <p className="news-slide-date">{article.date}</p>
+                {/* <p className="news-slide-data-date">{article.date}</p> */}
               </div>
-              <img src={article.imgSrc} draggable={false} />
             </Link>
           </div>
         </SwiperSlide>
@@ -122,7 +117,8 @@ const Home = () => {
   return (
     <main className="main">
       <NewsCarousel />
-      <NewsFeed />
+      <div style={{ height: "20px" }}></div>
+      {/* <NewsFeed /> */}
     </main>
   );
 };
