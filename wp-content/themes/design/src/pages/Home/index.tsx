@@ -11,6 +11,7 @@ import AutoEllipsisParagraph from "../../components/AutoEllipsisParagraph";
 import Pagination from "../../components/Pagination";
 
 import "./home.css";
+import SwiperNewsCard from "../../components/SwiperNewsCard";
 
 const NewsCarousel = () => {
   const news = feed.length > 5 ? feed.slice(0, 5) : feed;
@@ -33,10 +34,10 @@ const NewsCarousel = () => {
       pagination={{
         clickable: true,
       }}
-      /* autoplay={{
+      autoplay={{
         delay: 5000,
         disableOnInteraction: false,
-      }} */
+      }}
       navigation={true}
       modules={[SwiperPagination, Navigation, Autoplay]}
       style={{ maxWidth: maxWidth }}
@@ -56,6 +57,44 @@ const NewsCarousel = () => {
               </div>
             </Link>
           </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+};
+
+const NewsCarouselWithCard = () => {
+  const news = feed.length > 5 ? feed.slice(0, 5) : feed;
+
+  const maxWidth = news.length * 320 + (news.length - 1) * 25;
+
+  const slidesPerView =
+    document.body.offsetWidth < 500
+      ? 1
+      : document.body.offsetWidth > maxWidth
+      ? news.length
+      : "auto";
+
+  return (
+    <Swiper
+      slidesPerView={slidesPerView}
+      spaceBetween={25}
+      centeredSlides={document.body.offsetWidth >= 500}
+      loop={slidesPerView === 1}
+      pagination={{
+        clickable: true,
+      }}
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false,
+      }}
+      navigation={true}
+      modules={[SwiperPagination, Navigation, Autoplay]}
+      style={{ maxWidth: maxWidth }}
+    >
+      {news.map((article) => (
+        <SwiperSlide key={article.href}>
+          <SwiperNewsCard article={article} />
         </SwiperSlide>
       ))}
     </Swiper>
@@ -116,7 +155,7 @@ const NewsFeed = () => {
 const Home = () => {
   return (
     <main className="main">
-      <NewsCarousel />
+      <NewsCarouselWithCard />
       <div style={{ height: "20px" }}></div>
       {/* <NewsFeed /> */}
     </main>

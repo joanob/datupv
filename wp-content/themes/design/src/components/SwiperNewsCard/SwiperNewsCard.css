@@ -1,0 +1,20 @@
+.news-slide {
+    margin: 10px;
+    border-radius: 10px;
+    background-color: var(--secondary);
+    width: auto;
+    height: 100%;
+}
+
+.news-slide img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.news-slide-data {
+    color: var(--primary);
+}
+
+.swiper-pagination-bullet {
+    background-color: var(--primary);
+}

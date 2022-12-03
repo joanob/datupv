@@ -2,7 +2,6 @@
 
 .swiper {
     width: 100%;
-    background-color: var(--secondary);
     padding-bottom: 25px;
 }
 
@@ -32,16 +31,16 @@
 }
 
 .swiper-pagination {
-    bottom: 5px !important;
+    height: 25px;
 }
 
 .swiper-pagination-bullet {
-    background: var(--primary);
+    background: var(--secondary);
     opacity: 0.2;
 }
 
 .swiper-pagination-bullet-active {
-    opacity: var(--primary) 1;
+    opacity: var(--secondary) 1;
 }
 
 /* news slide */
@@ -66,10 +65,10 @@
 
 .news-slide-data {
    flex: 1;
-    color: var(--primary);
-    padding: 0 10px;
-    display: grid;
-    align-items: center;
+    color: var(--text);
+    padding: 10px;
+    /* display: grid;
+    align-items: center; */
 }
 
 .news-slide-data-title {
