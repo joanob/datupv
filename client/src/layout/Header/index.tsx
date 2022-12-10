@@ -7,8 +7,6 @@ import instagramSVG from "../../public/icons/instagram.svg";
 import twitterSVG from "../../public/icons/twitter.svg";
 import { NavLink } from "../../types";
 
-// TODO: millorar tots els components. Separar components de burger i desplegat per a que no es repetisquen keys
-
 const NavItem = ({ url, text }: NavLink) => {
   return (
     <li className="nav-link">

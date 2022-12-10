@@ -10,7 +10,7 @@ import Navbar from "./Navbar";
 import NavbarCollapsable from "./NavbarCollapsable";
 
 const Header = () => {
-  const { containerRef, overflows } = useHeaderWidth();
+  const { containerRef, elementRef, loading, overflows } = useHeaderWidth();
 
   const nav = useNav();
 
@@ -21,8 +21,10 @@ const Header = () => {
           <img src={logoTransparent} alt="Logo de la delegación" />
         </Link>
       </div>
-      {!overflows || containerRef.current === null ? (
-        <Navbar nav={nav} visible={containerRef.current !== null} />
+      {nav.length === 0 ? null : loading || !overflows ? (
+        <nav ref={elementRef}>
+          <Navbar nav={nav} visible={!loading} />
+        </nav>
       ) : (
         <NavbarCollapsable nav={nav} />
       )}
@@ -32,27 +34,28 @@ const Header = () => {
 
 const useHeaderWidth = () => {
   const containerRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<HTMLElement>(null);
   const [minWidth, setMinWidth] = useState(0);
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    setMinWidth((currentMinWidth) => {
-      if (containerRef.current === null) {
-        return currentMinWidth;
-      }
-      if (currentMinWidth === 0) {
-        return containerRef.current?.scrollWidth;
-      }
-      if (containerRef.current?.scrollWidth > currentMinWidth) {
-        return containerRef.current?.scrollWidth;
-      }
-      return currentMinWidth;
-    });
-  }, [containerRef.current?.clientWidth, containerRef.current?.scrollWidth]);
+    if (containerRef.current === null || elementRef.current === null) {
+      return;
+    }
+    setMinWidth(containerRef.current.scrollWidth);
+    setWidth(containerRef.current.clientWidth);
+  }, [elementRef.current]);
 
-  const overflows =
-    containerRef.current && containerRef.current.clientWidth >= minWidth;
+  window.addEventListener("resize", () => {
+    if (containerRef.current === null) {
+      return;
+    }
+    setWidth(containerRef.current?.clientWidth);
+  });
 
-  return { containerRef, overflows };
+  const overflows = width < minWidth;
+
+  return { containerRef, elementRef, loading: minWidth === 0, overflows };
 };
 
 const useNav = (): NavLink[] => {
