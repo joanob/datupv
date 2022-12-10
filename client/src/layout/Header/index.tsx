@@ -1,21 +1,23 @@
 import { useState, useEffect, useRef } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import { Nav } from "../../data/nav";
 import { Link } from "react-router-dom";
 
 import logoTransparent from "../../public/icons/logoTransparent.png";
 import instagramSVG from "../../public/icons/instagram.svg";
 import twitterSVG from "../../public/icons/twitter.svg";
+import { NavLink } from "../../types";
 
-const NavLink = ({ href, text }: Nav) => {
+// TODO: millorar tots els components. Separar components de burger i desplegat per a que no es repetisquen keys
+
+const NavItem = ({ url, text }: NavLink) => {
   return (
     <li className="nav-link">
-      <Link to={href ? href : ""}>{text}</Link>
+      <Link to={url ? url : ""}>{text}</Link>
     </li>
   );
 };
 
-const NavLinkWithSubmenu = ({ text, items }: Nav) => {
+const NavItemWithSubitems = ({ text, url, sublinks, order }: NavLink) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <ul className="nav-link-with-submenu">
@@ -33,9 +35,14 @@ const NavLinkWithSubmenu = ({ text, items }: Nav) => {
         style={{ display: isOpen ? "block" : "none" }}
         className="nav-link-items"
       >
-        {items !== undefined &&
-          items.map((item) => (
-            <NavLink key={item.text} text={item.text} href={item.href} />
+        {sublinks !== undefined &&
+          sublinks.map((sublink) => (
+            <NavItem
+              key={sublink.url}
+              text={sublink.text}
+              url={sublink.url}
+              order={sublink.order}
+            />
           ))}
       </ul>
     </ul>
@@ -43,7 +50,7 @@ const NavLinkWithSubmenu = ({ text, items }: Nav) => {
 };
 
 interface HeaderProps {
-  nav: Nav[];
+  nav: NavLink[];
 }
 
 const Header = ({ nav }: HeaderProps) => {
@@ -94,15 +101,22 @@ const Header = ({ nav }: HeaderProps) => {
           style={{ visibility: headerWidth === null ? "hidden" : "visible" }}
           className="nav nav-desktop"
         >
-          {nav.map((item) =>
-            item.items ? (
-              <NavLinkWithSubmenu
-                key={item.text}
-                text={item.text}
-                items={item.items}
+          {nav.map((navlink) =>
+            navlink.sublinks ? (
+              <NavItemWithSubitems
+                key={navlink.url}
+                url={navlink.url}
+                text={navlink.text}
+                order={navlink.order}
+                sublinks={navlink.sublinks}
               />
             ) : (
-              <NavLink key={item.text} text={item.text} href={item.href} />
+              <NavItem
+                key={navlink.url}
+                text={navlink.text}
+                url={navlink.url}
+                order={navlink.order}
+              />
             )
           )}
           <li className="nav-link nav-link-social">
@@ -130,15 +144,22 @@ const Header = ({ nav }: HeaderProps) => {
           </div>
           {!isOpen ? null : (
             <ul className="nav">
-              {nav.map((item) =>
-                item.items ? (
-                  <NavLinkWithSubmenu
-                    key={item.text}
-                    text={item.text}
-                    items={item.items}
+              {nav.map((navlink) =>
+                navlink.sublinks ? (
+                  <NavItemWithSubitems
+                    key={navlink.url}
+                    url={navlink.url}
+                    text={navlink.text}
+                    order={navlink.order}
+                    sublinks={navlink.sublinks}
                   />
                 ) : (
-                  <NavLink key={item.text} text={item.text} href={item.href} />
+                  <NavItem
+                    key={navlink.url}
+                    text={navlink.text}
+                    url={navlink.url}
+                    order={navlink.order}
+                  />
                 )
               )}
               <li className="nav-link nav-link-social">

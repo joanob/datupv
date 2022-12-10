@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_navlinks_sublinks",
+  "info": {
+    "displayName": "sublink",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "samepage": {
+      "type": "boolean"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

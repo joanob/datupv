@@ -6,6 +6,8 @@ export type News = {
   href: string; // without initial /
 };
 
+export const feed: News[] = [];
+/* 
 import imgConcursoHalloween from "../public/img/concurso-chuches-halloween.jfif";
 
 import lake from "../public/img/lake.jpg";
@@ -36,3 +38,4 @@ export const feed: News[] = [
     href: "adivina-cuantas-chches-hay",
   },
 ];
+ */

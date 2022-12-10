@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nav_links",
+  "info": {
+    "singularName": "nav-link",
+    "pluralName": "nav-links",
+    "displayName": "NavLink",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "unique": true
+    },
+    "sublinks": {
+      "type": "dynamiczone",
+      "components": [
+        "navlinks.sublink"
+      ]
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,13 +1,13 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { nav } from "./data/nav";
 import Footer from "./layout/Footer";
-import Header from "./layout/Header";
+import Header from "./components/Header";
 import Home from "./pages/Home";
 
 const App = () => {
   return (
     <BrowserRouter basename="/datupv">
-      <Header nav={nav} />
+      <Header />
       <Routes>
         {import.meta.env.BASE_URL}
         <Route path="/" element={<Home />} />
