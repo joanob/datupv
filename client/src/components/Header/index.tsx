@@ -10,7 +10,7 @@ import Navbar from "./Navbar";
 import NavbarCollapsable from "./NavbarCollapsable";
 
 const Header = () => {
-  const { containerRef, elementRef, loading, overflows } = useHeaderWidth();
+  const { containerRef, elementRef, loading, collapse } = useHeaderWidth();
 
   const nav = useNav();
 
@@ -21,7 +21,7 @@ const Header = () => {
           <img src={logoTransparent} alt="Logo de la delegación" />
         </Link>
       </div>
-      {nav.length === 0 ? null : loading || !overflows ? (
+      {nav.length === 0 ? null : loading || !collapse ? (
         <nav ref={elementRef}>
           <Navbar nav={nav} visible={!loading} />
         </nav>
@@ -37,25 +37,55 @@ const useHeaderWidth = () => {
   const elementRef = useRef<HTMLElement>(null);
   const [minWidth, setMinWidth] = useState(0);
   const [width, setWidth] = useState(0);
+  const [collapse, setCollapse] = useState(false);
+
+  // On first render, minwidth === 0, width === 0 and collapse === false
+  // If first render overflows, minwidth will be established and won't need to be changed again
+  // If first render doesn't overflow, min width won't be corrent and will have to be recomputed on resize to get its final value
 
   useEffect(() => {
     if (containerRef.current === null || elementRef.current === null) {
       return;
     }
-    setMinWidth(containerRef.current.scrollWidth);
+    if (containerRef.current.scrollWidth > containerRef.current.clientWidth) {
+      // On first render content overflows
+      setMinWidth(containerRef.current.scrollWidth);
+    }
     setWidth(containerRef.current.clientWidth);
+    window.addEventListener("resize", () => {
+      if (containerRef.current === null) {
+        return;
+      }
+      setWidth(containerRef.current?.clientWidth);
+    });
   }, [elementRef.current]);
 
-  window.addEventListener("resize", () => {
-    if (containerRef.current === null) {
+  useEffect(() => {
+    if (containerRef.current === null || width === 0) {
       return;
     }
-    setWidth(containerRef.current?.clientWidth);
-  });
 
-  const overflows = width < minWidth;
+    if (minWidth === 0) {
+      // minWidth hasn't been stablished yet
+      // minWidth will be stablished when nav first overflows
+      if (containerRef.current.scrollWidth > containerRef.current.clientWidth) {
+        setMinWidth(containerRef.current.scrollWidth);
+        setCollapse(true);
+        return;
+      }
+      // If minwidth is not set yet, don't collapse
+      setCollapse(false);
+    } else {
+      setCollapse(width < minWidth);
+    }
+  }, [width]);
 
-  return { containerRef, elementRef, loading: minWidth === 0, overflows };
+  return {
+    containerRef,
+    elementRef,
+    loading: width === 0,
+    collapse,
+  };
 };
 
 const useNav = (): NavLink[] => {
