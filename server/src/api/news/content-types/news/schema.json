@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsfeed",
+  "info": {
+    "singularName": "news",
+    "pluralName": "newsfeed",
+    "displayName": "News",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "unique": true
+    },
+    "datetime": {
+      "type": "datetime"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
