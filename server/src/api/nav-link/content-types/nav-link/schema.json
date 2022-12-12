@@ -13,11 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "text": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "url": {
       "type": "string",
-      "unique": true
+      "unique": true,
+      "required": true
     },
     "sublinks": {
       "type": "dynamiczone",
@@ -26,7 +28,9 @@
       ]
     },
     "order": {
-      "type": "integer"
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }

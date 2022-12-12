@@ -13,24 +13,25 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "url": {
       "type": "string",
-      "unique": true
+      "unique": true,
+      "required": true
     },
     "datetime": {
-      "type": "datetime"
+      "type": "datetime",
+      "required": true,
+      "unique": true
     },
     "image": {
       "type": "media",
       "multiple": false,
       "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     }
   }
