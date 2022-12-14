@@ -1,28 +1,12 @@
 import axios from "axios";
 import { NavLink } from "../types/NavLink";
-import { baseURL } from "./config";
-
-interface NavLinksRes {
-  data: {
-    attributes: {
-      text: string;
-      url: string;
-      order: number;
-      sublinks?: {
-        text: string;
-        url: string;
-        order: number;
-        samepage: boolean;
-      }[];
-    };
-  }[];
-}
+import { baseURL, StrapiRes } from "./config";
 
 export const getNavLinks = async (): Promise<NavLink[]> => {
   return await axios
     .get(baseURL + "/api/nav-links?populate=%2A")
     .then((res) => {
-      const navlinksRes: NavLinksRes = res.data;
+      const navlinksRes: StrapiRes<NavLink> = res.data;
       const navlinks = navlinksRes.data.map(({ attributes }): NavLink => {
         const sublinks: NavLink["sublinks"] = [];
         if (attributes.sublinks) {

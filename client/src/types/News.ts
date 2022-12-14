@@ -7,8 +7,8 @@ export interface News {
 
 interface NewsImage {
   url: string;
-  altText: string;
-  caption: string;
+  altText: string | null;
+  caption: string | null;
   width: number;
   height: number;
 }
