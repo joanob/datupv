@@ -1,0 +1,8 @@
+.newsfeed {
+    margin: 0 10px;
+    margin-bottom: 10px;
+}
+
+.newsfeed > * {
+    margin: 10px 0;
+}

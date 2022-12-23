@@ -13,6 +13,8 @@ import Pagination from "../../components/Pagination";
 import "./home.css";
 import SwiperNewsCard from "../../components/SwiperNewsCard";
 
+import NewNewsFeed from "../../components/NewsFeed";
+
 const NewsCarousel = () => {
   const news = feed.length > 5 ? feed.slice(0, 5) : feed;
 
@@ -155,8 +157,9 @@ const NewsFeed = () => {
 const Home = () => {
   return (
     <main className="main">
-      <NewsCarouselWithCard />
-      <div style={{ height: "20px" }}></div>
+      <NewNewsFeed />
+      {/* <NewsCarouselWithCard />
+      <div style={{ height: "20px" }}></div> */}
       {/* <NewsFeed /> */}
     </main>
   );
