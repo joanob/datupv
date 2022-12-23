@@ -2,7 +2,7 @@ export interface News {
   title: string;
   url: string;
   datetime: number;
-  image?: NewsImage;
+  image: NewsImage;
 }
 
 interface NewsImage {

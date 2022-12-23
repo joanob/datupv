@@ -7,16 +7,14 @@ export const getNewsfeed = async (): Promise<News[]> => {
     const newsfeedRes: StrapiRes<News & { image: StrapiImgResponse }> =
       res.data;
     const newsfeed = newsfeedRes.data.map(({ attributes }): News => {
-      let image: News["image"];
-      if (attributes.image?.data !== null) {
-        image = {
-          url: attributes.image.data.attributes.url,
-          altText: attributes.image.data.attributes.alternativeText,
-          caption: attributes.image.data.attributes.caption,
-          width: attributes.image.data.attributes.width,
-          height: attributes.image.data.attributes.height,
-        };
-      }
+      const image: News["image"] = {
+        url: attributes.image.data.attributes.url,
+        altText: attributes.image.data.attributes.alternativeText,
+        caption: attributes.image.data.attributes.caption,
+        width: attributes.image.data.attributes.width,
+        height: attributes.image.data.attributes.height,
+      };
+
       return {
         title: attributes.title,
         url: attributes.url,
