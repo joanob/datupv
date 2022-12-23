@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { News } from "../../../types/News";
 
@@ -9,26 +9,24 @@ interface Props {
 }
 
 const NewsCard = ({ news }: Props) => {
-  const imgContainerBoxRef = useRef<HTMLDivElement | null>(null);
-  const [imgSize, setImgSize] = useState<{ width: number; height: number }>({
-    width: 0,
-    height: 0,
-  });
+  const [imgContainerSize, imgContainerRef] = useContainerSize();
 
-  useEffect(() => {
-    if (imgContainerBoxRef.current === null) {
-      return;
-    }
-    setImgSize({
-      width: imgContainerBoxRef.current.clientWidth,
-      height: imgContainerBoxRef.current.clientHeight,
-    });
-  }, [imgContainerBoxRef.current]);
-
-  const imgStyle =
+  const imgStyle: { width: "auto" | number; height: "auto" | number } =
     news.image.width > news.image.height
-      ? { width: imgSize.width }
-      : { height: imgSize.height };
+      ? { width: imgContainerSize.width, height: "auto" }
+      : { width: "auto", height: imgContainerSize.height };
+
+  if (imgContainerRef.current && imgStyle.width !== "auto") {
+    // Horizontal image, limit width if it is would get larger than container height
+    const originalImgRatio = news.image.width / news.image.height;
+    const imgHeightKeepingRatio = imgStyle.width / originalImgRatio;
+    const VERTICAL_MARGIN = 10;
+    if (imgHeightKeepingRatio > imgContainerSize.height - VERTICAL_MARGIN) {
+      const newHeight = imgContainerSize.height - VERTICAL_MARGIN;
+      imgStyle.height = newHeight;
+      imgStyle.width = "auto";
+    }
+  }
 
   const datetime = new Date(news.datetime);
   const date =
@@ -40,13 +38,11 @@ const NewsCard = ({ news }: Props) => {
 
   return (
     <article className="newscard">
-      <div className="newscard-image">
-        <div ref={imgContainerBoxRef} className="newscard-image-container">
-          <div className="newscard-image-container-box">
-            {imgSize.width !== 0 ? (
-              <img src={news.image.url} style={imgStyle} />
-            ) : null}
-          </div>
+      <div ref={imgContainerRef} className="newscard-image">
+        <div className="newscard-image-container">
+          {imgContainerSize.width !== 0 ? (
+            <img src={news.image.url} style={imgStyle} />
+          ) : null}
         </div>
       </div>
       <Link to={"/noticias/" + news.url}>
@@ -57,6 +53,46 @@ const NewsCard = ({ news }: Props) => {
       </Link>
     </article>
   );
+};
+
+interface Size {
+  width: number;
+  height: number;
+}
+
+const useContainerSize = (): [
+  Size,
+  MutableRefObject<HTMLDivElement | null>
+] => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerSize, setContainerSize] = useState<Size>({
+    width: 0,
+    height: 0,
+  });
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (containerRef.current === null) {
+        return;
+      }
+      setContainerSize({
+        width: containerRef.current.clientWidth,
+        height: containerRef.current.clientHeight,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (containerRef.current === null) {
+      return;
+    }
+    setContainerSize({
+      width: containerRef.current.clientWidth,
+      height: containerRef.current.clientHeight,
+    });
+  }, [containerRef.current]);
+
+  return [containerSize, containerRef];
 };
 
 export default NewsCard;
