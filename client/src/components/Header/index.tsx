@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, RefObject } from "react";
 import { Link } from "react-router-dom";
 import { getNavLinks } from "../../services";
 import { NavLink } from "../../types";
@@ -10,7 +10,10 @@ import Navbar from "./Navbar";
 import NavbarCollapsable from "./NavbarCollapsable";
 
 const Header = () => {
-  const { containerRef, elementRef, loading, collapse } = useHeaderWidth();
+  const containerRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<HTMLElement>(null);
+
+  const { loading, collapse } = useHeaderWidth(containerRef, elementRef);
 
   const nav = useNav();
 
@@ -32,9 +35,10 @@ const Header = () => {
   );
 };
 
-const useHeaderWidth = () => {
-  const containerRef = useRef<HTMLElement>(null);
-  const elementRef = useRef<HTMLElement>(null);
+const useHeaderWidth = (
+  containerRef: RefObject<HTMLElement>,
+  elementRef: RefObject<HTMLElement>
+) => {
   const [minWidth, setMinWidth] = useState(0);
   const [width, setWidth] = useState(0);
   const [collapse, setCollapse] = useState(false);
@@ -48,7 +52,7 @@ const useHeaderWidth = () => {
       return;
     }
     if (containerRef.current.scrollWidth > containerRef.current.clientWidth) {
-      // On first render content overflows
+      // When on first render content overflows
       setMinWidth(containerRef.current.scrollWidth);
     }
     setWidth(containerRef.current.clientWidth);
@@ -58,7 +62,7 @@ const useHeaderWidth = () => {
       }
       setWidth(containerRef.current?.clientWidth);
     });
-  }, [elementRef.current]);
+  }, [containerRef.current, elementRef.current]);
 
   useEffect(() => {
     if (containerRef.current === null || width === 0) {
