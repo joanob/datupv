@@ -12,7 +12,6 @@ const Contact = () => {
     e.preventDefault();
 
     if (token === "") {
-      alert("Captcha required");
       return;
     }
 

@@ -1,4 +1,4 @@
-export const baseURL = "http://localhost:1337";
+export const baseURL = import.meta.env.BASE_URL;
 
 export interface StrapiRes<T> {
   data: {

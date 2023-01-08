@@ -43,7 +43,13 @@ const NewsCard = ({ news }: Props) => {
         </p>
         <div className="newscard-extra">
           <p className="newscard-date">
-            {new Date(news.datetime).toDateString()}
+            {new Date(news.datetime)
+              .toLocaleDateString("es-ES", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+              })
+              .replaceAll("/", "-")}
           </p>
           <Link className="newscard-link" to={""}>
             Leer más

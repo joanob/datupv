@@ -13,7 +13,7 @@ import Pagination from "../../components/Pagination";
 import "./home.css";
 import SwiperNewsCard from "../../components/SwiperNewsCard";
 
-import NewNewsFeed from "../../components/NewsFeed";
+import NewsFeed from "../../components/NewsFeed";
 
 const NewsCarousel = () => {
   const news = feed.length > 5 ? feed.slice(0, 5) : feed;
@@ -103,61 +103,10 @@ const NewsCarouselWithCard = () => {
   );
 };
 
-const NewsFeed = () => {
-  const [page, setPage] = useState(1);
-
-  const newsPerPage = 5;
-
-  let totalPages = Math.floor(feed.length / newsPerPage);
-
-  if (totalPages * newsPerPage < feed.length) {
-    totalPages++;
-  }
-
-  const newsInPage = feed.slice((page - 1) * newsPerPage, page * newsPerPage);
-
-  const titleFontSize = 16;
-  const subtitleFontSize = 15;
-
-  return (
-    <section className="news-feed">
-      <div className="news-feed-title">
-        <h2>Últimas noticias</h2>
-      </div>
-      <Pagination page={page} totalPages={totalPages} setPage={setPage} />
-      {newsInPage.map((article) => (
-        <Link key={article.href} to={"/noticias/" + article.href}>
-          <article key={article.href}>
-            <img src={article.imgSrc} />
-            <div className="news-feed-data">
-              <AutoEllipsisParagraph
-                className="news-feed-data-title"
-                fontSize={titleFontSize}
-                text={article.title}
-              />
-              <div></div> {/* 5px margin */}
-              <AutoEllipsisParagraph
-                className="news-feed-data-subtitle"
-                fontSize={subtitleFontSize}
-                text={article.subtitle}
-              />
-              <div></div> {/* 5px margin */}
-              <p className="news-feed-data-date">{article.date}</p>
-            </div>
-          </article>
-        </Link>
-      ))}
-      {newsInPage.length > 4 ? (
-        <Pagination page={page} totalPages={totalPages} setPage={setPage} />
-      ) : null}
-    </section>
-  );
-};
-
 const Home = () => {
   return (
     <main className="main">
-      <NewNewsFeed />
+      <NewsFeed />
       {/* <NewsCarouselWithCard />
       <div style={{ height: "20px" }}></div> */}
       {/* <NewsFeed /> */}
