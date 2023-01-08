@@ -8,8 +8,13 @@ import "./newsfeed.css";
 const NewsFeed = () => {
   const news = useNews();
 
+  if (news.length === 0) {
+    return null;
+  }
+
   return (
     <div className="newsfeed">
+      <h2 style={{ color: "var(--secondary)" }}>Últimas noticias</h2>
       {news.map((article) => (
         <NewsCard key={article.title} news={article} />
       ))}

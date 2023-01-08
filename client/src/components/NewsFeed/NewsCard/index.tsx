@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { News } from "../../../types/News";
 
@@ -9,90 +9,75 @@ interface Props {
 }
 
 const NewsCard = ({ news }: Props) => {
-  const [imgContainerSize, imgContainerRef] = useContainerSize();
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const { ref, height } = useContainerSize(imgLoaded);
 
-  const imgStyle: { width: "auto" | number; height: "auto" | number } =
-    news.image.width > news.image.height
-      ? { width: imgContainerSize.width, height: "auto" }
-      : { width: "auto", height: imgContainerSize.height };
+  const isHorizontalImage = news.image.width > news.image.height;
 
-  if (imgContainerRef.current && imgStyle.width !== "auto") {
-    // Horizontal image, limit width if it is would get larger than container height
-    const originalImgRatio = news.image.width / news.image.height;
-    const imgHeightKeepingRatio = imgStyle.width / originalImgRatio;
-    const VERTICAL_MARGIN = 10;
-    if (imgHeightKeepingRatio > imgContainerSize.height - VERTICAL_MARGIN) {
-      const newHeight = imgContainerSize.height - VERTICAL_MARGIN;
-      imgStyle.height = newHeight;
-      imgStyle.width = "auto";
-    }
-  }
-
-  const datetime = new Date(news.datetime);
-  const date =
-    datetime.getDate() +
-    "-" +
-    (datetime.getMonth() + 1) +
-    "-" +
-    datetime.getFullYear();
+  const topPadding = height / 2;
 
   return (
-    <article className="newscard">
-      <div ref={imgContainerRef} className="newscard-image">
-        <div className="newscard-image-container">
-          {imgContainerSize.width !== 0 ? (
-            <img src={news.image.url} style={imgStyle} />
-          ) : null}
+    <div className="news" style={{ paddingTop: topPadding + "px" }}>
+      <div
+        ref={ref}
+        className={
+          isHorizontalImage
+            ? "news-image news-image-horizontal"
+            : "news-image news-image-vertical"
+        }
+      >
+        <img
+          src={news.image.url}
+          onLoad={() => {
+            setImgLoaded(true);
+          }}
+        />
+      </div>
+      <div className="newscard" style={{ paddingTop: topPadding + "px" }}>
+        <h3 className="newscard-title">{news.title}</h3>
+        <p className="newscard-subtitle">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus
+          necessitatibus voluptas reprehenderit fugiat doloremque voluptates?
+          Nisi odit possimus voluptate, minus assumenda enim dolorem hic omnis
+          eum nam illo rerum quaerat.
+        </p>
+        <div className="newscard-extra">
+          <p className="newscard-date">
+            {new Date(news.datetime).toDateString()}
+          </p>
+          <Link className="newscard-link" to={""}>
+            Leer más
+          </Link>
         </div>
       </div>
-      <Link to={"/noticias/" + news.url}>
-        <div className="newscard-body">
-          <div className="newscard-body-date">{date}</div>
-          <div className="newscard-body-title">{news.title}</div>
-        </div>
-      </Link>
-    </article>
+    </div>
   );
 };
 
-interface Size {
-  width: number;
-  height: number;
-}
-
-const useContainerSize = (): [
-  Size,
-  MutableRefObject<HTMLDivElement | null>
-] => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [containerSize, setContainerSize] = useState<Size>({
-    width: 0,
-    height: 0,
-  });
+const useContainerSize = (load: any) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
-      if (containerRef.current === null) {
+      if (ref.current === null) {
         return;
       }
-      setContainerSize({
-        width: containerRef.current.clientWidth,
-        height: containerRef.current.clientHeight,
-      });
+      setWidth(ref.current.clientWidth);
+      setHeight(ref.current.clientHeight);
     });
   }, []);
 
   useEffect(() => {
-    if (containerRef.current === null) {
+    if (ref.current === null) {
       return;
     }
-    setContainerSize({
-      width: containerRef.current.clientWidth,
-      height: containerRef.current.clientHeight,
-    });
-  }, [containerRef.current]);
+    setWidth(ref.current.clientWidth);
+    setHeight(ref.current.clientHeight);
+  }, [ref.current, load]);
 
-  return [containerSize, containerRef];
+  return { ref, width, height };
 };
 
 export default NewsCard;

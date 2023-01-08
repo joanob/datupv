@@ -1,4 +1,81 @@
+.news {
+    width: 100%;
+    position: relative;
+}
+
+.news-image {
+    position: absolute;
+    top: 0;
+}
+
+.news-image > img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.news-image-horizontal {
+    left: 10%;
+    right: 10%;
+}
+
+.news-image-vertical {
+    left: 20%;
+    right: 20%;
+}
+
 .newscard {
+    width: 100%;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: var(--primary);
+}
+
+.newscard-title {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.newscard-subtitle {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.newscard-extra {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.newscard-date {
+    font-size: 14px;
+}
+
+.newscard-link {
+    padding: 8px;
+    border-radius: 10px;
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .newscard {
     width: 100%;
     min-height: 100px;
     position: relative;
@@ -50,7 +127,4 @@
 .newscard-body-title {
     padding: 5px 10px;
     font-size: 16px;
-}
-
-/* TODO: añadir textos, fechas y demás info */
-/* he pensado titulo primero y debajo fecha y leer más */
+} */
