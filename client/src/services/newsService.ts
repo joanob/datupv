@@ -1,7 +1,6 @@
 import axios from "axios";
 import { News } from "../types/News";
 import { baseURL, StrapiImgResponse, StrapiRes } from "./config";
-import { parseUrl } from "./static";
 
 export const getNewsfeed = async (): Promise<News[]> => {
   return await axios.get(baseURL + "/api/newsfeed?populate=%2A").then((res) => {
@@ -9,7 +8,7 @@ export const getNewsfeed = async (): Promise<News[]> => {
       res.data;
     const newsfeed = newsfeedRes.data.map(({ attributes }): News => {
       const image: News["image"] = {
-        url: parseUrl(attributes.image.data.attributes.url),
+        url: baseURL + attributes.image.data.attributes.url,
         altText: attributes.image.data.attributes.alternativeText,
         caption: attributes.image.data.attributes.caption,
         width: attributes.image.data.attributes.width,

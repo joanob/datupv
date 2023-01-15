@@ -1,4 +1,4 @@
-export const baseURL = import.meta.env.BASE_URL;
+export const baseURL = import.meta.env.VITE_SERVER_URL;
 
 export interface StrapiRes<T> {
   data: {
