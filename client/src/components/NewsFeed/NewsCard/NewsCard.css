@@ -1,5 +1,6 @@
 .news {
     width: 100%;
+    max-width: 400px;
     position: relative;
 }
 
@@ -11,6 +12,7 @@
 .news-image > img {
     width: 100%;
     border-radius: 20px;
+    box-shadow: 1px 1px 3px rgb(var(--textRGB),0.5);
 }
 
 .news-image-horizontal {
@@ -27,7 +29,7 @@
     width: 100%;
     padding: 15px;
     border-radius: 20px;
-    background-color: var(--primary);
+    box-shadow: 1px 1px 3px rgb(var(--textRGB),0.2);
 }
 
 .newscard-title {

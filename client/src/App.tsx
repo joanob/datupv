@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from "./layout/Footer";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
@@ -11,7 +11,7 @@ const App = () => {
       <Routes>
         {import.meta.env.BASE_URL}
         <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contacto" element={<Contact />} />
       </Routes>
       <Footer />
     </BrowserRouter>

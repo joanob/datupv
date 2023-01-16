@@ -15,9 +15,11 @@ const NewsFeed = () => {
   return (
     <div className="newsfeed">
       <h2 style={{ color: "var(--secondary)" }}>Últimas noticias</h2>
-      {news.map((article) => (
-        <NewsCard key={article.title} news={article} />
-      ))}
+      <div className="newsfeed-feed">
+        {news.map((article) => (
+          <NewsCard key={article.title} news={article} />
+        ))}
+      </div>
     </div>
   );
 };

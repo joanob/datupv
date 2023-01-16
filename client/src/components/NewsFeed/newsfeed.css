@@ -3,6 +3,21 @@
     margin-bottom: 10px;
 }
 
-.newsfeed > * {
+.newsfeed > h2 {
     margin: 10px 0;
+}
+
+@media (min-width: 1200px) {
+    .newsfeed > h2 {
+        text-align: center;
+    }
+}
+
+.newsfeed-feed {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
 }

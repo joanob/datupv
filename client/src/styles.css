@@ -36,6 +36,13 @@ a, a:hover, a:active {
     flex-direction: column;
 }
 
+@media (min-width: 1400px) {
+    body {
+        width: 1400px;
+        margin: auto;
+    }
+}
+
 
 
 /* MAIN */

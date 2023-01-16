@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+*.env*
+
+
 src/public/img
 
 # Editor directories and files
