@@ -1,6 +1,0 @@
-DB_NAME=datupv
-DB_USER=root
-DB_PASS=
-
-WP_USER=datupv
-WP_PASS=datupv

@@ -26,3 +26,25 @@ WantedBy=multi-user.target
 
 8. Enable service sudo systemctl enable strapi
 9. Start service sudo systemctl start strapi
+
+## Client
+
+1. Add VITE_SERVER_URL to .env with server ip (http://{ip}:1337)
+2. Install dependencies
+3. Yarn build
+4. Install apache2 sudo apt install apache2
+5. Move build to /var/www/html/datupv: mv datupv/client/dist /var/www/html/datupv
+6. Create config file: sudo nano /etc/apache2/sites-available/datupv.conf
+
+```
+<VirtualHost *:80>
+    ServerAdmin {user}@localhost
+    ServerName datupv
+    ServerAlias datupv
+    DocumentRoot /var/www/html/datupv
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+7. Enable conf file: sudo a2ensite datupv.conf
