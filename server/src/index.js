@@ -1,5 +1,7 @@
 'use strict';
 
+require("dotenv").config()
+
 module.exports = {
   /**
    * An asynchronous register function that runs before
