@@ -4,4 +4,4 @@
 # htaccess
 /.htaccess
 
-client/.env
+*.env
