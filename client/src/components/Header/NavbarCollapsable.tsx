@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "../../types";
 import NavItem from "./NavItem";
 import NavItemWithSubitems from "./NavItemWithSubitems";
 
 import instagramSVG from "../../public/icons/instagram.svg";
 import twitterSVG from "../../public/icons/twitter.svg";
+import { useLocation } from "react-router-dom";
 
 interface Props {
   nav: NavLink[];
@@ -12,6 +13,16 @@ interface Props {
 
 const NavbarCollapsable = ({ nav }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [lastLocation, setLastLocation] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname !== lastLocation) {
+      setLastLocation(location.pathname);
+      setIsOpen(false);
+    }
+  }, [location.pathname]);
+
   return (
     <>
       <div

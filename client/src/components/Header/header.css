@@ -101,6 +101,7 @@
 
 .nav-desktop .nav-link-with-submenu:hover .nav-link-items {
     display: block !important;
+    background-color: #fff;
 }
 
 .nav-desktop .nav-link-with-submenu p {

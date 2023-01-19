@@ -106,6 +106,7 @@ const NewsCarouselWithCard = () => {
 const Home = () => {
   return (
     <main className="main">
+      <h2>Últimas noticias</h2>
       <NewsFeed />
       {/* <NewsCarouselWithCard />
       <div style={{ height: "20px" }}></div> */}
