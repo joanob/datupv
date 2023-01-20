@@ -1,5 +1,6 @@
 export interface News {
   title: string;
+  subtitle: string;
   url: string;
   datetime: number;
   image: NewsImage;

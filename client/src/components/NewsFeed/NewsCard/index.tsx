@@ -8,39 +8,43 @@ interface Props {
   news: News;
 }
 
+const MAX_HEIGHT = 180;
+
 const NewsCard = ({ news }: Props) => {
   const [imgLoaded, setImgLoaded] = useState(false);
-  const { ref, height } = useContainerSize(imgLoaded);
+  const { ref, width, height } = useContainerSize(imgLoaded);
+  const [imgWidth, setImgWidth] = useState(0);
 
-  const isHorizontalImage = news.image.width > news.image.height;
+  useEffect(() => {
+    const imgFullHeight = (news.image.height / news.image.width) * width;
+    if (imgFullHeight > MAX_HEIGHT) {
+      setImgWidth((news.image.width / news.image.height) * MAX_HEIGHT);
+    }
+  }, [width]);
 
-  const topPadding = height / 2;
+  // TODO: from css width 80% margin auto for all, use image ratio. if height > max_height, set inline width to div so height resizes properly. topPadding will be computed from new height
+  // No need to create a new hook, width already changes on resize
+
+  const topPadding =
+    imgWidth === 0
+      ? height / 2
+      : ((news.image.height / news.image.width) * imgWidth) / 2;
 
   return (
     <div className="news" style={{ paddingTop: topPadding + "px" }}>
-      <div
-        ref={ref}
-        className={
-          isHorizontalImage
-            ? "news-image news-image-horizontal"
-            : "news-image news-image-vertical"
-        }
-      >
-        <img
-          src={news.image.url}
-          onLoad={() => {
-            setImgLoaded(true);
-          }}
-        />
+      <div ref={ref} className="news-image">
+        <div style={{ width: imgWidth === 0 ? "100%" : imgWidth + "px" }}>
+          <img
+            src={news.image.url}
+            onLoad={() => {
+              setImgLoaded(true);
+            }}
+          />
+        </div>
       </div>
       <div className="newscard" style={{ paddingTop: topPadding + "px" }}>
         <h3 className="newscard-title">{news.title}</h3>
-        <p className="newscard-subtitle">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus
-          necessitatibus voluptas reprehenderit fugiat doloremque voluptates?
-          Nisi odit possimus voluptate, minus assumenda enim dolorem hic omnis
-          eum nam illo rerum quaerat.
-        </p>
+        <p className="newscard-subtitle">{news.subtitle}</p>
         <div className="newscard-extra">
           <p className="newscard-date">
             {new Date(news.datetime)

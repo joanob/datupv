@@ -7,22 +7,18 @@
 .news-image {
     position: absolute;
     top: 0;
-}
-
-.news-image > img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 1px 1px 3px rgb(var(--textRGB),0.5);
-}
-
-.news-image-horizontal {
     left: 10%;
     right: 10%;
 }
 
-.news-image-vertical {
-    left: 20%;
-    right: 20%;
+.news-image div {
+    margin: auto;
+}
+
+.news-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 1px 1px 3px rgb(var(--textRGB),0.5);
 }
 
 .newscard {

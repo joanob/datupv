@@ -20,7 +20,7 @@ const Footer = () => {
         </div>
       </div>
       <div>
-        <p>Edificio 4D, primera planta. Camino de Vera, s/n. 46022 Valencia</p>
+        Edificio 4D, primera planta. Camino de Vera, s/n. 46022 Valencia
       </div>
       {/* CONTACTO */}
       <div className="footer-logo">

@@ -17,6 +17,7 @@ export const getNewsfeed = async (): Promise<News[]> => {
 
       return {
         title: attributes.title,
+        subtitle: attributes.subtitle,
         url: attributes.url,
         // Datetime comes as an ISO string
         datetime: new Date(attributes.datetime).getTime(),
