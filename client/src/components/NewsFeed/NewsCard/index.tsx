@@ -22,9 +22,6 @@ const NewsCard = ({ news }: Props) => {
     }
   }, [width]);
 
-  // TODO: from css width 80% margin auto for all, use image ratio. if height > max_height, set inline width to div so height resizes properly. topPadding will be computed from new height
-  // No need to create a new hook, width already changes on resize
-
   const topPadding =
     imgWidth === 0
       ? height / 2
@@ -42,7 +39,7 @@ const NewsCard = ({ news }: Props) => {
           />
         </div>
       </div>
-      <div className="newscard" style={{ paddingTop: topPadding + "px" }}>
+      <div className="newscard" style={{ paddingTop: MAX_HEIGHT / 2 + "px" }}>
         <h3 className="newscard-title">{news.title}</h3>
         <p className="newscard-subtitle">{news.subtitle}</p>
         <div className="newscard-extra">
