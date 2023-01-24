@@ -6,12 +6,15 @@ import NavItemWithSubitems from "./NavItemWithSubitems";
 import instagramSVG from "../../public/icons/instagram.svg";
 import twitterSVG from "../../public/icons/twitter.svg";
 import { useLocation } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 interface Props {
   nav: NavLink[];
+  theme: "light" | "dark";
+  toggleTheme: () => void;
 }
 
-const NavbarCollapsable = ({ nav }: Props) => {
+const NavbarCollapsable = ({ nav, theme, toggleTheme }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [lastLocation, setLastLocation] = useState("");
   const location = useLocation();
@@ -25,15 +28,18 @@ const NavbarCollapsable = ({ nav }: Props) => {
 
   return (
     <>
-      <div
-        className={isOpen ? "nav-toggle nav-toggle-open" : "nav-toggle"}
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
+      <div className="nav-toggle-container">
+        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+        <div
+          className={isOpen ? "nav-toggle nav-toggle-open" : "nav-toggle"}
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
       {!isOpen ? null : (
         <ul className="nav">

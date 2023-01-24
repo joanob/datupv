@@ -8,6 +8,7 @@ import logoTransparent from "../../public/icons/logoTransparent.png";
 import "./header.css";
 import Navbar from "./Navbar";
 import NavbarCollapsable from "./NavbarCollapsable";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -17,19 +18,26 @@ const Header = () => {
 
   const nav = useNav();
 
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <header ref={containerRef} className="header">
-      <div className="logo">
-        <Link to="/">
-          <img src={logoTransparent} alt="Logo de la delegación" />
-        </Link>
+      <div className="header-left-container">
+        <div className="logo">
+          <Link to="/">
+            <img src={logoTransparent} alt="Logo de la delegación" />
+          </Link>
+        </div>
       </div>
       {nav.length === 0 ? null : loading || !collapse ? (
-        <nav ref={elementRef}>
+        <nav className="nav-container" ref={elementRef}>
           <Navbar nav={nav} visible={!loading} />
+          {loading ? null : (
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+          )}
         </nav>
       ) : (
-        <NavbarCollapsable nav={nav} />
+        <NavbarCollapsable nav={nav} theme={theme} toggleTheme={toggleTheme} />
       )}
     </header>
   );
@@ -84,6 +92,8 @@ const useHeaderWidth = (
     }
   }, [width]);
 
+  console.log(width, minWidth);
+
   return {
     containerRef,
     elementRef,
@@ -102,6 +112,19 @@ const useNav = (): NavLink[] => {
   }, []);
 
   return nav;
+};
+
+const useTheme = () => {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  return {
+    theme,
+    toggleTheme: () => {
+      const newTheme = theme === "light" ? "dark" : "light";
+      document.body.className = newTheme;
+      setTheme(newTheme);
+    },
+  };
 };
 
 export default Header;
