@@ -33,6 +33,10 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "subtitle": {
+      "type": "text",
+      "required": true
     }
   }
 }
