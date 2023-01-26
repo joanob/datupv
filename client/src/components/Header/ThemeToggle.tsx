@@ -7,8 +7,6 @@ interface Props {
   toggleTheme: () => void;
 }
 
-// https://codepen.io/alvarotrigo/pen/oNoJePo
-
 const ThemeToggle = ({ theme, toggleTheme }: Props) => {
   return (
     <div className="toggle-container" onClick={toggleTheme}>

@@ -19,9 +19,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <div>
-        Edificio 4D, primera planta. Camino de Vera, s/n. 46022 Valencia
-      </div>
+      <div>Edificio 4D, 1ª planta. Camino de Vera, s/n. 46022 Valencia</div>
       {/* CONTACTO */}
       <div className="footer-logo">
         <img className="dat" src={logoWhite} alt="Logo de la delegación" />

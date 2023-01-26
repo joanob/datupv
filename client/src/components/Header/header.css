@@ -24,6 +24,7 @@
     flex-direction: row;
     align-items: center;
     margin-left: auto;
+    padding-right: 5px;
 }
 
 .logo img {

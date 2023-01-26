@@ -16,7 +16,6 @@ module.exports = async (policyContext, config, { strapi }) => {
 
   try {
       let { success } = await verify(secret, token)
-
       return success
   } catch (err) {
       return false

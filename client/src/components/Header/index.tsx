@@ -16,9 +16,9 @@ const Header = () => {
 
   const { loading, collapse } = useHeaderWidth(containerRef, elementRef);
 
-  const nav = useNav();
-
   const { theme, toggleTheme } = useTheme();
+
+  const nav = useNav();
 
   return (
     <header ref={containerRef} className="header">
@@ -91,8 +91,6 @@ const useHeaderWidth = (
       setCollapse(width < minWidth);
     }
   }, [width]);
-
-  console.log(width, minWidth);
 
   return {
     containerRef,

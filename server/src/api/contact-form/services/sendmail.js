@@ -11,13 +11,13 @@ const transporter = nodemailer.createTransport({
 })
 
 module.exports = {
-  send: (to, subject, html) => {
-    transporter.sendMail({
+  send: async (to, subject, html) => {
+    await transporter.sendMail({
       from: `Delegación de Alumnos de Teleco - UPV ${process.env.EMAIL_FROM}`,
       cc: to,
       bcc: process.env.EMAIL_FROM,
       subject,
       html
-    }).catch(err => {console.log(err)})
+    })
   }
 }
