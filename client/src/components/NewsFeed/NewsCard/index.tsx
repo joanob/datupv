@@ -40,7 +40,9 @@ const NewsCard = ({ news }: Props) => {
         </div>
       </div>
       <div className="newscard" style={{ paddingTop: MAX_HEIGHT / 2 + "px" }}>
-        <h3 className="newscard-title">{news.title}</h3>
+        <h3 className="newscard-title">
+          <Link to={""}>{news.title}</Link>
+        </h3>
         <p className="newscard-subtitle">{news.subtitle}</p>
         <div className="newscard-extra">
           <p className="newscard-date">

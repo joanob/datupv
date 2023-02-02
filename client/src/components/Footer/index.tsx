@@ -19,6 +19,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
+      <div>653 63 54 38</div>
       <div>Edificio 4D, 1ª planta. Camino de Vera, s/n. 46022 Valencia</div>
       {/* CONTACTO */}
       <div className="footer-logo">

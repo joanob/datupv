@@ -58,6 +58,10 @@
     color: #fff;
 }
 
+.newscard-link:hover {
+    color: #fff;
+}
+
 @media (min-width: 840px) {
     .newscard-title {
         height: 44px;
@@ -79,5 +83,9 @@
         -webkit-box-orient: vertical;
         line-clamp: 5;
         -webkit-line-clamp: 5;
+    }
+
+    .news:hover .newscard {
+        box-shadow: 3px 3px 8px var(--shadow);
     }
 }
