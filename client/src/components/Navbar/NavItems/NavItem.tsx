@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { NavLink } from "../../types";
+import { NavLink } from "../../../types";
 
 interface Props {
   navLink: NavLink;

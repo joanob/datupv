@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "../../types";
-import NavItem from "./NavItem";
-import NavItemWithSubitems from "./NavItemWithSubitems";
+import { NavLink } from "../../../types";
+import NavItem from "../NavItems/NavItem";
+import NavItemWithSubitems from "../NavItems/NavItemWithSubitems";
 
-import instagramSVG from "../../public/icons/instagram.svg";
-import twitterSVG from "../../public/icons/twitter.svg";
+import instagramSVG from "../../../public/icons/instagram.svg";
+import twitterSVG from "../../../public/icons/twitter.svg";
 import { useLocation } from "react-router-dom";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "../Theme/ThemeToggle";
+
+import "../navbar.css";
 
 interface Props {
   nav: NavLink[];

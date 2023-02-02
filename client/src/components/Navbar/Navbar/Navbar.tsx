@@ -1,9 +1,11 @@
-import { NavLink } from "../../types";
-import NavItem from "./NavItem";
-import NavItemWithSubitems from "./NavItemWithSubitems";
+import { NavLink } from "../../../types";
+import NavItem from "../NavItems/NavItem";
+import NavItemWithSubitems from "../NavItems/NavItemWithSubitems";
 
-import instagramSVG from "../../public/icons/instagram.svg";
-import twitterSVG from "../../public/icons/twitter.svg";
+import instagramSVG from "../../../public/icons/instagram.svg";
+import twitterSVG from "../../../public/icons/twitter.svg";
+
+import "../navbar.css";
 
 interface Props {
   nav: NavLink[];

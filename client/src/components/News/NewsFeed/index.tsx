@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getNewsfeed } from "../../services/newsService";
-import { News } from "../../types/News";
-import NewsCard from "./NewsCard";
+import { getNewsfeed } from "../../../services/newsService";
+import { News } from "../../../types/News";
+import NewsCard from "../NewsCard";
 
 import "./newsfeed.css";
 

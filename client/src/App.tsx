@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Footer from "./layout/Footer";
+import Header from "./layout/Header";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import AdminPage from "./pages/Admin";
+
+import "./app.css";
 
 const App = () => {
   return (

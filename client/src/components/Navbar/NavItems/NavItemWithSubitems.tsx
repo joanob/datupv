@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NavItem from "./NavItem";
-import { NavLink } from "../../types";
+import { NavLink } from "../../../types";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
 interface Props {

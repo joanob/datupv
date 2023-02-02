@@ -6,9 +6,9 @@ import { NavLink } from "../../types";
 import logoTransparent from "../../public/icons/logoTransparent.png";
 
 import "./header.css";
-import Navbar from "./Navbar";
-import NavbarCollapsable from "./NavbarCollapsable";
-import ThemeToggle from "./ThemeToggle";
+import Navbar from "../../components/Navbar/Navbar/Navbar";
+import NavbarCollapsable from "../../components/Navbar/Navbar/NavbarCollapsable";
+import ThemeToggle from "../../components/Navbar/Theme/ThemeToggle";
 
 const Header = () => {
   const containerRef = useRef<HTMLElement>(null);
