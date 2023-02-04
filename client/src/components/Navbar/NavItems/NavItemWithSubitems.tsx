@@ -16,7 +16,7 @@ const NavItemWithSubitems = ({ navlink }: Props) => {
           setIsOpen(!isOpen);
         }}
       >
-        {navlink.text}
+        {navlink.texto}
         <span>
           {isOpen ? <AiFillCaretUp width={15} /> : <AiFillCaretDown />}
         </span>
@@ -25,8 +25,8 @@ const NavItemWithSubitems = ({ navlink }: Props) => {
         style={{ display: isOpen ? "block" : "none" }}
         className="nav-link-items"
       >
-        {navlink.sublinks !== undefined &&
-          navlink.sublinks.map((sublink) => (
+        {navlink.subenlaces !== undefined &&
+          navlink.subenlaces.map((sublink) => (
             <NavItem key={sublink.url} navLink={sublink} />
           ))}
       </ul>

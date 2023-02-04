@@ -1,12 +1,12 @@
 {
   "collectionName": "components_navlinks_sublinks",
   "info": {
-    "displayName": "sublink",
+    "displayName": "Subenlace",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "text": {
+    "texto": {
       "type": "string",
       "required": true
     },
@@ -15,11 +15,11 @@
       "required": true,
       "unique": false
     },
-    "samepage": {
+    "unapagina": {
       "type": "boolean",
       "default": true
     },
-    "order": {
+    "orden": {
       "type": "integer",
       "required": true,
       "unique": false

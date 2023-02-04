@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_posts_textos",
+  "info": {
+    "displayName": "texto"
+  },
+  "options": {},
+  "attributes": {
+    "texto": {
+      "type": "text"
+    }
+  }
+}

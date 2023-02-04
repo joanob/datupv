@@ -6,16 +6,17 @@ import Contact from "./pages/Contact";
 import AdminPage from "./pages/Admin";
 
 import "./app.css";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
     <BrowserRouter basename="/datupv">
       <Header />
       <Routes>
-        {import.meta.env.BASE_URL}
         <Route path="/" element={<Home />} />
         <Route path="/contacto" element={<Contact />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>

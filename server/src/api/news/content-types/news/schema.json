@@ -4,7 +4,7 @@
   "info": {
     "singularName": "news",
     "pluralName": "newsfeed",
-    "displayName": "News",
+    "displayName": "Noticias",
     "description": ""
   },
   "options": {
@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "titulo": {
       "type": "string",
       "required": true
     },
@@ -21,12 +21,12 @@
       "unique": true,
       "required": true
     },
-    "datetime": {
+    "fecha": {
       "type": "datetime",
       "required": true,
       "unique": true
     },
-    "image": {
+    "imagen": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -34,9 +34,16 @@
         "images"
       ]
     },
-    "subtitle": {
+    "subtitulo": {
       "type": "text",
       "required": true
+    },
+    "cuerpo": {
+      "type": "dynamiczone",
+      "components": [
+        "posts.imagen",
+        "posts.texto"
+      ]
     }
   }
 }

@@ -8,7 +8,7 @@ interface Props {
 const NavItem = ({ navLink }: Props) => {
   return (
     <li className="nav-link">
-      <Link to={navLink.url}>{navLink.text}</Link>
+      <Link to={navLink.url}>{navLink.texto}</Link>
     </li>
   );
 };

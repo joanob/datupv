@@ -16,23 +16,23 @@ const NewsCard = ({ news }: Props) => {
   const [imgWidth, setImgWidth] = useState(0);
 
   useEffect(() => {
-    const imgFullHeight = (news.image.height / news.image.width) * width;
+    const imgFullHeight = (news.imagen.height / news.imagen.width) * width;
     if (imgFullHeight > MAX_HEIGHT) {
-      setImgWidth((news.image.width / news.image.height) * MAX_HEIGHT);
+      setImgWidth((news.imagen.width / news.imagen.height) * MAX_HEIGHT);
     }
   }, [width]);
 
   const topPadding =
     imgWidth === 0
       ? height / 2
-      : ((news.image.height / news.image.width) * imgWidth) / 2;
+      : ((news.imagen.height / news.imagen.width) * imgWidth) / 2;
 
   return (
     <div className="news" style={{ paddingTop: topPadding + "px" }}>
       <div ref={ref} className="news-image">
         <div style={{ width: imgWidth === 0 ? "100%" : imgWidth + "px" }}>
           <img
-            src={news.image.url}
+            src={news.imagen.url}
             onLoad={() => {
               setImgLoaded(true);
             }}
@@ -41,12 +41,12 @@ const NewsCard = ({ news }: Props) => {
       </div>
       <div className="newscard" style={{ paddingTop: MAX_HEIGHT / 2 + "px" }}>
         <h3 className="newscard-title">
-          <Link to={""}>{news.title}</Link>
+          <Link to={""}>{news.titulo}</Link>
         </h3>
-        <p className="newscard-subtitle">{news.subtitle}</p>
+        <p className="newscard-subtitle">{news.subtitulo}</p>
         <div className="newscard-extra">
           <p className="newscard-date">
-            {new Date(news.datetime)
+            {new Date(news.fecha)
               .toLocaleDateString("es-ES", {
                 day: "2-digit",
                 month: "2-digit",

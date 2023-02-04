@@ -1,15 +1,11 @@
-export interface News {
-  title: string;
-  subtitle: string;
-  url: string;
-  datetime: number;
-  image: NewsImage;
-}
+import { Image } from "./Image";
+import { PostBody } from "./PostBody";
 
-interface NewsImage {
+export interface News {
+  titulo: string;
+  subtitulo: string;
   url: string;
-  altText: string | null;
-  caption: string | null;
-  width: number;
-  height: number;
+  fecha: number;
+  imagen: Image;
+  cuerpo: PostBody;
 }

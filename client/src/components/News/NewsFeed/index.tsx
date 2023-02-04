@@ -16,7 +16,7 @@ const NewsFeed = () => {
     <div className="newsfeed">
       <div className="newsfeed-feed">
         {news.map((article) => (
-          <NewsCard key={article.title} news={article} />
+          <NewsCard key={article.titulo} news={article} />
         ))}
       </div>
     </div>

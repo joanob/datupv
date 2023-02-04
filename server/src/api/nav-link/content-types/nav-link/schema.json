@@ -4,7 +4,7 @@
   "info": {
     "singularName": "nav-link",
     "pluralName": "nav-links",
-    "displayName": "NavLink",
+    "displayName": "Navegación",
     "description": ""
   },
   "options": {
@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "text": {
+    "texto": {
       "type": "string",
       "required": true
     },
@@ -21,13 +21,13 @@
       "unique": true,
       "required": true
     },
-    "sublinks": {
+    "subenlaces": {
       "type": "dynamiczone",
       "components": [
-        "navlinks.sublink"
+        "nav.sublink"
       ]
     },
-    "order": {
+    "orden": {
       "type": "integer",
       "required": true,
       "unique": false

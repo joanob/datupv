@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_posts_imagens",
+  "info": {
+    "displayName": "imagen",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "private": true
+    }
+  }
+}

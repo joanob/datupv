@@ -1,11 +1,11 @@
 export type NavLink = {
-  text: string;
+  texto: string;
   url: string;
-  order: number;
-  sublinks?: {
-    text: string;
+  orden: number;
+  subenlaces?: {
+    texto: string;
     url: string;
-    order: number;
-    samepage: boolean;
+    orden: number;
+    unapagina: boolean;
   }[];
 };

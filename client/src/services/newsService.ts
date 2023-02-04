@@ -1,29 +1,47 @@
 import axios from "axios";
+import { Image } from "../types";
 import { News } from "../types/News";
 import { baseURL, StrapiImgResponse, StrapiRes } from "./config";
 
 export const getNewsfeed = async (): Promise<News[]> => {
-  return await axios.get(baseURL + "/api/newsfeed?populate=%2A").then((res) => {
-    const newsfeedRes: StrapiRes<News & { image: StrapiImgResponse }> =
-      res.data;
+  return await axios.get(baseURL + "/api/newsfeed?populate=*").then((res) => {
+    const newsfeedRes: StrapiRes<
+      News & { imagen: StrapiImgResponse } & { cuerpo: any }
+    > = res.data;
     const newsfeed = newsfeedRes.data.map(({ attributes }): News => {
-      const image: News["image"] = {
-        url: baseURL + attributes.image.data.attributes.url,
-        altText: attributes.image.data.attributes.alternativeText,
-        caption: attributes.image.data.attributes.caption,
-        width: attributes.image.data.attributes.width,
-        height: attributes.image.data.attributes.height,
+      // Get image
+      const image: Image = {
+        url: baseURL + attributes.imagen.data.attributes.url,
+        altText: attributes.imagen.data.attributes.alternativeText,
+        caption: attributes.imagen.data.attributes.caption,
+        width: attributes.imagen.data.attributes.width,
+        height: attributes.imagen.data.attributes.height,
       };
 
+      // Get body
+      const body = attributes.cuerpo.map((component: any) => {
+        switch (component.__component) {
+          case "posts.texto":
+            return { type: "text", texto: component.texto };
+          case "posts.imagen":
+            return {
+              type: "image",
+            };
+          default:
+            return;
+        }
+      });
+
       return {
-        title: attributes.title,
-        subtitle: attributes.subtitle,
+        titulo: attributes.titulo,
+        subtitulo: attributes.subtitulo,
         url: attributes.url,
         // Datetime comes as an ISO string
-        datetime: new Date(attributes.datetime).getTime(),
-        image: image,
+        fecha: new Date(attributes.fecha).getTime(),
+        imagen: image,
+        cuerpo: body,
       };
     });
-    return newsfeed.sort((a, b) => b.datetime - a.datetime);
+    return newsfeed.sort((a, b) => b.fecha - a.fecha);
   });
 };
