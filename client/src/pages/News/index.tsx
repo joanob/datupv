@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ImgSection from "../../components/Posts/ImgSection";
+import TextSection from "../../components/Posts/TextSection";
 import { getNews } from "../../services/newsService";
 import { News } from "../../types";
 import NotFound from "../NotFound";
@@ -21,20 +23,25 @@ const NewsPage = () => {
   }
 
   return (
-    <main className="main">
+    <main className="main newspage">
       <h2>{news.titulo}</h2>
       <p className="subtitulo">{news.subtitulo}</p>
-      <article>
+      <p className="date">
+        {new Date(news.fecha)
+          .toLocaleDateString("es-ES", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          })
+          .replaceAll("/", "-")}
+      </p>
+      <article className="article">
         {news.cuerpo.map((section, i) => {
           switch (section.type) {
             case "text":
-              return <p key={i}>{section.texto}</p>;
+              return <TextSection key={i} text={section.texto} />;
             case "image":
-              return (
-                <section className="img-container">
-                  <img key={i} src={section.image.url} className="img" />
-                </section>
-              );
+              return <ImgSection key={i} image={section.image} />;
           }
         })}
       </article>

@@ -41,7 +41,7 @@ const NewsCard = ({ news }: Props) => {
       </div>
       <div className="newscard" style={{ paddingTop: MAX_HEIGHT / 2 + "px" }}>
         <h3 className="newscard-title">
-          <Link to={""}>{news.titulo}</Link>
+          <Link to={"/noticias/" + news.url}>{news.titulo}</Link>
         </h3>
         <p className="newscard-subtitle">{news.subtitulo}</p>
         <div className="newscard-extra">
@@ -54,7 +54,7 @@ const NewsCard = ({ news }: Props) => {
               })
               .replaceAll("/", "-")}
           </p>
-          <Link className="newscard-link" to={""}>
+          <Link className="newscard-link" to={"/noticias/" + news.url}>
             Leer más
           </Link>
         </div>

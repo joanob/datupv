@@ -1,4 +1,4 @@
-.main > * {
+.newspage > * {
     margin: 10px;
 }
 
@@ -6,23 +6,19 @@
     font-weight: 600;
 }
 
-.img-container {
-    width: 80%;
-    margin: 10px auto;
+.date {
+    text-align: right;
+    color: var(--secondary);
 }
 
-.img {
-    width: 100%;
+.article {
+    margin: 20px 0;
 }
+
 
 @media (min-width: 500px) {
-    .main {
+    .newspage {
         margin: auto;
         width: 500px;
-    }
-
-    .img-container {
-        width: 300px;
-        margin: 10px auto;
     }
 }
