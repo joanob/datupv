@@ -1,7 +1,12 @@
 import axios from "axios";
 import { Image } from "../types";
 import { News } from "../types/News";
-import { baseURL, StrapiImgResponse, StrapiRes } from "./config";
+import {
+  baseURL,
+  StrapiImgResponse,
+  StrapiRes,
+  StrapiSingleRes,
+} from "./config";
 
 export const getNewsfeed = async (): Promise<News[]> => {
   return await axios.get(baseURL + "/api/newsfeed?populate=*").then((res) => {
@@ -18,20 +23,6 @@ export const getNewsfeed = async (): Promise<News[]> => {
         height: attributes.imagen.data.attributes.height,
       };
 
-      // Get body
-      const body = attributes.cuerpo.map((component: any) => {
-        switch (component.__component) {
-          case "posts.texto":
-            return { type: "text", texto: component.texto };
-          case "posts.imagen":
-            return {
-              type: "image",
-            };
-          default:
-            return;
-        }
-      });
-
       return {
         titulo: attributes.titulo,
         subtitulo: attributes.subtitulo,
@@ -39,9 +30,44 @@ export const getNewsfeed = async (): Promise<News[]> => {
         // Datetime comes as an ISO string
         fecha: new Date(attributes.fecha).getTime(),
         imagen: image,
-        cuerpo: body,
+        cuerpo: [],
       };
     });
     return newsfeed.sort((a, b) => b.fecha - a.fecha);
   });
+};
+
+export const getNews = async (id: string): Promise<News | null> => {
+  return await axios
+    .get(baseURL + "/api/newsfeed/" + id + "?populate=*")
+    .then((res) => {
+      const newsRes: StrapiSingleRes<
+        News & { imagen: StrapiImgResponse } & { cuerpo: any }
+      > = res.data;
+
+      const body = newsRes.data.attributes.results[0].cuerpo.map(
+        (section: any) => {
+          switch (section.__component) {
+            case "posts.texto":
+              return { type: "text", texto: section.texto };
+            case "posts.imagen":
+              const imageUrl = baseURL + section.imagen.url;
+              return {
+                type: "image",
+                image: { ...section.imagen, url: imageUrl },
+              };
+          }
+        }
+      );
+
+      const news: News = {
+        ...newsRes.data.attributes.results[0],
+        cuerpo: body,
+      };
+
+      return news;
+    })
+    .catch(() => {
+      return null;
+    });
 };

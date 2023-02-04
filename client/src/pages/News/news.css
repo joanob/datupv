@@ -1,0 +1,28 @@
+.main > * {
+    margin: 10px;
+}
+
+.subtitulo {
+    font-weight: 600;
+}
+
+.img-container {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.img {
+    width: 100%;
+}
+
+@media (min-width: 500px) {
+    .main {
+        margin: auto;
+        width: 500px;
+    }
+
+    .img-container {
+        width: 300px;
+        margin: 10px auto;
+    }
+}

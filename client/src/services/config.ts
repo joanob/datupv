@@ -6,6 +6,14 @@ export interface StrapiRes<T> {
   }[];
 }
 
+export interface StrapiSingleRes<T> {
+  data: {
+    attributes: {
+      results: T[];
+    };
+  };
+}
+
 export interface StrapiImgResponse {
   data: {
     id: number;
