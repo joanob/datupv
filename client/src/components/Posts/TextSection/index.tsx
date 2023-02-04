@@ -20,7 +20,7 @@ const TextSection = ({ text }: Props) => {
             );
           }
           return (
-            <a key={i} href={section.url}>
+            <a key={i} href={section.url} target="__blank">
               {section.texto}
             </a>
           );

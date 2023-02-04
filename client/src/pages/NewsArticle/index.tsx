@@ -8,7 +8,7 @@ import NotFound from "../NotFound";
 
 import "./news.css";
 
-const NewsPage = () => {
+const NewsArticle = () => {
   const { id } = useParams();
   if (id === undefined) {
     return <NotFound />;
@@ -66,4 +66,4 @@ const useNews = (id: string): News | boolean => {
   return news ? news : loading;
 };
 
-export default NewsPage;
+export default NewsArticle;
