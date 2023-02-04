@@ -1,0 +1,4 @@
+.article a, .article a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}

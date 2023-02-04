@@ -9,6 +9,8 @@
 .date {
     text-align: right;
     color: var(--secondary);
+    font-weight: 600;
+    font-size: 14px;
 }
 
 .article {
