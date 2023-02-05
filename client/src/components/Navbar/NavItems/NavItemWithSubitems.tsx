@@ -10,7 +10,13 @@ interface Props {
 const NavItemWithSubitems = ({ navlink }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <ul className="nav-link-with-submenu">
+    <ul
+      className={
+        isOpen
+          ? " nav-link-with-submenu nav-link-with-submenu-active"
+          : "nav-link-with-submenu"
+      }
+    >
       <p
         onClick={() => {
           setIsOpen(!isOpen);
