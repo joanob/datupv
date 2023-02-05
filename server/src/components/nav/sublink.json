@@ -23,6 +23,11 @@
       "type": "integer",
       "required": true,
       "unique": false
+    },
+    "pagina": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page.page"
     }
   }
 }
