@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef, RefObject } from "react";
+import { useState, useEffect, useRef, useContext, RefObject } from "react";
 import { Link } from "react-router-dom";
-import { getNavLinks } from "../../services";
-import { NavLink } from "../../types";
 
 import logoTransparent from "../../public/icons/logoTransparent.png";
 
@@ -9,16 +7,16 @@ import "./header.css";
 import Navbar from "../../components/Navbar/Navbar/Navbar";
 import NavbarCollapsable from "../../components/Navbar/Navbar/NavbarCollapsable";
 import ThemeToggle from "../../components/Navbar/Theme/ThemeToggle";
+import { NavContext } from "../../NavContext";
 
 const Header = () => {
+  const nav = useContext(NavContext);
   const containerRef = useRef<HTMLElement>(null);
   const elementRef = useRef<HTMLElement>(null);
 
   const { loading, collapse } = useHeaderWidth(containerRef, elementRef);
 
   const { theme, toggleTheme } = useTheme();
-
-  const nav = useNav();
 
   return (
     <header ref={containerRef} className="header">
@@ -98,18 +96,6 @@ const useHeaderWidth = (
     loading: width === 0,
     collapse,
   };
-};
-
-const useNav = (): NavLink[] => {
-  const [nav, setNav] = useState<NavLink[]>([]);
-
-  useEffect(() => {
-    getNavLinks().then((res) => {
-      setNav(res);
-    });
-  }, []);
-
-  return nav;
 };
 
 const useTheme = () => {

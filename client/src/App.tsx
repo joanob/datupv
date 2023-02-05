@@ -8,20 +8,25 @@ import AdminPage from "./pages/Admin";
 import "./app.css";
 import NotFound from "./pages/NotFound";
 import NewsArticle from "./pages/NewsArticle";
+import Router from "./Router";
+import NavContextWrapper from "./NavContext";
 
 const App = () => {
   return (
-    <BrowserRouter basename="/datupv">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/noticias/:id" element={<NewsArticle />} />
-        <Route path="/contacto" element={<Contact />} />
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <NavContextWrapper>
+      <BrowserRouter basename="/datupv">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/noticias/:id" element={<NewsArticle />} />
+          <Route path="/actividades" element={<NotFound />} />
+          <Route path="/contacto" element={<Contact />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="*" element={<Router />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </NavContextWrapper>
   );
 };
 

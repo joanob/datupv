@@ -32,9 +32,12 @@ const NavItemWithSubitems = ({ navlink }: Props) => {
         className="nav-link-items"
       >
         {navlink.subenlaces !== undefined &&
-          navlink.subenlaces.map((sublink) => (
-            <NavItem key={sublink.url} navLink={sublink} />
-          ))}
+          navlink.subenlaces.map((sublink) => {
+            const url = navlink.url + "/" + sublink.url;
+            return (
+              <NavItem key={sublink.url} navLink={{ ...sublink, url: url }} />
+            );
+          })}
       </ul>
     </ul>
   );
