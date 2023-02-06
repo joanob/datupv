@@ -6,10 +6,10 @@ import Contact from "./pages/Contact";
 import AdminPage from "./pages/Admin";
 
 import "./app.css";
-import NotFound from "./pages/NotFound";
 import NewsArticle from "./pages/NewsArticle";
 import Router from "./Router";
 import NavContextWrapper from "./NavContext";
+import Activities from "./pages/Activities";
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/noticias/:id" element={<NewsArticle />} />
-          <Route path="/actividades" element={<NotFound />} />
+          <Route path="/actividades" element={<Activities />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={<Router />} />
