@@ -28,9 +28,19 @@ const Router = () => {
         return <NotFound />;
       }
 
-      console.log(navPage);
+      if (!navSubpage.unapagina) {
+        return <NavPage pageId={navSubpage.pagina ? navSubpage.pagina : ""} />;
+      }
 
-      return <h3>{navPage.texto + " / " + navSubpage.texto}</h3>;
+      // subpage could be samepage or different page
+
+      return (
+        <NavPage
+          pageId={navPage.pagina ? navPage.pagina : ""}
+          subPages={navPage.subenlaces}
+          subPage={navSubpage}
+        />
+      );
     }
   }
 

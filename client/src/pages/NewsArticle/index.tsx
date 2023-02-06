@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ImgSection from "../../components/Posts/ImgSection";
+import PostBody from "../../components/Posts/PostBody";
 import TextSection from "../../components/Posts/TextSection";
 import { getNews } from "../../services/newsService";
 import { News } from "../../types";
@@ -38,14 +39,7 @@ const NewsArticle = () => {
           .replaceAll("/", "-")}
       </p>
       <article className="article">
-        {news.cuerpo.map((section, i) => {
-          switch (section.type) {
-            case "text":
-              return <TextSection key={i} text={section.texto} />;
-            case "image":
-              return <ImgSection key={i} image={section.image} />;
-          }
-        })}
+        <PostBody body={news.cuerpo} />
       </article>
     </main>
   );

@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
+import PostBody from "../../components/Posts/PostBody";
 import { getPage } from "../../services/pageService";
-import { Page } from "../../types";
+import { NavLink, Page, SubLink } from "../../types";
 import NotFound from "../NotFound";
 
 interface Props {
   pageId: string;
+  subPages?: NavLink["subenlaces"];
+  subPage?: SubLink;
 }
 
-const NavPage = ({ pageId }: Props) => {
+const NavPage = ({ pageId, subPages, subPage }: Props) => {
   const page = usePage(pageId);
 
   if (page === true) {
@@ -18,7 +21,33 @@ const NavPage = ({ pageId }: Props) => {
     return <NotFound />;
   }
 
-  return <main className="main">{page.titulo}</main>;
+  return (
+    <main className="main">
+      <h2>{page.titulo}</h2>
+      <PostBody body={page.cuerpo} />
+      {subPages?.map((loopSubPage) => (
+        <SubPage
+          key={loopSubPage.pagina}
+          pageId={loopSubPage?.pagina ? loopSubPage.pagina : ""}
+        />
+      ))}
+    </main>
+  );
+};
+
+// TODO: scroll on load if was the selected sublink
+const SubPage = ({ pageId }: Props) => {
+  const page = usePage(pageId);
+
+  if (typeof page === "boolean") {
+    return null;
+  }
+  return (
+    <>
+      <h3>{page.titulo}</h3>
+      <PostBody body={page.cuerpo} />
+    </>
+  );
 };
 
 const usePage = (id: string) => {
@@ -33,7 +62,7 @@ const usePage = (id: string) => {
       }
       setPage(res);
     });
-  }, []);
+  }, [id]);
 
   return page ? page : loading;
 };
