@@ -8,6 +8,12 @@ export interface StrapiRes<T> {
 
 export interface StrapiSingleRes<T> {
   data: {
+    attributes: T;
+  };
+}
+
+export interface StrapiSinglePopulatedRes<T> {
+  data: {
     attributes: {
       results: T[];
     };

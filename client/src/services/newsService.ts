@@ -5,8 +5,9 @@ import {
   baseURL,
   StrapiImgResponse,
   StrapiRes,
-  StrapiSingleRes,
+  StrapiSinglePopulatedRes,
 } from "./config";
+import { resBodyToPostBody } from "./helpers";
 
 export const getNewsfeed = async (): Promise<News[]> => {
   return await axios.get(baseURL + "/api/newsfeed?populate=*").then((res) => {
@@ -41,24 +42,11 @@ export const getNews = async (id: string): Promise<News | null> => {
   return await axios
     .get(baseURL + "/api/newsfeed/" + id + "?populate=*")
     .then((res) => {
-      const newsRes: StrapiSingleRes<
+      const newsRes: StrapiSinglePopulatedRes<
         News & { imagen: StrapiImgResponse } & { cuerpo: any }
       > = res.data;
 
-      const body = newsRes.data.attributes.results[0].cuerpo.map(
-        (section: any) => {
-          switch (section.__component) {
-            case "posts.texto":
-              return { type: "text", texto: section.texto };
-            case "posts.imagen":
-              const imageUrl = baseURL + section.imagen.url;
-              return {
-                type: "image",
-                image: { ...section.imagen, url: imageUrl },
-              };
-          }
-        }
-      );
+      const body = resBodyToPostBody(newsRes.data.attributes.results[0].cuerpo);
 
       const news: News = {
         ...newsRes.data.attributes.results[0],
@@ -66,8 +54,5 @@ export const getNews = async (id: string): Promise<News | null> => {
       };
 
       return news;
-    })
-    .catch(() => {
-      return null;
     });
 };

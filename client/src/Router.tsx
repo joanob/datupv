@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { NavContext } from "./NavContext";
+import NavPage from "./pages/NavPage";
 import NotFound from "./pages/NotFound";
 
 const Router = () => {
@@ -16,7 +17,7 @@ const Router = () => {
 
     if (navPage !== undefined) {
       if (!navPage.subenlaces) {
-        return <h3>{navPage?.texto}</h3>;
+        return <NavPage pageId={navPage.pagina ? navPage.pagina : ""} />;
       }
 
       const navSubpage = navPage.subenlaces.find(
@@ -26,6 +27,8 @@ const Router = () => {
       if (!navSubpage) {
         return <NotFound />;
       }
+
+      console.log(navPage);
 
       return <h3>{navPage.texto + " / " + navSubpage.texto}</h3>;
     }

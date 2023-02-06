@@ -15,11 +15,13 @@ const NewsArticle = () => {
   }
 
   const news = useNews(id);
-  if (news === false) {
-    return <NotFound />;
-  }
+
   if (news === true) {
     return <main className="main"></main>;
+  }
+
+  if (news === false) {
+    return <NotFound />;
   }
 
   return (
