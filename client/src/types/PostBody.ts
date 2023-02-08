@@ -1,6 +1,10 @@
 import { Image } from "./Image";
 
-export type PostBody = (TextComponent | ImageComponent)[];
+export type PostBody = (
+  | TextComponent
+  | ImageComponent
+  | ImageWithTextComponent
+)[];
 
 export interface TextComponent {
   type: "text";
@@ -10,4 +14,11 @@ export interface TextComponent {
 export interface ImageComponent {
   type: "image";
   image: Image;
+}
+
+export interface ImageWithTextComponent {
+  type: "image-with-text";
+  image: Image;
+  texto: string;
+  alineacion: "texto-izquierda" | "texto-derecha";
 }

@@ -4,6 +4,10 @@
     margin: 10px auto;
 }
 
+.img-container div {
+    margin: auto;
+}
+
 .img {
     width: 100%;
 }

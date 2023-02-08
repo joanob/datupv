@@ -11,6 +11,16 @@ export const resBodyToPostBody = (cuerpo: any) => {
           type: "image",
           image: { ...section.imagen, url: imageUrl },
         };
+      case "posts.imagen-con-texto":
+        const textImageUrl = baseURL + section.imagen.url;
+        return {
+          type: "image-with-text",
+          image: { ...section.imagen, url: textImageUrl },
+          texto: section.texto,
+          alineacion: section.alineacion,
+        };
+      default:
+        return;
     }
   });
 };

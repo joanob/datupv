@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_posts_imagen_con_textos",
+  "info": {
+    "displayName": "ImagenConTexto",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "texto": {
+      "type": "string"
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "alineacion": {
+      "type": "enumeration",
+      "enum": [
+        "texto-derecha",
+        "texto-izquierda"
+      ],
+      "required": true,
+      "default": "texto-derecha"
+    }
+  }
+}

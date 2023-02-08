@@ -95,8 +95,6 @@
     display: block !important;
 }
 
-/* TODO: change background color of hover/active and its dropdown or use shadow. giving shadow to both creates border between them. I believe best way would be giving the same background to both */
-
 .nav-link-with-submenu-active {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;

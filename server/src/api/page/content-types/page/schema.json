@@ -20,7 +20,8 @@
       "type": "dynamiczone",
       "components": [
         "posts.imagen",
-        "posts.texto"
+        "posts.texto",
+        "posts.imagen-con-texto"
       ]
     }
   }

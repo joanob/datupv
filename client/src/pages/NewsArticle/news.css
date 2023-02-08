@@ -1,9 +1,11 @@
-.newspage > * {
-    margin: 10px;
+.newspage {
+    margin: 0 15px;
+    text-align: justify;
 }
 
 .subtitulo {
     font-weight: 600;
+
 }
 
 .date {
@@ -14,13 +16,17 @@
 }
 
 .article {
-    margin: 20px 0;
+    margin-top: 20px;
+}
+
+.article > * {
+    margin-top: 10px;
 }
 
 
-@media (min-width: 500px) {
+@media (min-width: 800px) {
     .newspage {
         margin: auto;
-        width: 500px;
+        width: 800px;
     }
 }
