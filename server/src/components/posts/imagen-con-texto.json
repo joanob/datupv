@@ -7,7 +7,7 @@
   "options": {},
   "attributes": {
     "texto": {
-      "type": "string"
+      "type": "text"
     },
     "imagen": {
       "type": "media",

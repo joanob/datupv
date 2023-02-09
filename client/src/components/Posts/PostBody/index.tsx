@@ -2,6 +2,7 @@ import { PostBody as PostBodyType } from "../../../types/PostBody";
 import ImgSection from "../ImgSection";
 import TextSection from "../TextSection";
 import ImageWithTextSection from "../ImgWithTextSection";
+import PostHeader from "../PostHeader";
 
 interface Props {
   body: PostBodyType;
@@ -25,6 +26,10 @@ const PostBody = ({ body }: Props) => {
                 alignment={section.alineacion}
               />
             );
+          case "header":
+            return <PostHeader tipo={section.tipo} texto={section.texto} />;
+          default:
+            return null;
         }
       })}
     </>

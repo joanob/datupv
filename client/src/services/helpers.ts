@@ -19,6 +19,12 @@ export const resBodyToPostBody = (cuerpo: any) => {
           texto: section.texto,
           alineacion: section.alineacion,
         };
+      case "posts.encabezado":
+        return {
+          type: "header",
+          tipo: section.tipo,
+          texto: section.texto,
+        };
       default:
         return;
     }

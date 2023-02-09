@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ImgSection from "../../components/Posts/ImgSection";
 import PostBody from "../../components/Posts/PostBody";
-import TextSection from "../../components/Posts/TextSection";
 import { getNews } from "../../services/newsService";
 import { News } from "../../types";
 import NotFound from "../NotFound";

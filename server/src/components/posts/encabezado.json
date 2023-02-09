@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_posts_encabezados",
+  "info": {
+    "displayName": "Encabezado",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "texto": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "primario",
+        "secundario",
+        "terciario"
+      ]
+    }
+  }
+}

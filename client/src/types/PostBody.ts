@@ -4,6 +4,7 @@ export type PostBody = (
   | TextComponent
   | ImageComponent
   | ImageWithTextComponent
+  | HeaderComponent
 )[];
 
 export interface TextComponent {
@@ -21,4 +22,10 @@ export interface ImageWithTextComponent {
   image: Image;
   texto: string;
   alineacion: "texto-izquierda" | "texto-derecha";
+}
+
+export interface HeaderComponent {
+  type: "header";
+  tipo: "primario" | "secundario" | "terciario";
+  texto: string;
 }
