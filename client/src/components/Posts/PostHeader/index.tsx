@@ -4,16 +4,19 @@ interface Props {
 }
 
 const PostHeader = ({ texto, tipo }: Props) => {
-  switch (tipo) {
-    case "primario":
-      return <h3>{texto}</h3>;
-    case "secundario":
-      return <h4>{texto}</h4>;
-    case "terciario":
-      return <h5>{texto}</h5>;
-    default:
-      return null;
+  if (tipo === "primario") {
+    return <h3 key={texto}>{texto}</h3>;
   }
+
+  if (tipo === "secundario") {
+    return <h3 key={texto}>{texto}</h3>;
+  }
+
+  if (tipo === "terciario") {
+    return <h3 key={texto}>{texto}</h3>;
+  }
+
+  return null;
 };
 
 export default PostHeader;

@@ -1,12 +1,21 @@
+import { createElement } from "react";
+import { Link } from "react-router-dom";
+
 /**
  * Internal link: {link: string, text: string}
  * External link: {url: string, text: string}
  */
 export const linkParser = (text: string) => {
+  // Parse text to objects
   const parts = [];
 
   let start = text.indexOf("{");
   let end, part;
+
+  if (start === -1) {
+    return createElement("p", {}, text);
+  }
+
   parts.push(text.substring(0, start));
 
   while (start !== -1) {
@@ -47,5 +56,25 @@ export const linkParser = (text: string) => {
     parts.push(text);
   }
 
-  return parts;
+  // Convert object array to jsx
+
+  return createElement(
+    "p",
+    {},
+    ...parts.map((part) => {
+      if (part.texto !== undefined) {
+        if (part.link !== undefined) {
+          return createElement(Link, { to: part.link }, part.texto);
+        }
+        return createElement(
+          "a",
+          { href: part.url, target: "__blank" },
+          part.texto
+        );
+      }
+      return part;
+    })
+  );
 };
+
+// TODO: unspaguetti code

@@ -8,27 +8,7 @@ interface Props {
 }
 
 const TextSection = ({ text }: Props) => {
-  return (
-    <p>
-      {linkParser(text).map((section, i) => {
-        if (section.texto !== undefined) {
-          if (section.link !== undefined) {
-            return (
-              <Link key={i} to={section.link}>
-                {section.texto}
-              </Link>
-            );
-          }
-          return (
-            <a key={i} href={section.url} target="__blank">
-              {section.texto}
-            </a>
-          );
-        }
-        return <span key={i}>{section}</span>;
-      })}
-    </p>
-  );
+  return linkParser(text);
 };
 
 export default TextSection;

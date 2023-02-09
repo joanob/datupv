@@ -7,10 +7,10 @@ import NotFound from "../NotFound";
 interface Props {
   pageId: string;
   subPages?: NavLink["subenlaces"];
-  subPage?: SubLink;
+  selectedSubPage?: SubLink;
 }
 
-const NavPage = ({ pageId, subPages, subPage }: Props) => {
+const NavPage = ({ pageId, subPages, selectedSubPage }: Props) => {
   const page = usePage(pageId);
 
   if (page === true) {
@@ -22,15 +22,17 @@ const NavPage = ({ pageId, subPages, subPage }: Props) => {
   }
 
   return (
-    <main className="main">
+    <main className="main newspage">
       <h2>{page.titulo}</h2>
-      <PostBody body={page.cuerpo} />
-      {subPages?.map((loopSubPage) => (
-        <SubPage
-          key={loopSubPage.pagina}
-          pageId={loopSubPage?.pagina ? loopSubPage.pagina : ""}
-        />
-      ))}
+      <article className="article">
+        <PostBody body={page.cuerpo} />
+        {subPages?.map((loopSubPage) => (
+          <SubPage
+            key={loopSubPage.pagina}
+            pageId={loopSubPage?.pagina ? loopSubPage.pagina : ""}
+          />
+        ))}
+      </article>
     </main>
   );
 };
@@ -42,6 +44,7 @@ const SubPage = ({ pageId }: Props) => {
   if (typeof page === "boolean") {
     return null;
   }
+
   return (
     <>
       <h3>{page.titulo}</h3>

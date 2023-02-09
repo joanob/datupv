@@ -27,7 +27,9 @@ const PostBody = ({ body }: Props) => {
               />
             );
           case "header":
-            return <PostHeader tipo={section.tipo} texto={section.texto} />;
+            return (
+              <PostHeader key={i} tipo={section.tipo} texto={section.texto} />
+            );
           default:
             return null;
         }
