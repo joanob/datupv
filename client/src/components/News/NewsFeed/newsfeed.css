@@ -1,9 +1,23 @@
 .newsfeed {
     margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .newsfeed > h2 {
     margin: 10px 0;
+}
+
+.newsfeed-load-more {
+    background-color: var(--secondary);
+    color: #fff;
+    margin: 16px auto;
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
 }
 
 @media (min-width: 1200px) {
