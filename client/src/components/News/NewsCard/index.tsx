@@ -7,14 +7,26 @@ import "./NewsCard.css";
 
 interface Props {
   news: News;
+  onTitleHeightChange: (height: number) => void;
+  onSubtitleHeightChange: (height: number) => void;
+  titleHeight: string;
+  subtitleHeight: string;
 }
 
 const MAX_HEIGHT = 180;
 
-const NewsCard = ({ news }: Props) => {
+const NewsCard = ({
+  news,
+  onTitleHeightChange,
+  onSubtitleHeightChange,
+  titleHeight,
+  subtitleHeight,
+}: Props) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const { ref, width, height } = useContainerSize(imgLoaded);
   const [imgWidth, setImgWidth] = useState(0);
+  const titleSize = useContainerSize(imgLoaded);
+  const subtitleSize = useContainerSize(imgLoaded);
 
   useEffect(() => {
     const imgFullHeight = (news.imagen.height / news.imagen.width) * width;
@@ -22,6 +34,24 @@ const NewsCard = ({ news }: Props) => {
       setImgWidth((news.imagen.width / news.imagen.height) * MAX_HEIGHT);
     }
   }, [width]);
+
+  useEffect(() => {
+    if (
+      (titleSize.height !== 0 && titleHeight === "auto") ||
+      titleSize.height >
+        parseInt(titleHeight.slice(0, titleHeight.length - 2), 10)
+    ) {
+      onTitleHeightChange(titleSize.height);
+    }
+
+    if (
+      (subtitleSize.height !== 0 && subtitleHeight === "auto") ||
+      subtitleSize.height >
+        parseInt(subtitleHeight.slice(0, subtitleHeight.length - 2), 10)
+    ) {
+      onSubtitleHeightChange(subtitleSize.height);
+    }
+  }, [titleSize.height, subtitleSize.height]);
 
   const topPadding =
     imgWidth === 0
@@ -41,10 +71,20 @@ const NewsCard = ({ news }: Props) => {
         </div>
       </div>
       <div className="newscard" style={{ paddingTop: MAX_HEIGHT / 2 + "px" }}>
-        <h3 className="newscard-title">
+        <h3
+          ref={titleSize.ref}
+          className="newscard-title"
+          style={{ height: titleHeight }}
+        >
           <Link to={"/noticias/" + news.url}>{news.titulo}</Link>
         </h3>
-        <p className="newscard-subtitle">{news.subtitulo}</p>
+        <p
+          ref={subtitleSize.ref}
+          className="newscard-subtitle"
+          style={{ height: subtitleHeight }}
+        >
+          {news.subtitulo}
+        </p>
         <div className="newscard-extra">
           <p className="newscard-date">
             {new Date(news.fecha)

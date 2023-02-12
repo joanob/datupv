@@ -64,7 +64,7 @@
 
 @media (min-width: 840px) {
     .newscard-title {
-        height: 44px;
+        max-height: 44px;
         margin-top: 10px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -75,7 +75,7 @@
     }
 
     .newscard-subtitle {
-        height: 98px;
+        max-height: 98px;
         margin: 10px 0;
         overflow: hidden;
         text-overflow: ellipsis;
