@@ -38,7 +38,7 @@ const Router = () => {
         <NavPage
           pageId={navPage.pagina ? navPage.pagina : ""}
           subPages={navPage.subenlaces}
-          subPage={navSubpage}
+          selectedSubPage={navSubpage}
         />
       );
     }

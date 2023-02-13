@@ -53,6 +53,8 @@ const useHeaderWidth = (
   // If first render overflows, minwidth will be established and won't need to be changed again
   // If first render doesn't overflow, min width won't be corrent and will have to be recomputed on resize to get its final value
 
+  // Leave a 10px margin to avoid scrollbar to go over navbar
+
   useEffect(() => {
     if (containerRef.current === null || elementRef.current === null) {
       return;
@@ -86,7 +88,7 @@ const useHeaderWidth = (
       // If minwidth is not set yet, don't collapse
       setCollapse(false);
     } else {
-      setCollapse(width < minWidth);
+      setCollapse(width < minWidth + 10);
     }
   }, [width]);
 

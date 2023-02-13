@@ -26,10 +26,11 @@ const NavPage = ({ pageId, subPages, selectedSubPage }: Props) => {
       <h2>{page.titulo}</h2>
       <article className="article">
         <PostBody body={page.cuerpo} />
-        {subPages?.map((loopSubPage) => (
+        {subPages?.map((subpage) => (
           <SubPage
-            key={loopSubPage.pagina}
-            pageId={loopSubPage?.pagina ? loopSubPage.pagina : ""}
+            key={subpage.pagina}
+            selectedSubPage={selectedSubPage}
+            pageId={subpage?.pagina ? subpage.pagina : ""}
           />
         ))}
       </article>
@@ -37,9 +38,21 @@ const NavPage = ({ pageId, subPages, selectedSubPage }: Props) => {
   );
 };
 
-// TODO: scroll on load if was the selected sublink
-const SubPage = ({ pageId }: Props) => {
+const SubPage = ({ pageId, selectedSubPage }: Props) => {
   const page = usePage(pageId);
+
+  useEffect(() => {
+    if (typeof page === "boolean") {
+      return;
+    }
+    if (pageId === selectedSubPage?.pagina) {
+      setTimeout(() => {
+        document
+          .getElementById("section-" + pageId)
+          ?.scrollIntoView({ behavior: "smooth" });
+      }, 200);
+    }
+  }, [page, selectedSubPage]);
 
   if (typeof page === "boolean") {
     return null;
@@ -47,7 +60,7 @@ const SubPage = ({ pageId }: Props) => {
 
   return (
     <>
-      <h3>{page.titulo}</h3>
+      <h3 id={"section-" + pageId}>{page.titulo}</h3>
       <PostBody body={page.cuerpo} />
     </>
   );
