@@ -30,3 +30,40 @@
         width: 800px;
     }
 }
+
+.img-container {
+    width: 80%;
+    max-width: 300px;
+    margin: 10px auto;
+}
+
+.img-container div {
+    margin: auto;
+}
+
+.img {
+    width: 100%;
+}
+
+.image-with-text .img-container {
+    margin: 5px auto;
+}
+
+@media (min-width: 800px) {
+    .image-with-text {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .image-with-text > * {
+        width: 100%;
+        flex-grow: 1;
+        display: grid;
+        place-items: center;
+    }
+}
+
+.article a, .article a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}

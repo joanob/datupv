@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useContainerSize } from "../../../hooks/useContainerSize";
 import { Image } from "../../../types";
 
-import "./imgwithtextsection.css";
-
 interface Props {
   image: Image;
   text: string;

@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { linkParser } from "../../../helpers/linkParser";
 
-import "./textsection.css";
-
 interface Props {
   text: string;
 }

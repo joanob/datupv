@@ -28,7 +28,7 @@ const NavbarCollapsable = ({ nav, theme, toggleTheme }: Props) => {
 
   return (
     <>
-      <div className="nav-toggle-container">
+      <div className="header-right-container">
         <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
         <div
           className={isOpen ? "nav-toggle nav-toggle-open" : "nav-toggle"}

@@ -5,11 +5,11 @@ interface Props {
 
 const ThemeToggle = ({ theme, toggleTheme }: Props) => {
   return (
-    <div className="toggle-container" onClick={toggleTheme}>
-      <div className="button r" id="button-4">
-        <input type="checkbox" className="checkbox" />
-        <div className="knobs"></div>
-        <div className="layer"></div>
+    <div className="theme-toggle-container" onClick={toggleTheme}>
+      <div className="theme-toggle-button" id="button-4">
+        <input type="checkbox" className="theme-toggle-checkbox" />
+        <div className="theme-toggle-knobs"></div>
+        <div className="theme-toggle-layer"></div>
       </div>
     </div>
   );

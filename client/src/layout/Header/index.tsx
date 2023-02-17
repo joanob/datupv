@@ -27,7 +27,7 @@ const Header = () => {
         </div>
       </div>
       {nav.length === 0 ? null : loading || !collapse ? (
-        <nav className="nav-container" ref={elementRef}>
+        <nav className="header-desktop-right-container" ref={elementRef}>
           <Navbar nav={nav} visible={!loading} />
           {loading ? null : (
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
