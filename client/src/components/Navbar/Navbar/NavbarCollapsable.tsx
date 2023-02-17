@@ -8,8 +8,6 @@ import twitterSVG from "../../../public/icons/twitter.svg";
 import { useLocation } from "react-router-dom";
 import ThemeToggle from "../Theme/ThemeToggle";
 
-import "../navbar.css";
-
 interface Props {
   nav: NavLink[];
   theme: "light" | "dark";

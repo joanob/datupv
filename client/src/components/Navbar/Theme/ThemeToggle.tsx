@@ -1,7 +1,3 @@
-import React from "react";
-
-import "./themeToggle.css";
-
 interface Props {
   theme: "light" | "dark";
   toggleTheme: () => void;

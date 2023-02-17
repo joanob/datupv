@@ -3,8 +3,6 @@ import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { sendContactMsg } from "../../services/contactService";
 
-import "./contact.css";
-
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

@@ -5,8 +5,6 @@ import { News } from "../../../types/News";
 import NewsCard from "../NewsCard";
 import NewsFeedRow from "../NewsFeedRow";
 
-import "./newsfeed.css";
-
 // Card 400px, gap 20px
 
 const THREE_NEWS_PER_ROW = 400 * 3 + 20 * 2;

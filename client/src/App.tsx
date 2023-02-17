@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import AdminPage from "./pages/Admin";
 
-import "./app.css";
 import NewsArticle from "./pages/NewsArticle";
 import Router from "./Router";
 import NavContextWrapper from "./NavContext";

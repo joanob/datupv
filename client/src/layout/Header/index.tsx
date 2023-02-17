@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import logoTransparent from "../../public/icons/logoTransparent.png";
 
-import "./header.css";
 import Navbar from "../../components/Navbar/Navbar/Navbar";
 import NavbarCollapsable from "../../components/Navbar/Navbar/NavbarCollapsable";
 import ThemeToggle from "../../components/Navbar/Theme/ThemeToggle";
