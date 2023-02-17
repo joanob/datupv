@@ -1,5 +1,12 @@
 # Deploy
 
+## Requirements and configuration
+
+1. Node 18 -> curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - & sudo apt-get install nodejs
+2. Yarn -> npm i -g yarn
+3. nginx
+   3.1 Enable and config firewall -> ufw enable & ufw allow "Nginx HTTP"
+
 ## Server
 
 1. Clone repository: git clone https://github.com/joanob/datupv.git
