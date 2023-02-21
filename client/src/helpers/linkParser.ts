@@ -2,8 +2,8 @@ import { createElement } from "react";
 import { Link } from "react-router-dom";
 
 /**
- * Internal link: {link: string, text: string}
- * External link: {url: string, text: string}
+ * Internal link: {"link": string, "texto": string}
+ * External link: {"url": string, "texto": string}
  */
 export const linkParser = (text: string) => {
   // Parse text to objects
@@ -24,6 +24,7 @@ export const linkParser = (text: string) => {
 
     try {
       const linkObject = JSON.parse(part);
+
       if (linkObject.link !== undefined && linkObject.texto !== undefined) {
         const link = linkObject.link.replace(
           "http://" + import.meta.env.VITE_CLIENT_URL,
