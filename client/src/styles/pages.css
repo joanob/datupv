@@ -1,69 +1,91 @@
-.newspage {
-    margin: 0 15px;
-    text-align: justify;
+.newspage > * {
+  padding: 10px 15px;
+  text-align: justify;
+}
+
+.newspage header {
+  background-color: var(--secondary);
+}
+
+.newspage > header > h2 {
+  color: #fff;
+  margin-bottom: 10px;
 }
 
 .subtitulo {
-    font-weight: 600;
-
+  font-weight: 600;
+  color: #fff;
 }
 
 .date {
-    text-align: right;
-    color: var(--secondary);
-    font-weight: 600;
-    font-size: 14px;
+  text-align: right;
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
 }
 
 .article {
-    margin-top: 20px;
+  padding-top: 20px;
+  background-color: var(--bg);
 }
 
 .article > * {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
-
 @media (min-width: 800px) {
-    .newspage {
-        margin: auto;
-        width: 800px;
-    }
+  .newspage > header {
+    padding: 10px 0;
+    width: 100%;
+    background-color: var(--secondary);
+  }
+
+  .newspage > header > * {
+    margin-left: calc((100vw - 800px) / 2) !important;
+    width: 800px;
+  }
+
+  .newspage > article {
+    margin: auto;
+    width: 800px;
+  }
 }
 
 .img-container {
-    width: 80%;
-    max-width: 300px;
-    margin: 10px auto;
+  width: 80%;
+  max-width: 300px;
+  margin: 10px auto;
 }
 
 .img-container div {
-    margin: auto;
+  margin: auto;
 }
 
 .img {
-    width: 100%;
+  width: 100%;
 }
 
 .image-with-text .img-container {
-    margin: 5px auto;
+  margin: 5px auto;
 }
 
 @media (min-width: 800px) {
-    .image-with-text {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
+  .image-with-text {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .image-with-text > * {
-        width: 100%;
-        flex-grow: 1;
-        display: grid;
-        place-items: center;
-    }
+  .image-with-text > * {
+    width: 100%;
+    flex-grow: 1;
+    display: grid;
+    place-items: center;
+  }
 }
 
-.article a, .article a:hover {
-    color: var(--secondary);
-    text-decoration: underline;
+.article a,
+.article a:hover {
+  color: var(--secondary);
+  text-decoration: underline;
 }

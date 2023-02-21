@@ -23,17 +23,19 @@ const NewsArticle = () => {
 
   return (
     <main className="main newspage">
-      <h2>{news.titulo}</h2>
-      <p className="subtitulo">{news.subtitulo}</p>
-      <p className="date">
-        {new Date(news.fecha)
-          .toLocaleDateString("es-ES", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-          })
-          .replaceAll("/", "-")}
-      </p>
+      <header>
+        <h2>{news.titulo}</h2>
+        <p className="subtitulo">{news.subtitulo}</p>
+        <p className="date">
+          {new Date(news.fecha)
+            .toLocaleDateString("es-ES", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            })
+            .replaceAll("/", "-")}
+        </p>
+      </header>
       <article className="article">
         <PostBody body={news.cuerpo} />
       </article>
