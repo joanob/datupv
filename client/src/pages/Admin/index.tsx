@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import RichTextEditor from "../../components/RichTextEditor";
 import { baseURL } from "../../services/config";
 
 const AdminPage = () => {
@@ -54,6 +55,7 @@ const AdminPage = () => {
         placeholder="Admin Key"
       />
       <button onClick={handleDownload}>Download</button>
+      <RichTextEditor />
     </main>
   );
 };
