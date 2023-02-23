@@ -3,7 +3,7 @@ import Footer from "./layout/Footer";
 import Header from "./layout/Header";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
-import AdminPage from "./pages/Admin";
+import EditorPage from "./pages/Editor";
 
 import NewsArticle from "./pages/NewsArticle";
 import Router from "./Router";
@@ -17,10 +17,10 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/noticias/:id" element={<NewsArticle />} />
-          <Route path="/actividades" element={<Activities />} />
-          <Route path="/contacto" element={<Contact />} />
-          <Route path="/editor" element={<AdminPage />} />
+          <Route path="noticias/:id" element={<NewsArticle />} />
+          <Route path="actividades" element={<Activities />} />
+          <Route path="contacto" element={<Contact />} />
+          <Route path="editor/*" element={<EditorPage />} />
           <Route path="*" element={<Router />} />
         </Routes>
         <Footer />
