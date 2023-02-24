@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { dateToString } from "../../../helpers/date";
 import { AdminNewsArticle } from "../types/AdminNewsArticle";
 
@@ -36,7 +37,9 @@ const NewsListItem = ({ article }: Props) => {
         {status}
       </td>
       <td>{article.url}</td>
-      <td>Editar</td>
+      <td>
+        <Link to={"/editor/noticias/" + article.id}>Editar</Link>
+      </td>
     </tr>
   );
 };
