@@ -13,7 +13,7 @@ import Activities from "./pages/Activities";
 const App = () => {
   return (
     <NavContextWrapper>
-      <BrowserRouter basename="/datupv">
+      <BrowserRouter>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
