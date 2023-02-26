@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { AuthTokenContext } from "../../../pages/Editor";
 import { baseURL } from "../../../services/config";
-import EditableText from "../EditableBody/EditableText";
+import EditableText from "../Editable/EditableText";
 import { AdminNewsArticle } from "../types/AdminNewsArticle";
 
 const NewsEditor = () => {
@@ -49,12 +49,26 @@ const NewsEditor = () => {
     <div>
       <button onClick={handleSave}>Save</button>
       <h3>{article.titulo}</h3>
-      <EditableText
+      <p>{article.subtitulo}</p>
+      {/* <EditableText
         text={article.subtitulo}
         setText={(newSubtitle) => {
           setArticle((prevState) => ({ ...prevState, subtitulo: newSubtitle }));
         }}
-      />
+      /> */}
+      {article.cuerpo.map((bodyComponent, i) =>
+        bodyComponent.__component === "posts.texto" ? (
+          <EditableText
+            key={i}
+            text={bodyComponent.texto}
+            setText={(newText) => {
+              const newBody = article.cuerpo;
+              newBody[i].texto = newText;
+              setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
+            }}
+          />
+        ) : null
+      )}
     </div>
   );
 };

@@ -13,7 +13,6 @@ const EditorPage = () => {
     return <AuthForm setToken={setToken} />;
   }
 
-  // TODO: navigation
   return (
     <AuthTokenContext.Provider value={token}>
       <main className="main">

@@ -1,19 +1,25 @@
 import { createElement } from "react";
 import { Link } from "react-router-dom";
 
-/**
- * Internal link: {"link": string, "texto": string}
- * External link: {"url": string, "texto": string}
- */
-export const linkParser = (text: string) => {
+export interface InternalLink {
+  texto: string;
+  link: string;
+}
+
+export interface ExternalLink {
+  texto: string;
+  url: string;
+}
+
+export const textToLinkObjects = (text: string) => {
   // Parse text to objects
-  const parts = [];
+  const parts: (string | InternalLink | ExternalLink)[] = [];
 
   let start = text.indexOf("{");
   let end, part;
 
   if (start === -1) {
-    return createElement("p", {}, text);
+    return [];
   }
 
   parts.push(text.substring(0, start));
@@ -57,25 +63,33 @@ export const linkParser = (text: string) => {
     parts.push(text);
   }
 
-  // Convert object array to jsx
+  return parts;
+};
+
+export const linkParser = (text: string) => {
+  const parts = textToLinkObjects(text);
 
   return createElement(
     "p",
     {},
     ...parts.map((part) => {
-      if (part.texto !== undefined) {
-        if (part.link !== undefined) {
-          return createElement(Link, { to: part.link }, part.texto);
-        }
+      if (typeof part === "string") {
+        return part;
+      }
+      const internalLink = part as InternalLink;
+      if (internalLink.link !== undefined) {
         return createElement(
-          "a",
-          { href: part.url, target: "__blank" },
-          part.texto
+          Link,
+          { to: internalLink.link },
+          internalLink.texto
         );
       }
-      return part;
+      const externalLink = part as ExternalLink;
+      return createElement(
+        "a",
+        { href: externalLink.url, target: "__blank" },
+        externalLink.texto
+      );
     })
   );
 };
-
-// TODO: unspaguetti code
