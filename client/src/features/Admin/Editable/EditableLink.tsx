@@ -64,44 +64,41 @@ const EditableLink = ({ link, setLink }: Props) => {
       contentEditable="false"
       suppressContentEditableWarning
     >
-      {state.isActive ? (
-        <span>
-          <input
-            type="text"
-            placeholder="Texto"
-            value={formData.texto}
-            onChange={(e) => {
-              setFormData((prevState) => ({
-                ...prevState,
-                texto: e.target.value,
-              }));
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Enlace"
-            value={formData.link}
-            onChange={(e) => {
-              setFormData((prevState) => ({
-                ...prevState,
-                link: e.target.value,
-              }));
-            }}
-          />
-          <input
-            type="checkbox"
-            checked={formData.isExternal}
-            onChange={(e) => {
-              setFormData((prevState) => ({
-                ...prevState,
-                isExternal: e.target.checked,
-              }));
-            }}
-          />
-        </span>
-      ) : (
-        formData.texto
-      )}
+      {formData.texto}
+      <span style={{ visibility: state.isActive ? "visible" : "hidden" }}>
+        <input
+          type="text"
+          placeholder="Texto"
+          value={formData.texto}
+          onChange={(e) => {
+            setFormData((prevState) => ({
+              ...prevState,
+              texto: e.target.value,
+            }));
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Enlace"
+          value={formData.link}
+          onChange={(e) => {
+            setFormData((prevState) => ({
+              ...prevState,
+              link: e.target.value,
+            }));
+          }}
+        />
+        <input
+          type="checkbox"
+          checked={formData.isExternal}
+          onChange={(e) => {
+            setFormData((prevState) => ({
+              ...prevState,
+              isExternal: e.target.checked,
+            }));
+          }}
+        />
+      </span>
     </span>
   );
 };

@@ -15,18 +15,19 @@ const EditableText = ({ text, setText }: Props) => {
   const ref = useRef<HTMLParagraphElement>(null);
   const [parts, setParts] = useState(textToLinkObjects(text));
 
+  // FIXME: look for a better way for handling copy, cut and paste
+
+  const handleForbiddenAction = (e: any) => {
+    e.preventDefault();
+    alert("No se puede copiar, cortar ni pegar");
+  };
+
   const save = () => {
     if (!ref.current) {
       return;
     }
-    const html = ref.current.innerHTML.replaceAll("&nbsp;", " ");
-    const newText = htmlWithSpanToText(html, parts);
-    console.log({ newText });
+    setText(htmlToText(ref.current));
   };
-
-  // Space after link outside span is nbsp. I should replace nbsp in function replacing only first by
-
-  // FIXME: link is treated as a character and will get deleted with one keydown
 
   return (
     <>
@@ -34,11 +35,20 @@ const EditableText = ({ text, setText }: Props) => {
         ref={ref}
         contentEditable
         suppressContentEditableWarning
-        style={{ padding: "2px" }}
+        style={{ padding: "2px", userSelect: "none" }}
       >
         {parts.map((part, i) => {
           if (typeof part === "string") {
-            return <span key={i}>{part}</span>;
+            return (
+              <span
+                key={i}
+                onCopy={handleForbiddenAction}
+                onCut={handleForbiddenAction}
+                onPaste={handleForbiddenAction}
+              >
+                {part}
+              </span>
+            );
           }
           return (
             <EditableLink
@@ -60,72 +70,31 @@ const EditableText = ({ text, setText }: Props) => {
   );
 };
 
-// Links are wrapped by a contenteditable span
-// Unactive links start with <span contenteditable="false">
-// Active links start with <span contenteditable="false"><span>
-const activeLinkStartHTML = '<span contenteditable="false"><span>';
-const activeLinkEndHTML = "</span></span>";
-const unactiveLinkStartHTML = '<span contenteditable="false">';
-const unactiveLinkEndHTML = "</span>";
-
-const htmlWithSpanToText = (
-  html: string,
-  parts: (string | InternalLink | ExternalLink)[]
-) => {
-  const linkParts = parts.filter((part) => typeof part !== "string");
+const htmlToText = (parent: Node) => {
   let text = "";
-
-  // FIXME: sanitize html to avoid problems. I don't know how I would do it but I dont want a span text or a > ruin the algorithm
-
-  let htmlIndex = 0;
-  let linkIndex = 0;
-
-  while (true) {
-    let lowerIndex = -1;
-
-    // Both links html start the same but active has an additional span
-    const unactiveLinkStart = html.indexOf(unactiveLinkStartHTML, htmlIndex);
-    if (unactiveLinkStart !== -1) {
-      // There is a link, active or unactive
-      const activeLinkStart = html.indexOf(activeLinkStartHTML, htmlIndex);
-      if (activeLinkStart !== -1 && activeLinkStart === unactiveLinkStart) {
-        // link is active
-        lowerIndex = activeLinkStart;
-      } else {
-        // link is unactive
-        lowerIndex = unactiveLinkStart;
-      }
+  parent.childNodes.forEach((child) => {
+    // Text childrens have one child
+    if (child.childNodes.length <= 1) {
+      text += child.textContent;
+      return;
     }
-
-    if (lowerIndex === -1) {
-      // not more links found, only text remaining
-      text += html
-        .slice(htmlIndex)
-        .replaceAll("<span>", "")
-        .replaceAll("</span>", "");
-      break;
-    }
-
-    const textBeforeLink = html.slice(htmlIndex, lowerIndex);
-
-    text += textBeforeLink.replaceAll("<span>", "").replaceAll("</span>", "");
-    htmlIndex = html.indexOf("</span>", htmlIndex) + "</span>".length;
-    text += JSON.stringify(linkParts[linkIndex]);
-    linkIndex++;
-
-    if (unactiveLinkStart === lowerIndex) {
-      // Unactive link is <span contenteditable="false">{text}</span>
-      htmlIndex =
-        html.indexOf(unactiveLinkEndHTML, htmlIndex) +
-        unactiveLinkEndHTML.length;
+    const [textInput, urlInput, isExternalInput] =
+      child.childNodes[1].childNodes;
+    const linkText = (textInput as HTMLInputElement).value;
+    if ((isExternalInput as HTMLInputElement).checked) {
+      const link: ExternalLink = {
+        texto: linkText,
+        url: (urlInput as HTMLInputElement).value,
+      };
+      text += JSON.stringify(link);
     } else {
-      // Active link is <span><span>input+input+input</span></span>
-      htmlIndex =
-        html.indexOf(activeLinkEndHTML, htmlIndex) + activeLinkEndHTML.length;
-      console.log(html.slice(htmlIndex));
+      const link: InternalLink = {
+        texto: linkText,
+        link: (urlInput as HTMLInputElement).value,
+      };
+      text += JSON.stringify(link);
     }
-  }
-
+  });
   return text;
 };
 
