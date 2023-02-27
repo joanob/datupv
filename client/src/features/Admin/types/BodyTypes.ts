@@ -9,6 +9,7 @@ export interface ImageWithTextComponent {
   __component: "posts.imagen-con-texto";
   alineacion: "texto-derecha" | "texto-izquierda";
   texto: string;
+  imagen: { url: string };
 }
 
 export interface HeaderComponent {

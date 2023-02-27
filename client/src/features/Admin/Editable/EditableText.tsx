@@ -15,12 +15,7 @@ const EditableText = ({ text, setText }: Props) => {
   const ref = useRef<HTMLParagraphElement>(null);
   const [parts, setParts] = useState(textToLinkObjects(text));
 
-  // FIXME: look for a better way for handling copy, cut and paste
-
-  const handleForbiddenAction = (e: any) => {
-    e.preventDefault();
-    alert("No se puede copiar, cortar ni pegar");
-  };
+  // FIXME: look for a way to handle copy, cut and paste of links
 
   const save = () => {
     if (!ref.current) {
@@ -39,16 +34,7 @@ const EditableText = ({ text, setText }: Props) => {
       >
         {parts.map((part, i) => {
           if (typeof part === "string") {
-            return (
-              <span
-                key={i}
-                onCopy={handleForbiddenAction}
-                onCut={handleForbiddenAction}
-                onPaste={handleForbiddenAction}
-              >
-                {part}
-              </span>
-            );
+            return <span key={i}>{part}</span>;
           }
           return (
             <EditableLink
@@ -72,28 +58,31 @@ const EditableText = ({ text, setText }: Props) => {
 
 const htmlToText = (parent: Node) => {
   let text = "";
-  parent.childNodes.forEach((child) => {
-    // Text childrens have one child
-    if (child.childNodes.length <= 1) {
-      text += child.textContent;
-      return;
-    }
-    const [textInput, urlInput, isExternalInput] =
-      child.childNodes[1].childNodes;
-    const linkText = (textInput as HTMLInputElement).value;
-    if ((isExternalInput as HTMLInputElement).checked) {
-      const link: ExternalLink = {
-        texto: linkText,
-        url: (urlInput as HTMLInputElement).value,
-      };
-      text += JSON.stringify(link);
-    } else {
-      const link: InternalLink = {
-        texto: linkText,
-        link: (urlInput as HTMLInputElement).value,
-      };
-      text += JSON.stringify(link);
-    }
+  parent.childNodes.forEach((section) => {
+    section.childNodes.forEach((children) => {
+      if (!children.hasChildNodes()) {
+        // Text doesn't have child nodes or siblings
+        if (children.nextSibling === null) {
+          text += children.textContent;
+        }
+      } else {
+        const [textInput, urlInput, isExternalInput] = children.childNodes;
+        const linkText = (textInput as HTMLInputElement).value;
+        if ((isExternalInput as HTMLInputElement).checked) {
+          const link: ExternalLink = {
+            texto: linkText,
+            url: (urlInput as HTMLInputElement).value,
+          };
+          text += JSON.stringify(link);
+        } else {
+          const link: InternalLink = {
+            texto: linkText,
+            link: (urlInput as HTMLInputElement).value,
+          };
+          text += JSON.stringify(link);
+        }
+      }
+    });
   });
   return text;
 };

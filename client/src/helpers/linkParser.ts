@@ -19,7 +19,7 @@ export const textToLinkObjects = (text: string) => {
   let end, part;
 
   if (start === -1) {
-    return [];
+    return [text];
   }
 
   parts.push(text.substring(0, start));

@@ -5,6 +5,7 @@ import { AuthTokenContext } from "../../../pages/Editor";
 import { baseURL } from "../../../services/config";
 import EditableText from "../Editable/EditableText";
 import { AdminNewsArticle } from "../types/AdminNewsArticle";
+import { ImageWithTextComponent } from "../types/BodyTypes";
 
 const NewsEditor = () => {
   const { id } = useParams();
@@ -31,10 +32,10 @@ const NewsEditor = () => {
       });
   }, []);
 
-  const handleSave = () => {
+  const save = (newArticle: AdminNewsArticle) => {
     axios.put(
       baseURL + "/content-manager/collection-types/api::news.news/" + id,
-      article,
+      newArticle,
       {
         headers: { Authorization: `Bearer ${authToken}` },
       }
@@ -47,15 +48,8 @@ const NewsEditor = () => {
 
   return (
     <div>
-      <button onClick={handleSave}>Save</button>
       <h3>{article.titulo}</h3>
       <p>{article.subtitulo}</p>
-      {/* <EditableText
-        text={article.subtitulo}
-        setText={(newSubtitle) => {
-          setArticle((prevState) => ({ ...prevState, subtitulo: newSubtitle }));
-        }}
-      /> */}
       {article.cuerpo.map((bodyComponent, i) =>
         bodyComponent.__component === "posts.texto" ? (
           <EditableText
@@ -64,9 +58,29 @@ const NewsEditor = () => {
             setText={(newText) => {
               const newBody = article.cuerpo;
               newBody[i].texto = newText;
+              save({ ...article, cuerpo: newBody });
               setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
             }}
           />
+        ) : bodyComponent.__component === "posts.imagen-con-texto" ? (
+          <div key={i}>
+            <p>
+              Imagen con {bodyComponent.alineacion}{" "}
+              <a href={bodyComponent.imagen.url} target="__blank">
+                imagen
+              </a>
+            </p>
+            <EditableText
+              key={i}
+              text={bodyComponent.texto}
+              setText={(newText) => {
+                const newBody = article.cuerpo;
+                newBody[i].texto = newText;
+                save({ ...article, cuerpo: newBody });
+                setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
+              }}
+            />
+          </div>
         ) : null
       )}
     </div>
