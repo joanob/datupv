@@ -3,6 +3,8 @@ import AuthForm from "../../features/Admin/AuthForm";
 import AdminNewsList from "../../features/Admin/News/NewsList";
 import { Routes, Route, Link } from "react-router-dom";
 import NewsEditor from "../../features/Admin/News/NewsEditor";
+import AdminPagesList from "../../features/Admin/Pages/PagesList";
+import PagesEditor from "../../features/Admin/Pages/PagesEditor";
 
 export const AuthTokenContext = createContext("");
 
@@ -22,16 +24,12 @@ const EditorPage = () => {
           <Link to="/editor/paginas">Paginas</Link>
         </nav>
         <Routes>
-          <Route path="noticias/:id" element={<NewsEditor />} />
           <Route path="noticias" element={<AdminNewsList />} />
-          <Route path="paginas">Lista paginas</Route>
-          <Route path="paginas/:id"></Route>
+          <Route path="noticias/:id" element={<NewsEditor />} />
+          <Route path="paginas" element={<AdminPagesList />} />
+          <Route path="paginas/:id" element={<PagesEditor />} />
         </Routes>
       </main>
-      {/* <main className="main">
-        <h2>Admin</h2>
-        <AdminNewsList />
-      </main> */}
     </AuthTokenContext.Provider>
   );
 };

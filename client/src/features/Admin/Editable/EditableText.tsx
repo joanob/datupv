@@ -59,6 +59,10 @@ const EditableText = ({ text, setText }: Props) => {
 const htmlToText = (parent: Node) => {
   let text = "";
   parent.childNodes.forEach((section) => {
+    if (!section.hasChildNodes()) {
+      text += section.textContent;
+      return;
+    }
     section.childNodes.forEach((children) => {
       if (!children.hasChildNodes()) {
         // Text doesn't have child nodes or siblings

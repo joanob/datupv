@@ -18,3 +18,5 @@ export interface HeaderComponent {
   tipo: "primario" | "secundario" | "terciario";
   texto: string;
 }
+
+export type Body = (TextComponent | ImageWithTextComponent | HeaderComponent)[];

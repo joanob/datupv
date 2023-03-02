@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { dateToString } from "../../../helpers/date";
 import { AdminNewsArticle } from "../types/AdminNewsArticle";
