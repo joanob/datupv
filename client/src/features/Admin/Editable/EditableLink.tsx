@@ -19,6 +19,7 @@ const EditableLink = ({ link, setLink }: Props) => {
     isActive: false,
     clickedOutside: false,
   });
+  const [viewAsText, setViewAsText] = useState(false);
 
   const [formData, setFormData] = useState<FormData>(
     (link as InternalLink).link !== undefined
@@ -57,15 +58,28 @@ const EditableLink = ({ link, setLink }: Props) => {
     setState((prevState) => ({ ...prevState, isActive: true }));
   };
 
+  if (viewAsText) {
+    return <span>{JSON.stringify(link)}</span>;
+  }
+
   return (
     <span
       ref={ref}
       onClick={handleClick}
       contentEditable="false"
       suppressContentEditableWarning
+      style={{ position: "relative", color: "red" }}
     >
       {formData.texto}
-      <span style={{ visibility: state.isActive ? "visible" : "hidden" }}>
+      <span
+        style={{
+          display: state.isActive ? "block" : "none",
+          position: "absolute",
+          top: "100%",
+          left: 0,
+          right: 0,
+        }}
+      >
         <input
           type="text"
           placeholder="Texto"
@@ -98,6 +112,13 @@ const EditableLink = ({ link, setLink }: Props) => {
             }));
           }}
         />
+        <button
+          onClick={() => {
+            setViewAsText(true);
+          }}
+        >
+          To text
+        </button>
       </span>
     </span>
   );

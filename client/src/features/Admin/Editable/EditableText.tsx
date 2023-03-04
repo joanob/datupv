@@ -15,8 +15,6 @@ const EditableText = ({ text, setText }: Props) => {
   const ref = useRef<HTMLParagraphElement>(null);
   const [parts, setParts] = useState(textToLinkObjects(text));
 
-  // FIXME: look for a way to handle copy, cut and paste of links
-
   const save = () => {
     if (!ref.current) {
       return;
@@ -88,6 +86,7 @@ const htmlToText = (parent: Node) => {
       }
     });
   });
+  console.log(text);
   return text;
 };
 
