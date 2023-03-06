@@ -6,6 +6,7 @@ import { useOutsideClick } from "../../../hooks/useOutsideClick";
 interface Props {
   link: InternalLink | ExternalLink;
   setLink: (link: InternalLink | ExternalLink) => void;
+  deleteLink: () => void;
 }
 
 interface FormData {
@@ -14,7 +15,7 @@ interface FormData {
   isExternal: boolean;
 }
 
-const EditableLink = ({ link, setLink }: Props) => {
+const EditableLink = ({ link, setLink, deleteLink }: Props) => {
   const [state, setState] = useState({
     isActive: false,
     clickedOutside: false,
@@ -118,6 +119,13 @@ const EditableLink = ({ link, setLink }: Props) => {
           }}
         >
           To text
+        </button>
+        <button
+          onClick={() => {
+            deleteLink();
+          }}
+        >
+          Delete
         </button>
       </span>
     </span>

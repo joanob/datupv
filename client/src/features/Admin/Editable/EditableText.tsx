@@ -21,6 +21,7 @@ const EditableText = ({ text, setText }: Props) => {
       return;
     }
     setText(htmlToText(ref.current));
+    setParts(textToLinkObjects(htmlToText(ref.current)));
   };
 
   const addLink = async () => {
@@ -56,6 +57,17 @@ const EditableText = ({ text, setText }: Props) => {
         return;
       }
 
+      // If cursor is at end common ancesor is paragraph
+      if (range.commonAncestorContainer.nodeName === "P") {
+        if (typeof parts[parts.length - 1] === "string") {
+          // Delete as usual
+          return;
+        }
+        e.preventDefault();
+        // Links must be deleted from their components
+        return;
+      }
+
       // Multiple characters selected
       if (range.endOffset - range.startOffset > 0) {
         if (range.commonAncestorContainer === range.startContainer) {
@@ -83,7 +95,7 @@ const EditableText = ({ text, setText }: Props) => {
       }
 
       // Element only has one char
-      if ((sel?.anchorNode as any).data.length === 1) {
+      if ((sel?.anchorNode as any).data?.length === 1) {
         e.preventDefault();
         if (!sel.anchorNode?.parentElement) {
           return;
@@ -125,6 +137,9 @@ const EditableText = ({ text, setText }: Props) => {
                     const newParts = parts;
                     newParts[i] = link;
                     setParts(newParts);
+                  }}
+                  deleteLink={() => {
+                    setParts(parts.filter((_, j) => j !== i));
                   }}
                 />
               );
