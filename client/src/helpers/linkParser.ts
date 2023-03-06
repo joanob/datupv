@@ -12,6 +12,10 @@ export interface ExternalLink {
 }
 
 export const textToLinkObjects = (text: string) => {
+  if (text === null) {
+    text = "";
+  }
+
   // Parse text to objects
   const parts: (string | InternalLink | ExternalLink)[] = [];
 

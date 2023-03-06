@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   ExternalLink,
   InternalLink,
@@ -14,6 +14,7 @@ interface Props {
 const EditableText = ({ text, setText }: Props) => {
   const ref = useRef<HTMLParagraphElement>(null);
   const [parts, setParts] = useState(textToLinkObjects(text));
+  const [isReloading, setIsReloading] = useState(false);
 
   const save = () => {
     if (!ref.current) {
@@ -22,34 +23,91 @@ const EditableText = ({ text, setText }: Props) => {
     setText(htmlToText(ref.current));
   };
 
+  const addLink = async () => {
+    await navigator.clipboard.writeText(
+      JSON.stringify({ texto: "enlace", link: "" }) + " "
+    );
+    alert("Copiado en el portapapeles");
+  };
+
+  const reloadContent = () => {
+    if (!ref.current) {
+      return;
+    }
+    setParts(textToLinkObjects(htmlToText(ref.current)));
+    setIsReloading(true);
+  };
+
+  useEffect(() => {
+    if (isReloading) {
+      console.log("setter");
+      setIsReloading(false);
+    }
+  }, [isReloading]);
+
+  const handleKeyDown: React.KeyboardEventHandler<HTMLParagraphElement> = (
+    e
+  ) => {
+    if (e.key === "Backspace") {
+      const sel = window.getSelection();
+      // Delete previous character
+      // If previous character is the last character in a text component, delete child
+
+      // TODO: make it work with links
+
+      // FIXME: when selecting many characters it gets deleted as data.length is not 1
+      if ((sel?.anchorNode as any).data.length === 1) {
+        e.preventDefault();
+
+        let index = 0;
+        let element = sel?.anchorNode?.parentElement?.previousSibling;
+        while (element !== null && element !== undefined) {
+          index++;
+          element = element.previousSibling;
+        }
+        ref.current?.removeChild(ref.current.children[index]);
+      }
+    }
+    // TODO: replicate with e.key === "Delete" (delete next character)
+  };
+
   return (
     <>
       <p
         ref={ref}
         contentEditable
         suppressContentEditableWarning
+        onKeyDown={handleKeyDown}
         style={{ padding: "2px", userSelect: "none" }}
       >
-        {parts.map((part, i) => {
-          if (typeof part === "string") {
-            return <span key={i}>{part}</span>;
-          }
-          return (
-            <EditableLink
-              key={i}
-              link={part}
-              setLink={(link) => {
-                const newParts = parts;
-                newParts[i] = link;
-                setParts(newParts);
-              }}
-            />
-          );
-        })}
+        {isReloading
+          ? ""
+          : parts.map((part, i) => {
+              if (typeof part === "string") {
+                return (
+                  <span onKeyDown={handleKeyDown} key={Math.random()}>
+                    {part}
+                  </span>
+                );
+              }
+              return (
+                <EditableLink
+                  key={Math.random()}
+                  link={part}
+                  setLink={(link) => {
+                    const newParts = parts;
+                    newParts[i] = link;
+                    setParts(newParts);
+                  }}
+                />
+              );
+            })}
       </p>
       <button onClick={save} style={{ marginBottom: "20px" }}>
         Save
       </button>
+      <button onClick={addLink}>Add link</button>
+      <button onClick={reloadContent}>Reload</button>
     </>
   );
 };
@@ -86,7 +144,6 @@ const htmlToText = (parent: Node) => {
       }
     });
   });
-  console.log(text);
   return text;
 };
 
