@@ -1,0 +1,60 @@
+.footer {
+  @extend .flex-column;
+  background-color: $secondary;
+  text-align: center;
+  color: #fff !important;
+}
+
+.footer > div {
+  margin: 5px 20px;
+}
+
+.footer-social {
+  @extend .flex-row-justifycenter;
+  gap: 20px;
+}
+
+.footer-social img {
+  width: 50px;
+  margin: 0 10px;
+}
+
+.footer-location {
+  margin: 0 20px;
+}
+
+.footer-logo {
+  @extend .flex-column-justifycenter;
+}
+
+.footer-logo img {
+  margin: auto;
+  padding: 10px;
+}
+
+.footer-logo .dat {
+  width: 120px;
+}
+
+.footer-logo .etsit {
+  width: 150px;
+}
+
+.footer-logo .upv {
+  width: 160px;
+}
+
+@media screen and (min-width: 650px) {
+  .footer-logo {
+    width: 100%;
+    @extend .flex-row-justifyaround;
+  }
+
+  .footer-logo .etsit {
+    width: 250px;
+  }
+
+  .footer-logo .upv {
+    width: 260px;
+  }
+}

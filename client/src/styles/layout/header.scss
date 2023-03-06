@@ -1,3 +1,5 @@
+@use "../general/general.scss";
+
 .header {
   margin: 10px 20px;
   display: grid;
@@ -11,10 +13,7 @@
 
 .header-left-container {
   margin-right: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  @extend .flex-row-between-center;
 }
 
 .logo {
@@ -30,17 +29,14 @@
 
 .header-right-container {
   margin-left: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  @extend flex-row-aligncenter;
 }
 
 /* theme toggle */
 
 .theme-toggle-container {
   margin-left: auto;
-  display: grid;
-  place-items: center;
+  @extend .grid-center;
 }
 
 .theme-toggle-container *,
@@ -57,7 +53,7 @@
   height: 36px;
   margin: -20px auto 0 auto;
   overflow: hidden;
-  background-color: var(--secondary);
+  background-color: $secondary;
   border-radius: 100px;
 }
 
@@ -144,7 +140,7 @@
   border-radius: 4px;
   position: absolute;
   display: block;
-  background-color: var(--secondary);
+  background-color: $secondary;
 }
 
 .nav-toggle span:first-child {
@@ -186,8 +182,7 @@
   /* -20px to align with logo */
   margin: 10px -20px;
   padding: 0 20px;
-  display: flex;
-  flex-direction: column;
+  @extend .flex-column;
   list-style: none;
   font-size: 20px;
 }
@@ -198,11 +193,11 @@
 }
 
 .nav-link a {
-  color: var(--secondary);
+  color: $secondary;
 }
 
 .nav-link a:hover {
-  color: var(--text);
+  color: $text;
 }
 
 .nav-link-with-submenu {
@@ -212,16 +207,14 @@
 }
 
 .nav-link-with-submenu p {
-  display: flex;
-  align-items: center;
-  color: var(--secondary);
+  @extend .flex-row-aligncenter;
+  color: $secondary;
   cursor: pointer;
 }
 
 .nav-link-with-submenu span {
   margin-left: 5px;
-  display: flex;
-  align-items: center;
+  @extend .flex-row-aligncenter;
 }
 
 .nav-link-with-submenu-active {
@@ -238,17 +231,14 @@
 .header-desktop-right-container {
   margin-left: auto;
   padding-right: 5px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  @extend flex-row-aligncenter;
 }
 
 .nav-desktop {
   grid-column: auto;
   width: fit-content;
   min-width: fit-content;
-  display: flex;
-  flex-direction: row;
+  @extend flex-row;
 }
 
 .nav-desktop .nav-link {
@@ -278,7 +268,7 @@
   left: 0;
   right: 0;
   margin: 0;
-  background-color: var(--bg);
+  background-color: $bg;
 }
 
 .nav-desktop .nav-link-items .nav-link {

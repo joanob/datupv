@@ -4,7 +4,7 @@
 }
 
 .newspage header {
-  background-color: var(--secondary);
+  background-color: $secondary;
 }
 
 .newspage > header > h2 {
@@ -19,7 +19,7 @@
 
 .date {
   text-align: right;
-  color: var(--secondary);
+  color: $secondary;
   font-weight: 600;
   font-size: 14px;
   color: #fff;
@@ -27,7 +27,7 @@
 
 .article {
   padding-top: 20px;
-  background-color: var(--bg);
+  background-color: $bg;
 }
 
 .article > * {
@@ -38,7 +38,7 @@
   .newspage > header {
     padding: 10px 0;
     width: 100%;
-    background-color: var(--secondary);
+    background-color: $secondary;
   }
 
   .newspage > header > * {
@@ -87,6 +87,6 @@
 
 .article a,
 .article a:hover {
-  color: var(--secondary);
+  color: $secondary;
   text-decoration: underline;
 }

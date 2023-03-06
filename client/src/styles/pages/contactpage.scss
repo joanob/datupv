@@ -1,0 +1,106 @@
+.contact-form {
+  margin: 0 10px;
+}
+
+.cookie-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  background-color: $bg;
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.cookie-container button {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: $secondary;
+  color: #fff;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.contact-form > * {
+  display: block;
+}
+
+.contact-form label {
+  margin-bottom: 5px;
+  padding-left: 8px;
+  font-weight: 600;
+}
+
+.error-label {
+  color: #ff3232;
+}
+
+.success-label {
+  color: #009600;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid rgba($textRGB, 0.35);
+  background-color: $primary;
+  color: $text;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  border: 2px solid $secondary;
+}
+
+.contact-form textarea {
+  resize: none;
+  border: 1px solid rgba($textRGB, 0.35);
+  width: 100% !important;
+  height: 200px;
+}
+
+.contact-form > div > iframe {
+  display: block;
+  margin: auto;
+}
+
+.contact-form input[type="submit"] {
+  background-color: $secondary;
+  color: #fff;
+  margin: 20px auto;
+  padding: 8px;
+  border-radius: 10px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-form input[type="submit"]:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+@media (min-width: 420px) {
+  .contact-form {
+    margin: 0 auto;
+    width: 400px;
+  }
+
+  .main > h2 {
+    text-align: center;
+  }
+
+  .cookie-container {
+    position: static;
+  }
+}
