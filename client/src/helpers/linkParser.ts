@@ -67,7 +67,9 @@ export const textToLinkObjects = (text: string) => {
     parts.push(text);
   }
 
-  return parts;
+  return parts.filter((part) =>
+    typeof part === "string" ? part !== "" : true
+  );
 };
 
 export const linkParser = (text: string) => {

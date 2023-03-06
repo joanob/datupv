@@ -40,7 +40,6 @@ const EditableText = ({ text, setText }: Props) => {
 
   useEffect(() => {
     if (isReloading) {
-      console.log("setter");
       setIsReloading(false);
     }
   }, [isReloading]);
@@ -49,24 +48,52 @@ const EditableText = ({ text, setText }: Props) => {
     e
   ) => {
     if (e.key === "Backspace") {
+      // Wants to delete previous character/s
+
       const sel = window.getSelection();
-      // Delete previous character
-      // If previous character is the last character in a text component, delete child
+      const range = sel?.getRangeAt(0);
+      if (!sel || !range) {
+        return;
+      }
 
-      // TODO: make it work with links
+      // Multiple characters selected
+      if (range.endOffset - range.startOffset > 0) {
+        if (range.commonAncestorContainer === range.startContainer) {
+          // Same container
+          if (
+            range.endOffset - range.startOffset ===
+            (range.commonAncestorContainer as any).length
+          ) {
+            // Deletes all characters
+            e.preventDefault();
+            if (!range.commonAncestorContainer.parentElement) {
+              return;
+            }
+            range.commonAncestorContainer.parentElement.innerHTML = "";
+          }
+          // Deletes some characters, allow delete
+          return;
+        } else {
+          // Using multiple containers at once
+          console.log("multiple containers");
+          // TODO:
+          e.preventDefault();
+        }
+        return;
+      }
 
-      // FIXME: when selecting many characters it gets deleted as data.length is not 1
+      // Element only has one char
       if ((sel?.anchorNode as any).data.length === 1) {
         e.preventDefault();
-
-        let index = 0;
-        let element = sel?.anchorNode?.parentElement?.previousSibling;
-        while (element !== null && element !== undefined) {
-          index++;
-          element = element.previousSibling;
+        if (!sel.anchorNode?.parentElement) {
+          return;
         }
-        ref.current?.removeChild(ref.current.children[index]);
+
+        sel.anchorNode.parentElement.innerHTML = "";
+        return;
       }
+
+      // TODO: make it work with links
     }
     // TODO: replicate with e.key === "Delete" (delete next character)
   };
@@ -116,7 +143,9 @@ const htmlToText = (parent: Node) => {
   let text = "";
   parent.childNodes.forEach((section) => {
     if (!section.hasChildNodes()) {
-      text += section.textContent;
+      if (section.textContent !== "") {
+        text += section.textContent;
+      }
       return;
     }
     section.childNodes.forEach((children) => {
