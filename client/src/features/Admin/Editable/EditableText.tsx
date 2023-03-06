@@ -50,6 +50,7 @@ const EditableText = ({ text, setText }: Props) => {
   ) => {
     if (e.key === "Backspace") {
       // Wants to delete previous character/s
+      // Links must be deleted from their components
 
       const sel = window.getSelection();
       const range = sel?.getRangeAt(0);
@@ -57,12 +58,21 @@ const EditableText = ({ text, setText }: Props) => {
         return;
       }
 
-      // If cursor is at end common ancesor is paragraph
+      console.log(range);
+
+      // If start and end offset are 0, check what's before
+
+      // If cursor is at end or is using multiple containers common ancesor is paragraph
       if (range.commonAncestorContainer.nodeName === "P") {
         if (typeof parts[parts.length - 1] === "string") {
           // Delete as usual
           return;
         }
+        // Links or multiple containers
+        // Links:
+        // Multiple:
+
+        console.log(range);
         e.preventDefault();
         // Links must be deleted from their components
         return;
@@ -86,9 +96,6 @@ const EditableText = ({ text, setText }: Props) => {
           // Deletes some characters, allow delete
           return;
         } else {
-          // Using multiple containers at once
-          console.log("multiple containers");
-          // TODO:
           e.preventDefault();
         }
         return;
@@ -104,8 +111,6 @@ const EditableText = ({ text, setText }: Props) => {
         sel.anchorNode.parentElement.innerHTML = "";
         return;
       }
-
-      // TODO: make it work with links
     }
     // TODO: replicate with e.key === "Delete" (delete next character)
   };
