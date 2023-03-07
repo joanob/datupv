@@ -10,7 +10,7 @@
 }
 
 .newsfeed-load-more {
-  background-color: $secondary;
+  background-color: $datupv;
   color: #fff;
   margin: 16px auto;
   padding: 8px;
@@ -65,15 +65,30 @@
 .news-image img {
   width: 100%;
   border-radius: 20px;
-  box-shadow: 1px 1px 3px $shadow;
+
+  .light & {
+    box-shadow: 1px 1px 3px $shadow-light;
+  }
+
+  .dark & {
+    box-shadow: 1px 1px 3px $shadow-dark;
+  }
 }
 
 .newscard {
   width: 100%;
   padding: 15px;
   border-radius: 20px;
-  background-color: $primary;
-  box-shadow: 0px 0px 3px $shadow;
+
+  .light & {
+    background-color: $white;
+    box-shadow: 0px 0px 3px $shadow-light;
+  }
+
+  .dark & {
+    background-color: $primary-dark;
+    box-shadow: 0px 0px 3px $shadow-dark;
+  }
 }
 
 .newscard-title {
@@ -98,14 +113,14 @@
   font-size: 14px;
 }
 
-.newscard-link {
+a.newscard-link {
   padding: 8px;
   border-radius: 10px;
-  background-color: $secondary;
+  background-color: $datupv;
   color: #fff;
 }
 
-.newscard-link:hover {
+a.newscard-link:hover {
   color: #fff;
 }
 
@@ -133,6 +148,11 @@
   }
 
   .news:hover .newscard {
-    box-shadow: 0px 0px 8px $shadow;
+    .light & {
+      box-shadow: 0px 0px 8px $shadow-light;
+    }
+    .dark & {
+      box-shadow: 0px 0px 8px $shadow-dark;
+    }
   }
 }

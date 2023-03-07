@@ -1,6 +1,7 @@
 .footer {
-  @extend .flex-column;
-  background-color: $secondary;
+  display: flex;
+  flex-direction: column;
+  background-color: $datupv;
   text-align: center;
   color: #fff !important;
 }
@@ -10,7 +11,9 @@
 }
 
 .footer-social {
-  @extend .flex-row-justifycenter;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   gap: 20px;
 }
 
@@ -24,7 +27,9 @@
 }
 
 .footer-logo {
-  @extend .flex-column-justifycenter;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .footer-logo img {
@@ -47,7 +52,9 @@
 @media screen and (min-width: 650px) {
   .footer-logo {
     width: 100%;
-    @extend .flex-row-justifyaround;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 
   .footer-logo .etsit {

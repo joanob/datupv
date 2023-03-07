@@ -1,4 +1,4 @@
-@use "../general/general.scss";
+@import "../general/common";
 
 .header {
   margin: 10px 20px;
@@ -13,7 +13,10 @@
 
 .header-left-container {
   margin-right: 10px;
-  @extend .flex-row-between-center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
@@ -29,14 +32,17 @@
 
 .header-right-container {
   margin-left: auto;
-  @extend flex-row-aligncenter;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 /* theme toggle */
 
 .theme-toggle-container {
   margin-left: auto;
-  @extend .grid-center;
+  display: grid;
+  place-content: center;
 }
 
 .theme-toggle-container *,
@@ -53,7 +59,7 @@
   height: 36px;
   margin: -20px auto 0 auto;
   overflow: hidden;
-  background-color: $secondary;
+  background-color: $datupv;
   border-radius: 100px;
 }
 
@@ -140,7 +146,7 @@
   border-radius: 4px;
   position: absolute;
   display: block;
-  background-color: $secondary;
+  background-color: $datupv;
 }
 
 .nav-toggle span:first-child {
@@ -182,7 +188,8 @@
   /* -20px to align with logo */
   margin: 10px -20px;
   padding: 0 20px;
-  @extend .flex-column;
+  display: flex;
+  flex-direction: column;
   list-style: none;
   font-size: 20px;
 }
@@ -193,11 +200,17 @@
 }
 
 .nav-link a {
-  color: $secondary;
+  color: $datupv;
 }
 
 .nav-link a:hover {
-  color: $text;
+  .light & {
+    color: $text-light;
+  }
+
+  .dark & {
+    color: $text-dark;
+  }
 }
 
 .nav-link-with-submenu {
@@ -207,14 +220,18 @@
 }
 
 .nav-link-with-submenu p {
-  @extend .flex-row-aligncenter;
-  color: $secondary;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: $datupv;
   cursor: pointer;
 }
 
 .nav-link-with-submenu span {
   margin-left: 5px;
-  @extend .flex-row-aligncenter;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .nav-link-with-submenu-active {
@@ -231,14 +248,17 @@
 .header-desktop-right-container {
   margin-left: auto;
   padding-right: 5px;
-  @extend flex-row-aligncenter;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .nav-desktop {
   grid-column: auto;
   width: fit-content;
   min-width: fit-content;
-  @extend flex-row;
+  display: flex;
+  flex-direction: row;
 }
 
 .nav-desktop .nav-link {
@@ -268,7 +288,14 @@
   left: 0;
   right: 0;
   margin: 0;
-  background-color: $bg;
+
+  .light & {
+    background-color: $bg-light;
+  }
+
+  .dark & {
+    background-color: $bg-dark;
+  }
 }
 
 .nav-desktop .nav-link-items .nav-link {

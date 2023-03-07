@@ -1,0 +1,21 @@
+/* FONTS */
+
+$primary-font: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
+
+/* COMMON COLORS */
+$datupv: #955251;
+$white: #fff;
+$salt: #fafafa;
+
+/* LIGHT THEME */
+
+$bg-light: $white;
+$primary-light: $salt;
+$text-light: #121212;
+$shadow-light: rgb($text-light, 0.2);
+
+/* DARK THEME */
+$bg-dark: #1e1e1e;
+$primary-dark: #292929;
+$text-dark: $white;
+$shadow-dark: rgb($text-dark, 1);

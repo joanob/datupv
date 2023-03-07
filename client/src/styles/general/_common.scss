@@ -1,0 +1,50 @@
+/* GRID */
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+/* FLEX */
+
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+@mixin flex-row() {
+  @include flex("row");
+}
+
+@mixin flex-column() {
+  @include flex("column");
+}
+
+@mixin flex-column-justifycenter {
+  @include flex-column;
+  justify-content: center;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-row-justifycenter {
+  @include flex-row;
+  justify-content: center;
+}
+
+@mixin flex-row-justifyaround {
+  @include flex-row;
+  justify-content: space-around;
+}
+
+@mixin flex-row-aligncenter {
+  @include flex-row;
+  align-items: center;
+}
+
+@mixin flex-row-justitybetween-aligncenter {
+  @include flex-row-aligncenter;
+  justify-content: space-between;
+}

@@ -8,16 +8,23 @@
   left: 0;
   right: 0;
   padding: 5px;
-  background-color: $bg;
   display: flex !important;
   flex-direction: column;
   align-items: flex-end;
+
+  .light & {
+    background-color: $bg-light;
+  }
+
+  .dark & {
+    background-color: $bg-dark;
+  }
 }
 
 .cookie-container button {
   padding: 8px;
   border-radius: 10px;
-  background-color: $secondary;
+  background-color: $shadow-light;
   color: #fff;
   border: none;
   margin: 5px;
@@ -51,22 +58,38 @@
   font-size: 14px;
   border-radius: 10px;
   outline: none;
-  border: 1px solid rgba($textRGB, 0.35);
-  background-color: $primary;
-  color: $text;
+
+  .light & {
+    border: 1px solid rgba($text-light, 0.35);
+    background-color: $primary-light;
+    color: $text-light;
+  }
+
+  .dark & {
+    border: 1px solid rgba($text-dark, 0.35);
+    background-color: $primary-dark;
+    color: $text-dark;
+  }
 }
 
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
 .contact-form textarea:focus {
-  border: 2px solid $secondary;
+  border: 2px solid $datupv;
 }
 
 .contact-form textarea {
   resize: none;
-  border: 1px solid rgba($textRGB, 0.35);
   width: 100% !important;
   height: 200px;
+
+  .light & {
+    border: 1px solid rgba($text-light, 0.35);
+  }
+
+  .dark & {
+    border: 1px solid rgba($text-dark, 0.35);
+  }
 }
 
 .contact-form > div > iframe {
@@ -75,7 +98,7 @@
 }
 
 .contact-form input[type="submit"] {
-  background-color: $secondary;
+  background-color: $datupv;
   color: #fff;
   margin: 20px auto;
   padding: 8px;
