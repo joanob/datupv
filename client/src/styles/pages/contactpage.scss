@@ -3,14 +3,14 @@
 }
 
 .cookie-container {
+  display: flex !important;
   position: absolute;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-  padding: 5px;
-  display: flex !important;
   flex-direction: column;
   align-items: flex-end;
+  padding: 5px;
 
   .light & {
     background-color: $bg-light;
@@ -22,13 +22,13 @@
 }
 
 .cookie-container button {
-  padding: 8px;
+  cursor: pointer;
+  margin: 5px;
+  border: none;
   border-radius: 10px;
   background-color: $shadow-light;
+  padding: 8px;
   color: #fff;
-  border: none;
-  margin: 5px;
-  cursor: pointer;
 }
 
 .contact-form > * {
@@ -53,11 +53,11 @@
 .contact-form input[type="email"],
 .contact-form textarea {
   margin-bottom: 10px;
-  width: 100%;
-  padding: 5px 10px;
-  font-size: 14px;
-  border-radius: 10px;
   outline: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  width: 100%;
+  font-size: 14px;
 
   .light & {
     border: 1px solid rgba($text-light, 0.35);
@@ -79,9 +79,9 @@
 }
 
 .contact-form textarea {
-  resize: none;
   width: 100% !important;
   height: 200px;
+  resize: none;
 
   .light & {
     border: 1px solid rgba($text-light, 0.35);
@@ -98,19 +98,19 @@
 }
 
 .contact-form input[type="submit"] {
-  background-color: $datupv;
-  color: #fff;
-  margin: 20px auto;
-  padding: 8px;
-  border-radius: 10px;
-  font-size: 20px;
-  border: none;
   cursor: pointer;
+  margin: 20px auto;
+  border: none;
+  border-radius: 10px;
+  background-color: $datupv;
+  padding: 8px;
+  color: #fff;
+  font-size: 20px;
 }
 
 .contact-form input[type="submit"]:disabled {
-  background-color: gray;
   cursor: not-allowed;
+  background-color: gray;
 }
 
 @media (min-width: 420px) {

@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   background-color: $datupv;
-  text-align: center;
   color: #fff !important;
+  text-align: center;
 }
 
 .footer > div {
@@ -18,8 +18,8 @@
 }
 
 .footer-social img {
-  width: 50px;
   margin: 0 10px;
+  width: 50px;
 }
 
 .footer-location {
@@ -51,10 +51,10 @@
 
 @media screen and (min-width: 650px) {
   .footer-logo {
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    width: 100%;
   }
 
   .footer-logo .etsit {

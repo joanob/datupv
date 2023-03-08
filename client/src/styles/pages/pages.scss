@@ -8,21 +8,21 @@
 }
 
 .newspage > header > h2 {
-  color: #fff;
   margin-bottom: 10px;
+  color: #fff;
 }
 
 .subtitulo {
-  font-weight: 500;
   color: #fff;
+  font-weight: 500;
 }
 
 .date {
-  text-align: right;
   color: $datupv;
+  color: #fff;
   font-weight: 600;
   font-size: 14px;
-  color: #fff;
+  text-align: right;
 }
 
 .article {
@@ -43,9 +43,9 @@
 
 @media (min-width: 800px) {
   .newspage > header {
+    background-color: $datupv;
     padding: 10px 0;
     width: 100%;
-    background-color: $datupv;
   }
 
   .newspage > header > * {
@@ -61,9 +61,9 @@
 }
 
 .img-container {
+  margin: 10px auto;
   width: 80%;
   max-width: 300px;
-  margin: 10px auto;
 }
 
 .img-container div {
@@ -85,10 +85,10 @@
   }
 
   .image-with-text > * {
-    width: 100%;
-    flex-grow: 1;
     display: grid;
+    flex-grow: 1;
     place-items: center;
+    width: 100%;
   }
 }
 

@@ -1,8 +1,8 @@
 .newsfeed {
-  margin: 0 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 10px;
 }
 
 .newsfeed > h2 {
@@ -10,20 +10,20 @@
 }
 
 .newsfeed-load-more {
-  background-color: $datupv;
-  color: #fff;
-  margin: 16px auto;
-  padding: 8px;
-  border-radius: 10px;
-  font-size: 20px;
-  border: none;
   cursor: pointer;
+  margin: 16px auto;
+  border: none;
+  border-radius: 10px;
+  background-color: $datupv;
+  padding: 8px;
+  color: #fff;
+  font-size: 20px;
 }
 
 @media (min-width: 1240px) {
   .newsfeed {
-    width: 1240px;
     margin: auto;
+    width: 1240px;
   }
 
   .newsfeed > h2 {
@@ -46,16 +46,16 @@
 }
 
 .news {
+  position: relative;
   width: 100%;
   max-width: 400px;
-  position: relative;
 }
 
 .news-image {
   position: absolute;
   top: 0;
-  left: 10%;
   right: 10%;
+  left: 10%;
 }
 
 .news-image div {
@@ -63,8 +63,8 @@
 }
 
 .news-image img {
-  width: 100%;
   border-radius: 20px;
+  width: 100%;
 
   .light & {
     box-shadow: 1px 1px 3px $shadow-light;
@@ -76,25 +76,25 @@
 }
 
 .newscard {
-  width: 100%;
-  padding: 15px;
   border-radius: 20px;
+  padding: 15px;
+  width: 100%;
 
   .light & {
-    background-color: $white;
     box-shadow: 0px 0px 3px $shadow-light;
+    background-color: $white;
   }
 
   .dark & {
-    background-color: $primary-dark;
     box-shadow: 0px 0px 3px $shadow-dark;
+    background-color: $primary-dark;
   }
 }
 
 .newscard-title {
   margin-top: 10px;
-  font-size: 18px;
   font-weight: 600;
+  font-size: 18px;
 }
 
 .newscard-subtitle {
@@ -114,9 +114,9 @@
 }
 
 a.newscard-link {
-  padding: 8px;
   border-radius: 10px;
   background-color: $datupv;
+  padding: 8px;
   color: #fff;
 }
 
@@ -126,25 +126,25 @@ a.newscard-link:hover {
 
 @media (min-width: 840px) {
   .newscard-title {
-    max-height: 44px;
-    margin-top: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
     -webkit-box-orient: vertical;
     line-clamp: 2;
     -webkit-line-clamp: 2;
+    display: -webkit-box;
+    margin-top: 10px;
+    max-height: 44px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .newscard-subtitle {
-    max-height: 98px;
-    margin: 10px 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
     -webkit-box-orient: vertical;
     line-clamp: 5;
     -webkit-line-clamp: 5;
+    display: -webkit-box;
+    margin: 10px 0;
+    max-height: 98px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .news:hover .newscard {

@@ -1,22 +1,22 @@
-@import "../general/common";
+@import "../general/variables";
 
 .header {
-  margin: 10px 20px;
   display: grid;
   grid-template-rows: 66px auto;
   grid-template-columns: 90px 1fr;
   align-items: center;
+  margin: 10px 20px;
   user-select: none;
 }
 
 /* LEFT SIDE: LOGO */
 
 .header-left-container {
-  margin-right: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-right: 10px;
 }
 
 .logo {
@@ -31,47 +31,47 @@
 /* RIGHT SIDE: THEME TOGGLE & NAVBAR  */
 
 .header-right-container {
-  margin-left: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-left: auto;
 }
 
 /* theme toggle */
 
 .theme-toggle-container {
-  margin-left: auto;
   display: grid;
   place-content: center;
+  margin-left: auto;
 }
 
 .theme-toggle-container *,
 .theme-toggle-container *:focus {
-  user-select: none;
   -webkit-tap-highlight-color: transparent;
   outline: none;
+  user-select: none;
 }
 
 .theme-toggle-button {
   position: relative;
   top: 50%;
+  margin: -20px auto 0 auto;
+  border-radius: 100px;
+  background-color: $datupv;
   width: 74px;
   height: 36px;
-  margin: -20px auto 0 auto;
   overflow: hidden;
-  background-color: $datupv;
-  border-radius: 100px;
 }
 
 .theme-toggle-checkbox {
   position: relative;
+  opacity: 0;
+  z-index: 3;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
-  padding: 0;
-  margin: 0;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 3;
 }
 
 .theme-toggle-knobs {
@@ -80,21 +80,21 @@
 
 .theme-toggle-knobs::before,
 .theme-toggle-knobs::after {
-  content: "";
   position: absolute;
   top: 4px;
   left: 4px;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 9px 4px;
   width: 20px;
   height: 10px;
+  content: "";
   color: #fff;
-  font-size: 10px;
   font-weight: bold;
-  text-align: center;
+  font-size: 10px;
   line-height: 1;
-  padding: 9px 4px;
-  background-color: #fff;
-  border-radius: 50%;
-  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+  text-align: center;
 }
 
 .theme-toggle-knobs::after {
@@ -105,10 +105,10 @@
 }
 
 .theme-toggle-layer {
+  z-index: 1;
+  transition: 0.3s ease all;
   border-radius: 100px;
   width: 100%;
-  transition: 0.3s ease all;
-  z-index: 1;
 }
 
 .theme-toggle-checkbox:checked + .theme-toggle-knobs:before {
@@ -126,14 +126,14 @@
 /* navbar toggle */
 
 .nav-toggle {
-  margin-top: -4px;
-  margin-left: auto;
-  margin-right: 5px;
-  width: 35px;
-  height: 28px;
+  -webkit-tap-highlight-color: transparent;
   position: relative;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+  margin-top: -4px;
+  margin-right: 5px;
+  margin-left: auto;
+  width: 35px;
+  height: 28px;
 }
 
 .header-right-container .nav-toggle {
@@ -141,12 +141,12 @@
 }
 
 .nav-toggle span {
+  display: block;
+  position: absolute;
+  border-radius: 4px;
+  background-color: $datupv;
   width: 100%;
   height: 4px;
-  border-radius: 4px;
-  position: absolute;
-  display: block;
-  background-color: $datupv;
 }
 
 .nav-toggle span:first-child {
@@ -160,8 +160,8 @@
 }
 
 .nav-toggle span:last-child {
-  left: 0;
   bottom: 0;
+  left: 0;
 }
 
 .nav-toggle-open span {
@@ -184,14 +184,14 @@
 /* navbar */
 
 .nav {
+  display: flex;
   grid-column: 1/3;
+  flex-direction: column;
   /* -20px to align with logo */
   margin: 10px -20px;
   padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  list-style: none;
   font-size: 20px;
+  list-style: none;
 }
 
 .nav-link,
@@ -214,29 +214,29 @@
 }
 
 .nav-link-with-submenu {
-  list-style: none;
-  z-index: 2;
   -webkit-tap-highlight-color: transparent;
+  z-index: 2;
+  list-style: none;
 }
 
 .nav-link-with-submenu p {
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: $datupv;
   cursor: pointer;
+  color: $datupv;
 }
 
 .nav-link-with-submenu span {
-  margin-left: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-left: 5px;
 }
 
 .nav-link-with-submenu-active {
-  border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .nav-link-items {
@@ -246,19 +246,19 @@
 /* DESKTOP HEADER */
 
 .header-desktop-right-container {
-  margin-left: auto;
-  padding-right: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-left: auto;
+  padding-right: 5px;
 }
 
 .nav-desktop {
+  display: flex;
   grid-column: auto;
+  flex-direction: row;
   width: fit-content;
   min-width: fit-content;
-  display: flex;
-  flex-direction: row;
 }
 
 .nav-desktop .nav-link {
@@ -267,9 +267,9 @@
 }
 
 .nav-desktop .nav-link-with-submenu {
+  position: relative;
   margin: 0 5px;
   padding: 0 20px;
-  position: relative;
 }
 
 .nav-desktop .nav-link-with-submenu:hover .nav-link-items {
@@ -281,13 +281,13 @@
 }
 
 .nav-desktop .nav-link-items {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   position: absolute;
   top: 25px;
-  left: 0;
   right: 0;
+  left: 0;
   margin: 0;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 
   .light & {
     background-color: $bg-light;

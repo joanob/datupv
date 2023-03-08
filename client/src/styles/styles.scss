@@ -1,3 +1,11 @@
+/* Styles are sorted using https://github.com/Siilwyn/prettier-plugin-css-order */
+// Concentric CSS:
+// 1. Positioning
+// 2. Visibility
+// 3. Box model
+// 4. Dimensions
+// 5. Text
+
 @import "./general/root.scss";
 
 @import "./layout/header.scss";
