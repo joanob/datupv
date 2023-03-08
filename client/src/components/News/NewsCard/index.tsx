@@ -57,8 +57,8 @@ const NewsCard = ({
       : ((news.imagen.height / news.imagen.width) * imgWidth) / 2;
 
   return (
-    <div className="news" style={{ paddingTop: topPadding + "px" }}>
-      <div ref={ref} className="news-image">
+    <div className="newsfeed-news" style={{ paddingTop: topPadding + "px" }}>
+      <div ref={ref} className="newsfeed-news-image">
         <div style={{ width: imgWidth === 0 ? "100%" : imgWidth + "px" }}>
           <img
             src={news.imagen.url}
@@ -68,23 +68,26 @@ const NewsCard = ({
           />
         </div>
       </div>
-      <div className="newscard" style={{ paddingTop: MAX_HEIGHT / 2 + "px" }}>
+      <div
+        className="newsfeed-card"
+        style={{ paddingTop: MAX_HEIGHT / 2 + "px" }}
+      >
         <h3
           ref={titleSize.ref}
-          className="newscard-title"
+          className="newsfeed-card-title"
           style={{ height: titleHeight }}
         >
           <Link to={"/noticias/" + news.url}>{news.titulo}</Link>
         </h3>
         <p
           ref={subtitleSize.ref}
-          className="newscard-subtitle"
+          className="newsfeed-card-subtitle"
           style={{ height: subtitleHeight }}
         >
           {news.subtitulo}
         </p>
-        <div className="newscard-extra">
-          <p className="newscard-date">
+        <div className="newsfeed-card-extra">
+          <p className="newsfeed-card-date">
             {new Date(news.fecha)
               .toLocaleDateString("es-ES", {
                 day: "2-digit",
@@ -93,7 +96,7 @@ const NewsCard = ({
               })
               .replaceAll("/", "-")}
           </p>
-          <Link className="newscard-link" to={"/noticias/" + news.url}>
+          <Link className="newsfeed-card-link" to={"/noticias/" + news.url}>
             Leer más
           </Link>
         </div>

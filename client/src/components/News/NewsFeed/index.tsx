@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useContainerSize } from "../../../hooks/useContainerSize";
 import { getNewsfeed } from "../../../services/newsService";
 import { News } from "../../../types/News";
-import NewsCard from "../NewsCard";
 import NewsFeedRow from "../NewsFeedRow";
 
 // Card 400px, gap 20px

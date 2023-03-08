@@ -45,13 +45,13 @@
   }
 }
 
-.news {
+.newsfeed-news {
   position: relative;
   width: 100%;
   max-width: 400px;
 }
 
-.news-image {
+.newsfeed-news-image {
   position: absolute;
   top: 0;
   right: 10%;
@@ -75,7 +75,7 @@
   }
 }
 
-.newscard {
+.newsfeed-card {
   border-radius: 20px;
   padding: 15px;
   width: 100%;
@@ -91,29 +91,29 @@
   }
 }
 
-.newscard-title {
+.newsfeed-card-title {
   margin-top: 10px;
   font-weight: 600;
   font-size: 18px;
 }
 
-.newscard-subtitle {
+.newsfeed-card-subtitle {
   margin: 10px 0;
   font-size: 16px;
 }
 
-.newscard-extra {
+.newsfeed-card-extra {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.newscard-date {
+.newsfeed-card-date {
   font-size: 14px;
 }
 
-a.newscard-link {
+a.newsfeed-card-link {
   border-radius: 10px;
   background-color: $datupv;
   padding: 8px;
@@ -125,7 +125,16 @@ a.newscard-link {
 }
 
 @media (min-width: 840px) {
-  .newscard-title {
+  .newsfeed-news:hover .newsfeed-card {
+    .light & {
+      box-shadow: 0px 0px 8px $shadow-light;
+    }
+    .dark & {
+      box-shadow: 0px 0px 8px $shadow-dark;
+    }
+  }
+
+  .newsfeed-card-title {
     -webkit-box-orient: vertical;
     line-clamp: 2;
     -webkit-line-clamp: 2;
@@ -136,7 +145,7 @@ a.newscard-link {
     text-overflow: ellipsis;
   }
 
-  .newscard-subtitle {
+  .newsfeed-card-subtitle {
     -webkit-box-orient: vertical;
     line-clamp: 5;
     -webkit-line-clamp: 5;
@@ -145,14 +154,5 @@ a.newscard-link {
     max-height: 98px;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  .news:hover .newscard {
-    .light & {
-      box-shadow: 0px 0px 8px $shadow-light;
-    }
-    .dark & {
-      box-shadow: 0px 0px 8px $shadow-dark;
-    }
   }
 }
