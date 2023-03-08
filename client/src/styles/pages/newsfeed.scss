@@ -3,10 +3,21 @@
   flex-direction: column;
   justify-content: center;
   margin: 0 10px;
+
+  & > h2 {
+    margin: 10px 0;
+  }
 }
 
-.newsfeed > h2 {
-  margin: 10px 0;
+@media (min-width: 1240px) {
+  .newsfeed {
+    margin: auto;
+    width: 1240px;
+
+    & > h2 {
+      text-align: center;
+    }
+  }
 }
 
 .newsfeed-load-more {
@@ -18,17 +29,6 @@
   padding: 8px;
   color: #fff;
   font-size: 20px;
-}
-
-@media (min-width: 1240px) {
-  .newsfeed {
-    margin: auto;
-    width: 1240px;
-  }
-
-  .newsfeed > h2 {
-    text-align: center;
-  }
 }
 
 .newsfeed-feed {
@@ -56,22 +56,22 @@
   top: 0;
   right: 10%;
   left: 10%;
-}
 
-.news-image div {
-  margin: auto;
-}
-
-.news-image img {
-  border-radius: 20px;
-  width: 100%;
-
-  .light & {
-    box-shadow: 1px 1px 3px $shadow-light;
+  div {
+    margin: auto;
   }
 
-  .dark & {
-    box-shadow: 1px 1px 3px $shadow-dark;
+  img {
+    border-radius: 20px;
+    width: 100%;
+
+    .light & {
+      box-shadow: 1px 1px 3px $shadow-light;
+    }
+
+    .dark & {
+      box-shadow: 1px 1px 3px $shadow-dark;
+    }
   }
 }
 
@@ -118,10 +118,10 @@ a.newscard-link {
   background-color: $datupv;
   padding: 8px;
   color: #fff;
-}
 
-a.newscard-link:hover {
-  color: #fff;
+  &:hover {
+    color: #fff;
+  }
 }
 
 @media (min-width: 840px) {

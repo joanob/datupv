@@ -4,10 +4,10 @@
   background-color: $datupv;
   color: #fff !important;
   text-align: center;
-}
 
-.footer > div {
-  margin: 5px 20px;
+  & > div {
+    margin: 5px 20px;
+  }
 }
 
 .footer-social {
@@ -15,11 +15,11 @@
   flex-direction: row;
   justify-content: center;
   gap: 20px;
-}
 
-.footer-social img {
-  margin: 0 10px;
-  width: 50px;
+  img {
+    margin: 0 10px;
+    width: 50px;
+  }
 }
 
 .footer-location {
@@ -30,23 +30,23 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
 
-.footer-logo img {
-  margin: auto;
-  padding: 10px;
-}
+  img {
+    margin: auto;
+    padding: 10px;
+  }
 
-.footer-logo .dat {
-  width: 120px;
-}
+  .dat {
+    width: 120px;
+  }
 
-.footer-logo .etsit {
-  width: 150px;
-}
+  .etsit {
+    width: 150px;
+  }
 
-.footer-logo .upv {
-  width: 160px;
+  .upv {
+    width: 160px;
+  }
 }
 
 @media screen and (min-width: 650px) {
@@ -55,13 +55,13 @@
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
-  }
 
-  .footer-logo .etsit {
-    width: 250px;
-  }
+    .etsit {
+      width: 250px;
+    }
 
-  .footer-logo .upv {
-    width: 260px;
+    .upv {
+      width: 260px;
+    }
   }
 }

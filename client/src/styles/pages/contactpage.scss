@@ -19,26 +19,28 @@
   .dark & {
     background-color: $bg-dark;
   }
+
+  button {
+    cursor: pointer;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: $shadow-light;
+    padding: 8px;
+    color: #fff;
+  }
 }
 
-.cookie-container button {
-  cursor: pointer;
-  margin: 5px;
-  border: none;
-  border-radius: 10px;
-  background-color: $shadow-light;
-  padding: 8px;
-  color: #fff;
-}
+.contact-form {
+  & > * {
+    display: block;
+  }
 
-.contact-form > * {
-  display: block;
-}
-
-.contact-form label {
-  margin-bottom: 5px;
-  padding-left: 8px;
-  font-weight: 600;
+  label {
+    margin-bottom: 5px;
+    padding-left: 8px;
+    font-weight: 600;
+  }
 }
 
 .error-label {
@@ -70,12 +72,10 @@
     background-color: $primary-dark;
     color: $text-dark;
   }
-}
 
-.contact-form input[type="text"]:focus,
-.contact-form input[type="email"]:focus,
-.contact-form textarea:focus {
-  border: 2px solid $datupv;
+  &:focus {
+    border: 2px solid $datupv;
+  }
 }
 
 .contact-form textarea {
@@ -106,11 +106,11 @@
   padding: 8px;
   color: #fff;
   font-size: 20px;
-}
 
-.contact-form input[type="submit"]:disabled {
-  cursor: not-allowed;
-  background-color: gray;
+  &:disabled {
+    cursor: not-allowed;
+    background-color: gray;
+  }
 }
 
 @media (min-width: 420px) {

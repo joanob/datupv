@@ -11,9 +11,9 @@
   .dark & {
     background-color: $bg-dark;
   }
-}
 
-.main > h2 {
-  margin: 10px;
-  color: $datupv;
+  & > h2 {
+    margin: 10px;
+    color: $datupv;
+  }
 }
