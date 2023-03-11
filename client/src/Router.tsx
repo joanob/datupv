@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import { NavContext } from "./NavContext";
 
-import Header from "./layout/Header";
-import Footer from "./layout/Footer";
+import { Header } from "./features/Header";
+import Footer from "./features/Footer";
 
 import Home from "./pages/Home";
 import NewsArticle from "./pages/NewsArticle";
