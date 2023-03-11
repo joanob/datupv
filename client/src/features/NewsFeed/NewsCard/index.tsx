@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useContainerSize } from "../../../hooks/useContainerSize";
 import { News } from "../../../types/News";
 
+import "./styles.scss";
+
 interface Props {
   news: News;
   onTitleHeightChange: (height: number) => void;

@@ -1,0 +1,48 @@
+@import "../../../styles/variables";
+
+.newsfeed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 10px;
+
+  & > h2 {
+    margin: 10px 0;
+  }
+}
+
+@media (min-width: 1240px) {
+  .newsfeed {
+    margin: auto;
+    width: 1240px;
+
+    & > h2 {
+      text-align: center;
+    }
+  }
+}
+
+.newsfeed-load-more {
+  cursor: pointer;
+  margin: 16px auto;
+  border: none;
+  border-radius: 10px;
+  background-color: $datupv;
+  padding: 8px;
+  color: #fff;
+  font-size: 20px;
+}
+
+.newsfeed-feed {
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 420px) {
+  .newsfeed-feed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 400px);
+    justify-content: space-evenly;
+    align-items: flex-end;
+  }
+}

@@ -1,7 +1,8 @@
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { sendContactMsg } from "../../services/contactService";
+
+import "./styles.scss";
 
 const Contact = () => {
   const [name, setName] = useState("");
