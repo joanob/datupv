@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PostBody from "../../components/Posts/PostBody";
+import PostBody from "../../features/Posts/PostBody";
 import { getPage } from "../../services/pageService";
 import { NavLink, Page, SubLink } from "../../types";
 import NotFound from "../NotFound";

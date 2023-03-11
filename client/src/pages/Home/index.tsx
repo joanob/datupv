@@ -1,4 +1,4 @@
-import NewsFeed from "../../components/News/NewsFeed";
+import NewsFeed from "../../features/NewsFeed/NewsFeed";
 
 const Home = () => {
   return (
