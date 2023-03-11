@@ -1,10 +1,36 @@
 import { useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+
 import { NavContext } from "./NavContext";
+
+import Header from "./layout/Header";
+import Footer from "./layout/Footer";
+
+import Home from "./pages/Home";
+import NewsArticle from "./pages/NewsArticle";
+import Activities from "./pages/Activities";
+import Contact from "./pages/Contact";
+import EditorPage from "./pages/Editor";
+
 import NavPage from "./pages/NavPage";
 import NotFound from "./pages/NotFound";
 
-const Router = () => {
+const Router = () => (
+  <BrowserRouter>
+    <Header />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="noticias/:id" element={<NewsArticle />} />
+      <Route path="actividades" element={<Activities />} />
+      <Route path="contacto" element={<Contact />} />
+      <Route path="editor/*" element={<EditorPage />} />
+      <Route path="*" element={<AllRoutesRouter />} />
+    </Routes>
+    <Footer />
+  </BrowserRouter>
+);
+
+const AllRoutesRouter = () => {
   const nav = useContext(NavContext);
   const { pathname } = useLocation();
   // first index is "" because all pathnames start with /
