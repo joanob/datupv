@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, PropsWithChildren } from "react";
-import { getNavLinks } from "./services";
+import { getNavLinks } from "./services/navService";
 import { NavLink } from "./types";
 
 export const NavContext = createContext<NavLink[]>([]);

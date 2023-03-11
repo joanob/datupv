@@ -58,60 +58,58 @@ const EditableText = ({ text, setText }: Props) => {
         return;
       }
 
-      console.log(range);
-
-      // If start and end offset are 0, check what's before
-
-      // If cursor is at end or is using multiple containers common ancesor is paragraph
-      if (range.commonAncestorContainer.nodeName === "P") {
-        if (typeof parts[parts.length - 1] === "string") {
-          // Delete as usual
-          return;
-        }
-        // Links or multiple containers
-        // Links:
-        // Multiple:
-
-        console.log(range);
-        e.preventDefault();
-        // Links must be deleted from their components
-        return;
-      }
-
-      // Multiple characters selected
+      // If multiple characters are selected, check all characters belong to the same tag
+      // Don't allow deleting characters from multiple parents
       if (range.endOffset - range.startOffset > 0) {
         if (range.commonAncestorContainer === range.startContainer) {
-          // Same container
+          // Same container, check if all characters are selected
           if (
             range.endOffset - range.startOffset ===
             (range.commonAncestorContainer as any).length
           ) {
             // Deletes all characters
             e.preventDefault();
+            // Sanity check
             if (!range.commonAncestorContainer.parentElement) {
               return;
             }
             range.commonAncestorContainer.parentElement.innerHTML = "";
           }
-          // Deletes some characters, allow delete
-          return;
+          // Not all characters are deleted, contine as default
         } else {
+          // Multiple containers, dont allow deleting
           e.preventDefault();
+          alert("No se puede borrar letras en diferentes lados de los enlaces");
         }
         return;
       }
 
-      // Element only has one char
-      if ((sel?.anchorNode as any).data?.length === 1) {
+      // Only one character is selected
+
+      // If common ancestor is p, cursor is in the end
+      if (range.commonAncestorContainer.nodeName.toLocaleLowerCase() === "p") {
         e.preventDefault();
-        if (!sel.anchorNode?.parentElement) {
+        return;
+      }
+
+      // If offset is 1, set inner html to empty text to prevent element from deleting
+      if (range.startOffset === 1 && range.endOffset === 1) {
+        e.preventDefault();
+        // Sanity check
+        if (!range.commonAncestorContainer.parentElement) {
           return;
         }
+        range.commonAncestorContainer.parentElement.innerHTML = "";
+        return;
+      }
 
-        sel.anchorNode.parentElement.innerHTML = "";
+      // If offset is 0, previous element is a link
+      if (range.startOffset === 0 && range.endOffset === 0) {
+        e.preventDefault();
         return;
       }
     }
+
     // TODO: replicate with e.key === "Delete" (delete next character)
   };
 

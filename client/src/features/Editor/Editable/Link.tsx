@@ -71,7 +71,7 @@ const EditableLink = ({ link, setLink, deleteLink }: Props) => {
       suppressContentEditableWarning
       style={{ position: "relative", color: "red" }}
     >
-      {formData.texto}
+      {formData.texto === "" ? "--enlace--" : formData.texto}
       <span
         style={{
           display: state.isActive ? "block" : "none",
