@@ -3,17 +3,18 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { AuthTokenContext } from "../../../pages/Editor";
 import { baseURL } from "../../../services/config";
-import EditableText from "../Editable/EditableText";
-import { AdminPage } from "../types/AdminPage";
+import EditableText from "../Editable/Text";
+import { AdminNewsArticle } from "../types/AdminNewsArticle";
 
-const PagesEditor = () => {
+const NewsEditor = () => {
   const { id } = useParams();
   const authToken = useContext(AuthTokenContext);
 
   // Set initial empty article to avoid undefined errors
-  const [page, setPage] = useState<AdminPage>({
+  const [article, setArticle] = useState<AdminNewsArticle>({
     id: 0,
     publishedAt: "",
+    fecha: "",
     url: "",
     titulo: "",
     subtitulo: "",
@@ -22,42 +23,42 @@ const PagesEditor = () => {
 
   useEffect(() => {
     axios
-      .get(baseURL + "/content-manager/collection-types/api::page.page/" + id, {
+      .get(baseURL + "/content-manager/collection-types/api::news.news/" + id, {
         headers: { Authorization: `Bearer ${authToken}` },
       })
       .then((res) => {
-        setPage(res.data);
+        setArticle(res.data);
       });
   }, []);
 
-  const save = (newPage: AdminPage) => {
+  const save = (newArticle: AdminNewsArticle) => {
     axios.put(
-      baseURL + "/content-manager/collection-types/api::page.page/" + id,
-      newPage,
+      baseURL + "/content-manager/collection-types/api::news.news/" + id,
+      newArticle,
       {
         headers: { Authorization: `Bearer ${authToken}` },
       }
     );
   };
 
-  if (page.id === 0) {
+  if (article.id === 0) {
     return <div></div>;
   }
 
   return (
     <div>
-      <h3>{page.titulo}</h3>
-      <p>{page.subtitulo}</p>
-      {page.cuerpo.map((bodyComponent, i) =>
+      <h3>{article.titulo}</h3>
+      <p>{article.subtitulo}</p>
+      {article.cuerpo.map((bodyComponent, i) =>
         bodyComponent.__component === "posts.texto" ? (
           <EditableText
             key={i}
             text={bodyComponent.texto}
             setText={(newText) => {
-              const newBody = page.cuerpo;
+              const newBody = article.cuerpo;
               newBody[i].texto = newText;
-              save({ ...page, cuerpo: newBody });
-              setPage((prevState) => ({ ...prevState, cuerpo: newBody }));
+              save({ ...article, cuerpo: newBody });
+              setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
             }}
           />
         ) : bodyComponent.__component === "posts.imagen-con-texto" ? (
@@ -72,10 +73,10 @@ const PagesEditor = () => {
               key={i}
               text={bodyComponent.texto}
               setText={(newText) => {
-                const newBody = page.cuerpo;
+                const newBody = article.cuerpo;
                 newBody[i].texto = newText;
-                save({ ...page, cuerpo: newBody });
-                setPage((prevState) => ({ ...prevState, cuerpo: newBody }));
+                save({ ...article, cuerpo: newBody });
+                setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
               }}
             />
           </div>
@@ -85,4 +86,4 @@ const PagesEditor = () => {
   );
 };
 
-export default PagesEditor;
+export default NewsEditor;

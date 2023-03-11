@@ -4,7 +4,7 @@ import {
   InternalLink,
   textToLinkObjects,
 } from "../../../helpers/linkParser";
-import EditableLink from "./EditableLink";
+import EditableLink from "./Link";
 
 interface Props {
   text: string;

@@ -1,10 +1,10 @@
 import { useState, createContext } from "react";
-import AuthForm from "../../features/Admin/AuthForm";
-import AdminNewsList from "../../features/Admin/News/NewsList";
+import AuthForm from "./AuthForm";
+import AdminNewsList from "../../features/Editor/News/NewsList";
 import { Routes, Route, Link } from "react-router-dom";
-import NewsEditor from "../../features/Admin/News/NewsEditor";
-import AdminPagesList from "../../features/Admin/Pages/PagesList";
-import PagesEditor from "../../features/Admin/Pages/PagesEditor";
+import NewsEditor from "../../features/Editor/News/NewsEditor";
+import AdminPagesList from "../../features/Editor/Pages/PagesList";
+import PagesEditor from "../../features/Editor/Pages/PagesEditor";
 
 export const AuthTokenContext = createContext("");
 
