@@ -3,6 +3,8 @@ interface Props {
   toggleTheme: () => void;
 }
 
+import "./styles.scss";
+
 const ThemeToggle = ({ theme, toggleTheme }: Props) => {
   return (
     <div className="theme-toggle-container" onClick={toggleTheme}>

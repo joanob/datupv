@@ -1,0 +1,33 @@
+.header {
+  display: grid;
+  grid-template-rows: 66px auto;
+  grid-template-columns: 90px 1fr;
+  align-items: center;
+  margin: 10px 20px;
+  user-select: none;
+}
+
+.header-left-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.logo {
+  -webkit-tap-highlight-color: transparent;
+
+  img {
+    width: 80px;
+    height: 66px;
+  }
+}
+
+.header-desktop-right-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+  padding-right: 5px;
+}

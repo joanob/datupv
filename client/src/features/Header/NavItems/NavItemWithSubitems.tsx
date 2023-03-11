@@ -3,6 +3,8 @@ import NavItem from "./NavItem";
 import { NavLink } from "../../../types";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
+import "./styles.scss";
+
 interface Props {
   navlink: NavLink;
 }

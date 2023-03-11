@@ -4,6 +4,8 @@ import upvWhite from "../../public/icons/upvWhiteTransparent.png";
 import instagramSVG from "../../public/icons/instagram.svg";
 import twitterSVG from "../../public/icons/twitter.svg";
 
+import "./styles.scss";
+
 const Footer = () => {
   return (
     <footer className="footer">

@@ -2,6 +2,8 @@ import { NavLink } from "../../../types";
 import NavItem from "../NavItems/NavItem";
 import NavItemWithSubitems from "../NavItems/NavItemWithSubitems";
 
+import "./styles.scss";
+
 import instagramSVG from "../../../public/icons/instagram.svg";
 import twitterSVG from "../../../public/icons/twitter.svg";
 

@@ -1,0 +1,53 @@
+@import "../../../styles/variables";
+
+.nav-link,
+.nav-link-with-submenu {
+  margin: 5px 0;
+}
+
+.nav-link {
+  a {
+    color: $datupv !important;
+  }
+
+  a:hover {
+    .light & {
+      color: $text-light !important;
+    }
+
+    .dark & {
+      color: $text-dark !important;
+    }
+  }
+}
+
+.nav-link-with-submenu {
+  -webkit-tap-highlight-color: transparent;
+  z-index: 2;
+  list-style: none;
+
+  p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    color: $datupv;
+  }
+
+  span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 5px;
+  }
+}
+
+.nav-link-with-submenu-active {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.nav-link-items {
+  margin-left: 10px;
+  list-style: none;
+}

@@ -1,4 +1,4 @@
-@import "variables";
+@import "../variables";
 
 * {
   box-sizing: border-box;
@@ -43,5 +43,23 @@ a:active {
 
   .dark & {
     color: $text-dark;
+  }
+}
+
+.main {
+  flex-grow: 1;
+  padding-bottom: 20px;
+
+  .light & {
+    background-color: $bg-light;
+  }
+
+  .dark & {
+    background-color: $bg-dark;
+  }
+
+  & > h2 {
+    margin: 10px;
+    color: $datupv;
   }
 }

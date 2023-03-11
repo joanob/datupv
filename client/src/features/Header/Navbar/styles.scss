@@ -1,31 +1,4 @@
-@import "../general/variables";
-@import "../components/theme-toggle";
-
-.header {
-  display: grid;
-  grid-template-rows: 66px auto;
-  grid-template-columns: 90px 1fr;
-  align-items: center;
-  margin: 10px 20px;
-  user-select: none;
-}
-
-.header-left-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 10px;
-}
-
-.logo {
-  -webkit-tap-highlight-color: transparent;
-
-  img {
-    width: 80px;
-    height: 66px;
-  }
-}
+@import "../../../styles/variables";
 
 .header-right-container {
   display: flex;
@@ -34,7 +7,7 @@
   margin-left: auto;
 }
 
-/* navbar toggle */
+/* NAVBAR TOGGLE */
 
 .nav-toggle {
   -webkit-tap-highlight-color: transparent;
@@ -94,7 +67,7 @@
   }
 }
 
-/* navbar */
+/* NAVBAR */
 
 .nav {
   display: flex;
@@ -107,66 +80,16 @@
   list-style: none;
 }
 
-.nav-link,
-.nav-link-with-submenu {
-  margin: 5px 0;
-}
+.nav-link-social img {
+  width: 24px;
+  height: 24px;
 
-.nav-link {
-  a {
-    color: $datupv;
-  }
-
-  a:hover {
-    .light & {
-      color: $text-light;
-    }
-
-    .dark & {
-      color: $text-dark;
-    }
+  &:first-of-type {
+    margin-right: 10px;
   }
 }
 
-.nav-link-with-submenu {
-  -webkit-tap-highlight-color: transparent;
-  z-index: 2;
-  list-style: none;
-
-  p {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    color: $datupv;
-  }
-
-  span {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 5px;
-  }
-}
-
-.nav-link-with-submenu-active {
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-}
-
-.nav-link-items {
-  list-style: none;
-}
-
-/* DESKTOP HEADER */
-
-.header-desktop-right-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: auto;
-  padding-right: 5px;
-}
+/* NAVBAR DESKTOP */
 
 .nav-desktop {
   display: flex;
@@ -214,18 +137,5 @@
     .nav-link {
       margin: 15px 0;
     }
-  }
-}
-
-.nav-link-items {
-  margin-left: 10px;
-}
-
-.nav-link-social img {
-  width: 24px;
-  height: 24px;
-
-  &:first-of-type {
-    margin-right: 10px;
   }
 }

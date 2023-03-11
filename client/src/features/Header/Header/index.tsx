@@ -13,6 +13,8 @@ import ThemeToggle from "../Theme/ThemeToggle";
 import NavbarCollapsable from "../Navbar/NavbarCollapsable";
 import Navbar from "../Navbar/NavbarDesktop";
 
+import "./styles.scss";
+
 export const Header = () => {
   const nav = useContext(NavContext);
   const containerRef = useRef<HTMLElement>(null);
