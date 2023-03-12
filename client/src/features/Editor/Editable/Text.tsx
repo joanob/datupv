@@ -20,8 +20,10 @@ const EditableText = ({ text, setText }: Props) => {
     if (!ref.current) {
       return;
     }
-    setText(htmlToText(ref.current));
-    setParts(textToLinkObjects(htmlToText(ref.current)));
+    const textHTML = htmlToText(ref.current);
+    setText(textHTML);
+    setParts(textToLinkObjects(textHTML));
+    setIsReloading(true);
   };
 
   const addLink = async () => {
@@ -95,6 +97,14 @@ const EditableText = ({ text, setText }: Props) => {
       // If offset is 1, set inner html to empty text to prevent element from deleting
       if (range.startOffset === 1 && range.endOffset === 1) {
         e.preventDefault();
+        if (
+          range.commonAncestorContainer.parentElement?.nodeName.toLowerCase() ===
+          "p"
+        ) {
+          // Container is text and parent is p
+          range.commonAncestorContainer.textContent = "";
+          return;
+        }
         // Sanity check
         if (!range.commonAncestorContainer.parentElement) {
           return;
