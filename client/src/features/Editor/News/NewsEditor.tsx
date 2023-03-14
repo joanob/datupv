@@ -5,6 +5,7 @@ import { AuthTokenContext } from "../../../pages/Editor";
 import { baseURL } from "../../../services/config";
 import EditableText from "../Editable/Text";
 import { AdminNewsArticle } from "../types/AdminNewsArticle";
+import { TextComponent } from "../types/BodyTypes";
 
 const NewsEditor = () => {
   const { id } = useParams();
@@ -32,9 +33,18 @@ const NewsEditor = () => {
   }, []);
 
   const save = (newArticle: AdminNewsArticle) => {
+    const newBody = newArticle.cuerpo.map((bodyComponent) => {
+      // New ids are created usign Math.random, they are all < 1
+      if (bodyComponent.id < 1) {
+        const componentWithoutId = JSON.parse(JSON.stringify(bodyComponent));
+        delete componentWithoutId["id"];
+        return componentWithoutId;
+      }
+      return bodyComponent;
+    });
     axios.put(
       baseURL + "/content-manager/collection-types/api::news.news/" + id,
-      newArticle,
+      { ...newArticle, cuerpo: newBody },
       {
         headers: { Authorization: `Bearer ${authToken}` },
       }
@@ -45,20 +55,55 @@ const NewsEditor = () => {
     return <div></div>;
   }
 
+  // FIXME: save all at once, saving parts triggers errors because it saves one section and deletes modifications on others
+
   return (
     <div>
       <h3>{article.titulo}</h3>
       <p>{article.subtitulo}</p>
+      <button
+        onClick={() => {
+          const newSection: TextComponent = {
+            id: Math.random(),
+            __component: "posts.texto",
+            texto: "",
+          };
+          const newBody = [newSection, ...article.cuerpo];
+          setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
+        }}
+      >
+        Add section
+      </button>
       {article.cuerpo.map((bodyComponent, i) =>
         bodyComponent.__component === "posts.texto" ? (
           <EditableText
-            key={i}
+            key={bodyComponent.id}
             text={bodyComponent.texto}
             setText={(newText) => {
               const newBody = article.cuerpo;
               newBody[i].texto = newText;
               save({ ...article, cuerpo: newBody });
               setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
+            }}
+            addSectionBelow={() => {
+              const newSection: TextComponent = {
+                id: Math.random(),
+                __component: "posts.texto",
+                texto: "",
+              };
+              const newBody = [
+                ...article.cuerpo.slice(0, i),
+                newSection,
+                ...article.cuerpo.slice(i),
+              ];
+              setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
+            }}
+            deleteSection={() => {
+              if (confirm("¿Quieres borrar esta sección?")) {
+                const newBody = article.cuerpo.filter((_, j) => i != j);
+                save({ ...article, cuerpo: newBody });
+                setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
+              }
             }}
           />
         ) : bodyComponent.__component === "posts.imagen-con-texto" ? (
@@ -70,13 +115,36 @@ const NewsEditor = () => {
               </a>
             </p>
             <EditableText
-              key={i}
+              key={bodyComponent.id}
               text={bodyComponent.texto}
               setText={(newText) => {
                 const newBody = article.cuerpo;
                 newBody[i].texto = newText;
                 save({ ...article, cuerpo: newBody });
                 setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
+              }}
+              addSectionBelow={() => {
+                const newSection: TextComponent = {
+                  id: Math.random(),
+                  __component: "posts.texto",
+                  texto: "",
+                };
+                const newBody = [
+                  ...article.cuerpo.slice(0, i),
+                  newSection,
+                  ...article.cuerpo.slice(i),
+                ];
+                setArticle((prevState) => ({ ...prevState, cuerpo: newBody }));
+              }}
+              deleteSection={() => {
+                if (confirm("¿Quieres borrar esta sección?")) {
+                  const newBody = article.cuerpo.filter((_, j) => i != j);
+                  save({ ...article, cuerpo: newBody });
+                  setArticle((prevState) => ({
+                    ...prevState,
+                    cuerpo: newBody,
+                  }));
+                }
               }}
             />
           </div>

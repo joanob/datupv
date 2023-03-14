@@ -9,9 +9,16 @@ import EditableLink from "./Link";
 interface Props {
   text: string;
   setText: (text: string) => void;
+  addSectionBelow: () => void;
+  deleteSection: () => void;
 }
 
-const EditableText = ({ text, setText }: Props) => {
+const EditableText = ({
+  text,
+  setText,
+  addSectionBelow,
+  deleteSection,
+}: Props) => {
   const ref = useRef<HTMLParagraphElement>(null);
   const [parts, setParts] = useState(textToLinkObjects(text));
   const [isReloading, setIsReloading] = useState(false);
@@ -163,6 +170,8 @@ const EditableText = ({ text, setText }: Props) => {
       </button>
       <button onClick={addLink}>Add link</button>
       <button onClick={reloadContent}>Reload</button>
+      <button onClick={addSectionBelow}>Add section</button>
+      <button onClick={deleteSection}>Delete</button>
     </>
   );
 };
