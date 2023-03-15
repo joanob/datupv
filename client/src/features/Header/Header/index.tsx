@@ -18,9 +18,8 @@ import "./styles.scss";
 export const Header = () => {
   const nav = useContext(NavContext);
   const containerRef = useRef<HTMLElement>(null);
-  const elementRef = useRef<HTMLElement>(null);
 
-  const { loading, collapse } = useHeaderWidth(containerRef, elementRef);
+  const { loading, collapse } = useHeaderWidth(containerRef);
 
   const { theme, toggleTheme } = useTheme();
 
@@ -34,11 +33,12 @@ export const Header = () => {
         </div>
       </div>
       {nav.length === 0 ? null : loading || !collapse ? (
-        <nav className="header-desktop-right-container" ref={elementRef}>
-          <Navbar nav={nav} visible={!loading} />
-          {loading ? null : (
-            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-          )}
+        <nav
+          className="header-desktop-right-container"
+          style={{ visibility: loading ? "hidden" : "visible" }}
+        >
+          <Navbar nav={nav} />
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
         </nav>
       ) : (
         <NavbarCollapsable nav={nav} theme={theme} toggleTheme={toggleTheme} />

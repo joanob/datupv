@@ -9,15 +9,11 @@ import twitterSVG from "../../../public/icons/twitter.svg";
 
 interface Props {
   nav: NavLink[];
-  visible: boolean;
 }
 
-const Navbar = ({ nav, visible }: Props) => {
+const Navbar = ({ nav }: Props) => {
   return (
-    <ul
-      style={{ visibility: visible ? "visible" : "hidden" }}
-      className="nav nav-desktop"
-    >
+    <ul className="nav nav-desktop">
       {nav.map((navlink) =>
         navlink.subenlaces ? (
           <NavItemWithSubitems key={navlink.url} navlink={navlink} />
