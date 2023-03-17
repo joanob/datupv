@@ -9,11 +9,11 @@ const PostHeader = ({ texto, tipo }: Props) => {
   }
 
   if (tipo === "secundario") {
-    return <h3 key={texto}>{texto}</h3>;
+    return <h4 key={texto}>{texto}</h4>;
   }
 
   if (tipo === "terciario") {
-    return <h3 key={texto}>{texto}</h3>;
+    return <h5 key={texto}>{texto}</h5>;
   }
 
   return null;

@@ -1,35 +1,33 @@
+@import "./variables";
+
 .newspage {
   & > * {
-    padding: 10px 15px;
-    text-align: justify;
-  }
-
-  header {
-    background-color: $datupv;
+    padding: 5px 15px;
+    text-align: left;
   }
 
   & > header > h2 {
     margin-bottom: 10px;
-    color: #fff;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.3;
   }
 }
 
 .subtitulo {
-  color: #fff;
+  margin-bottom: 10px;
   font-weight: 500;
+  line-height: 1.5;
+  text-align: left;
 }
 
 .date {
-  color: $datupv;
-  color: #fff;
   font-weight: 600;
   font-size: 14px;
   text-align: right;
 }
 
 .article {
-  padding-top: 20px;
-
   .light & {
     background-color: $bg-light;
   }
@@ -39,13 +37,33 @@
   }
 
   & > * {
-    margin-top: 10px;
+    margin-top: 15px;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+
+  h3 {
+    margin-top: 25px;
+    color: $datupv;
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  h4 {
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  h5 {
+    font-weight: 900;
+    font-size: 16px;
   }
 }
 
 @media (min-width: 800px) {
   .newspage > header {
-    background-color: $datupv;
     padding: 10px 0;
     width: 100%;
 
@@ -96,6 +114,6 @@
 
 .article a,
 .article a:hover {
-  color: $datupv;
+  color: $datupv !important;
   text-decoration: underline;
 }

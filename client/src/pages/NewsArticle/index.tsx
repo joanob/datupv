@@ -5,6 +5,8 @@ import { getNews } from "../../services/newsService";
 import { News } from "../../types";
 import NotFound from "../NotFound";
 
+import "../../styles/pages.scss";
+
 const NewsArticle = () => {
   const { id } = useParams();
   if (id === undefined) {
