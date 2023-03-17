@@ -64,13 +64,9 @@
 
 @media (min-width: 800px) {
   .newspage > header {
-    padding: 10px 0;
-    width: 100%;
-
-    & > * {
-      margin-left: calc((100vw - 800px) / 2) !important;
-      width: 800px;
-    }
+    margin: auto;
+    padding: 0;
+    width: 800px;
   }
 
   .newspage > article {
