@@ -45,7 +45,8 @@
         "posts.imagen",
         "posts.texto",
         "posts.imagen-con-texto",
-        "posts.encabezado"
+        "posts.encabezado",
+        "posts.tabla"
       ]
     }
   }
