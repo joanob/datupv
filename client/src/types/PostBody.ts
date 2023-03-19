@@ -29,3 +29,13 @@ export interface HeaderComponent {
   tipo: "primario" | "secundario" | "terciario";
   texto: string;
 }
+
+export interface InternalLink {
+  texto: string;
+  link: string; // absolute path. Can include domain
+}
+
+export interface ExternalLink {
+  texto: string;
+  url: string;
+}
