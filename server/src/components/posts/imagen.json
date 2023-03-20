@@ -5,15 +5,5 @@
     "description": ""
   },
   "options": {},
-  "attributes": {
-    "imagen": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ],
-      "private": true
-    }
-  }
+  "attributes": {}
 }

@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_posts_listas",
+  "info": {
+    "displayName": "Lista"
+  },
+  "options": {},
+  "attributes": {
+    "elementos": {
+      "type": "json"
+    }
+  }
+}
