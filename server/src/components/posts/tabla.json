@@ -1,11 +1,12 @@
 {
   "collectionName": "components_posts_tablas",
   "info": {
-    "displayName": "Tabla"
+    "displayName": "Tabla",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "filas": {
+    "tabla": {
       "type": "json",
       "required": true
     }

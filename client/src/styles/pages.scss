@@ -60,6 +60,48 @@
     font-weight: 900;
     font-size: 16px;
   }
+
+  ul {
+    list-style-position: inside;
+  }
+
+  ul li::marker {
+    color: $datupv;
+    font-size: 1.2em;
+  }
+}
+
+.table-container {
+  width: fit-content;
+  overflow-x: scroll;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+
+  thead {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+
+    tr {
+      border-bottom: none;
+      background-color: $datupv;
+
+      td {
+        color: $white;
+      }
+    }
+  }
+
+  &,
+  tr,
+  td {
+    border-bottom: 1px $datupv solid;
+    padding: 5px 10px;
+    width: max-content;
+  }
 }
 
 @media (min-width: 800px) {

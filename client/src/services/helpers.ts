@@ -25,6 +25,17 @@ export const resBodyToPostBody = (cuerpo: any) => {
           tipo: section.tipo,
           texto: section.texto,
         };
+      case "posts.tabla":
+        return {
+          type: "table",
+          header: section.tabla.header,
+          rows: section.tabla.content,
+        };
+      case "posts.lista":
+        return {
+          type: "list",
+          list: section.elementos,
+        };
       default:
         return;
     }

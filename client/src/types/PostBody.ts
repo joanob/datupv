@@ -5,6 +5,8 @@ export type PostBody = (
   | ImageComponent
   | ImageWithTextComponent
   | HeaderComponent
+  | TableComponent
+  | ListComponent
 )[];
 
 export interface TextComponent {
@@ -28,6 +30,17 @@ export interface HeaderComponent {
   type: "header";
   tipo: "primario" | "secundario" | "terciario";
   texto: string;
+}
+
+export interface TableComponent {
+  type: "table";
+  header: string[];
+  rows: string[][];
+}
+
+export interface ListComponent {
+  type: "list";
+  list: string[];
 }
 
 export interface InternalLink {
