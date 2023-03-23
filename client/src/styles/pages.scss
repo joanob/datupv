@@ -72,8 +72,13 @@
 }
 
 .table-container {
-  width: fit-content;
+  display: grid;
+  place-items: center;
   overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .table {
@@ -82,9 +87,6 @@
   table-layout: fixed;
 
   thead {
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-
     tr {
       border-bottom: none;
       background-color: $datupv;
