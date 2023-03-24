@@ -6,13 +6,13 @@ export const textToJSON = (text: string): any[] => {
     const jsonStartIndex = text.indexOf("{", index);
     if (jsonStartIndex === -1) {
       parts.push(text.slice(index));
-      return parts;
+      break;
     }
 
     const jsonEndIndex = text.indexOf("}", jsonStartIndex);
     if (jsonEndIndex === -1) {
       parts.push(text.slice(index));
-      return parts;
+      break;
     }
 
     if (jsonStartIndex !== index) {
@@ -23,5 +23,12 @@ export const textToJSON = (text: string): any[] => {
     index = jsonEndIndex + 1;
   }
 
-  return parts;
+  return parts.map((part) => {
+    try {
+      const json = JSON.parse(part);
+      return json;
+    } catch (error) {
+      return part;
+    }
+  });
 };
