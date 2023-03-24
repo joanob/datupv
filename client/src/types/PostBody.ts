@@ -43,6 +43,8 @@ export interface ListComponent {
   list: string[];
 }
 
+/* Text Modifiers */
+
 export interface InternalLink {
   texto: string;
   link: string; // absolute path. Can include domain
