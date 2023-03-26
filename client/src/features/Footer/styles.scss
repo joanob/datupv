@@ -10,6 +10,10 @@
   & > div {
     margin: 5px 20px;
   }
+
+  a {
+    color: $white !important;
+  }
 }
 
 .footer-social {
@@ -30,7 +34,7 @@
 
 .footer-logo {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 
   img {

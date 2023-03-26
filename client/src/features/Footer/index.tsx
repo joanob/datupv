@@ -5,6 +5,7 @@ import instagramSVG from "../../public/icons/instagram.svg";
 import twitterSVG from "../../public/icons/twitter.svg";
 
 import "./styles.scss";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -29,7 +30,17 @@ const Footer = () => {
         <img className="etsit" src={telecoWhite} alt="Logo de la ETSIT" />
         <img className="upv" src={upvWhite} alt="Logo de la UPV" />
       </div>
+      <div>
+        <a
+          href={
+            "http://" + import.meta.env.VITE_CLIENT_URL + "/politica-privacidad"
+          }
+        >
+          Política de privacidad
+        </a>
+      </div>
       <div>&copy; 2023 DATUPV</div>
+      <div>Hecho con &#10084; por Joan Oltra Blasco</div>
     </footer>
   );
 };

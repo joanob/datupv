@@ -23,6 +23,10 @@ const Router = () => (
       <Route path="noticias/:id" element={<NewsArticle />} />
       <Route path="actividades" element={<Activities />} />
       <Route path="contacto" element={<Contact />} />
+      <Route
+        path="politica-privacidad"
+        element={<div>Politica privacidad. Redirigir a pdf</div>}
+      />
       <Route path="editor/*" element={<EditorPage />} />
       <Route path="*" element={<AllRoutesRouter />} />
     </Routes>
