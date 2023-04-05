@@ -24,13 +24,26 @@
 
 .newsfeed-load-more {
   cursor: pointer;
-  margin: 16px auto;
+  margin: auto;
+  margin-top: 10px;
   border: none;
   border-radius: 10px;
-  background-color: $datupv;
+  /* background-color: $datupv; */
   padding: 8px;
-  color: #fff;
-  font-size: 20px;
+  /* color: #fff; */
+  color: $datupv;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.triangle-down {
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 15px solid $datupv;
 }
 
 .newsfeed-feed {

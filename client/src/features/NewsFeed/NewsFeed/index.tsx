@@ -58,7 +58,8 @@ const NewsFeed = () => {
             setPages((page) => page + 1);
           }}
         >
-          Cargar más noticias
+          {/* Ver más */}
+          <div className="triangle-down"></div>
         </button>
       ) : null}
     </div>

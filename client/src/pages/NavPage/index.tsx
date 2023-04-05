@@ -23,7 +23,7 @@ const NavPage = ({ pageId, subPages, selectedSubPage }: Props) => {
 
   return (
     <main className="main newspage">
-      <header className="navpage-header">
+      <header>
         <h2>{page.titulo}</h2>
       </header>
       <article className="article">
