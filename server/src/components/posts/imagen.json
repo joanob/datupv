@@ -5,5 +5,19 @@
     "description": ""
   },
   "options": {},
-  "attributes": {}
+  "attributes": {
+    "imagen": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "texto": {
+      "type": "string"
+    }
+  }
 }
