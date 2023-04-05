@@ -12,6 +12,11 @@
     font-size: 32px;
     line-height: 1.3;
   }
+
+  .navpage-header {
+    /* h3 has a 25px padding top to divide sections. In news space doesn't look that big because header has more data, in navpages is too much */
+    margin-bottom: -25px;
+  }
 }
 
 .subtitulo {

@@ -23,7 +23,9 @@ const NavPage = ({ pageId, subPages, selectedSubPage }: Props) => {
 
   return (
     <main className="main newspage">
-      <h2>{page.titulo}</h2>
+      <header className="navpage-header">
+        <h2>{page.titulo}</h2>
+      </header>
       <article className="article">
         <PostBody body={page.cuerpo} />
         {subPages?.map((subpage) => (
