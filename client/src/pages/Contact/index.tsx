@@ -3,6 +3,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { sendContactMsg } from "../../services/contactService";
 
 import "./styles.scss";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -10,6 +11,7 @@ const Contact = () => {
   const [message, setMessage] = useState("");
   const [token, setToken] = useState("");
   const [cookiesConsent, setcookiesConsent] = useState<boolean>(false);
+  const [acceptsPrivacyPolice, setAcceptsPrivacyPolice] = useState(false)
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -36,6 +38,12 @@ const Contact = () => {
 
     if (token === "") {
       setError("Completa el captcha para continuar");
+      return 
+    } 
+
+    if (!acceptsPrivacyPolice) {
+      setError("Acepta la política de privacidad")
+      return
     }
 
     sendContactMsg(name, email, message, token)
@@ -44,6 +52,7 @@ const Contact = () => {
         setSuccess("Se ha enviado tu mensaje");
       })
       .catch(() => {
+        setSuccess("")
         setError("No se pudo enviar tu mensaje");
       });
   };
@@ -52,10 +61,6 @@ const Contact = () => {
     <main className="main">
       <h2>Contacto</h2>
       <form className="contact-form" onSubmit={handleSubmit}>
-        {error === "" ? null : <label className="error-label">{error}</label>}
-        {success === "" ? null : (
-          <label className="success-label">{success}</label>
-        )}
         <label htmlFor="contact-name">Nombre</label>
         <input
           type="text"
@@ -101,7 +106,6 @@ const Contact = () => {
             </button>
           </div>
         ) : (
-          <>
             <HCaptcha
               sitekey="80b5a658-bb23-41e3-b979-e9153dc49546"
               onVerify={setToken}
@@ -112,7 +116,13 @@ const Contact = () => {
                 setToken("");
               }}
             />
-          </>
+        )}
+        <label className="privacy" htmlFor="contact-privacy">
+          <input type="checkbox" name="privacy-policy" id="contact-privacy" checked={acceptsPrivacyPolice} onChange={(e) => {setAcceptsPrivacyPolice(e.target.checked)}}/> Acepto la <Link to="/politica-privacidad" target="__blank">política de privacidad</Link>
+          </label>
+          {error === "" ? null : <label className="error-label">{error}</label>}
+        {success === "" ? null : (
+          <label className="success-label">{success}</label>
         )}
         <input type="submit" value="Enviar" disabled={!cookiesConsent} />
       </form>
