@@ -28,6 +28,7 @@ const Contact = () => {
     setSuccess("");
 
     if (!cookiesConsent) {
+      setError("Debes aceptar las cookies")
       return;
     }
 
@@ -56,6 +57,8 @@ const Contact = () => {
         setError("No se pudo enviar tu mensaje");
       });
   };
+
+  const submitDisable = name === "" || email === "" || message === "" || token === "" || !acceptsPrivacyPolice
 
   return (
     <main className="main">
@@ -124,7 +127,7 @@ const Contact = () => {
         {success === "" ? null : (
           <label className="success-label">{success}</label>
         )}
-        <input type="submit" value="Enviar" disabled={!cookiesConsent} />
+        <input type="submit" value="Enviar" className={submitDisable ? "disabled" : ""} />
       </form>
     </main>
   );
