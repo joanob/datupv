@@ -72,11 +72,20 @@
 .table-container {
   display: grid;
   place-items: center;
-  overflow-x: scroll;
-  scrollbar-width: none;
+  overflow-x: auto;
+}
 
-  &::-webkit-scrollbar {
-    display: none;
+@media (max-width: 800px) {
+  .table-container {
+    scrollbar-width: none;
+
+    td {
+      max-width: 80vw;
+    }
+  
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 
@@ -116,6 +125,12 @@
     margin: auto;
     padding: 0;
     width: 800px;
+  }
+
+  .table {
+    td {
+      max-width: 20vw;
+    }
   }
 }
 
