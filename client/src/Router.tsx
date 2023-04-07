@@ -25,7 +25,7 @@ const Router = () => (
       <Route path="contacto" element={<Contact />} />
       <Route
         path="politica-privacidad"
-        element={<div>Politica privacidad estática</div>}
+        element={<div className="main">Politica privacidad estática</div>}
       />
       <Route path="editor/*" element={<EditorPage />} />
       <Route path="*" element={<AllRoutesRouter />} />

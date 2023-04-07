@@ -4,6 +4,7 @@ import { sendContactMsg } from "../../services/contactService";
 
 import "./styles.scss";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -12,8 +13,6 @@ const Contact = () => {
   const [token, setToken] = useState("");
   const [cookiesConsent, setcookiesConsent] = useState<boolean>(false);
   const [acceptsPrivacyPolice, setAcceptsPrivacyPolice] = useState(false)
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
   useEffect(() => {
     const storedCookiesConsent = localStorage.getItem("cookiesConsent");
@@ -25,40 +24,39 @@ const Contact = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setSuccess("");
-
     if (!cookiesConsent) {
-      setError("Debes aceptar las cookies")
+      toast.error("Debes aceptar las cookies")
       return;
     }
 
     if (name === "" || email === "" || message === "") {
-      setError("Los campos no pueden estar vacíos");
+      toast.error("Los campos no pueden estar vacíos")
       return;
     }
 
     if (token === "") {
-      setError("Completa el captcha para continuar");
+      toast.error("Completa el captcha para continuar");
       return 
     } 
 
     if (!acceptsPrivacyPolice) {
-      setError("Acepta la política de privacidad")
+      toast.error("Acepta la política de privacidad")
       return
     }
 
     sendContactMsg(name, email, message, token)
       .then(() => {
-        setError("");
-        setSuccess("Se ha enviado tu mensaje");
+        toast.success("Se ha enviado tu mensaje");
+        setName("")
+        setEmail("")
+        setMessage("")
+        setToken("")
+        setAcceptsPrivacyPolice(false)
       })
       .catch(() => {
-        setSuccess("")
-        setError("No se pudo enviar tu mensaje");
+        toast.error("No se pudo enviar tu mensaje");
       });
   };
-
-  const submitDisable = name === "" || email === "" || message === "" || token === "" || !acceptsPrivacyPolice
 
   return (
     <main className="main">
@@ -123,11 +121,7 @@ const Contact = () => {
         <label className="privacy" htmlFor="contact-privacy">
           <input type="checkbox" name="privacy-policy" id="contact-privacy" checked={acceptsPrivacyPolice} onChange={(e) => {setAcceptsPrivacyPolice(e.target.checked)}}/> Acepto la <Link to="/politica-privacidad" target="__blank">política de privacidad</Link>
           </label>
-          {error === "" ? null : <label className="error-label">{error}</label>}
-        {success === "" ? null : (
-          <label className="success-label">{success}</label>
-        )}
-        <input type="submit" value="Enviar" className={submitDisable ? "disabled" : ""} />
+        <input type="submit" value="Enviar" />
       </form>
     </main>
   );
