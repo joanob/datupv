@@ -14,10 +14,8 @@ export interface StrapiSingleRes<T> {
 
 export interface StrapiSinglePopulatedRes<T> {
   data: {
-    attributes: {
-      results: T[];
-    };
-  };
+    attributes : T
+  }[];
 }
 
 export interface StrapiImgResponse {

@@ -7,13 +7,14 @@ export const getPage = async (id: string): Promise<Page> => {
   return await axios
     .get(baseURL + "/api/pages/" + id + "?populate=*")
     .then((res) => {
+      console.log(res.data)
       const pageRes: StrapiSinglePopulatedRes<Page & { cuerpo: any }> =
         res.data;
 
-      const body = resBodyToPostBody(pageRes.data.attributes.results[0].cuerpo);
+      const body = resBodyToPostBody(pageRes.data[0].attributes.cuerpo);
 
       return {
-        ...pageRes.data.attributes.results[0],
+        ...pageRes.data[0].attributes,
         cuerpo: body,
       };
     });

@@ -39,6 +39,10 @@
       "type": "text",
       "required": true
     },
+    "previewId": {
+      "type": "string",
+      "unique": true
+    },
     "cuerpo": {
       "type": "dynamiczone",
       "components": [
