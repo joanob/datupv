@@ -13,6 +13,7 @@ interface Props {
 const NavPage = ({ pageId, subPages, selectedSubPage }: Props) => {
   const page = usePage(pageId);
 
+  // True means loading
   if (page === true) {
     return <main className="main"></main>;
   }

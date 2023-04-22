@@ -6,19 +6,38 @@ export const resBodyToPostBody = (cuerpo: any) => {
       case "posts.texto":
         return { type: "text", texto: section.texto };
       case "posts.imagen":
-        const imageUrl = baseURL + section.imagen.url;
-        return {
-          type: "image",
-          image: { ...section.imagen, url: imageUrl },
-        };
+        if (section.imagen.data.attributes) {
+          const imageUrl = baseURL + section.imagen.data.attributes.url
+          return {
+            type: "image",
+            image: { ...section.imagen.data, url: imageUrl }
+          }
+        } else {
+          const imageUrl = baseURL + section.imagen.url;
+          return {
+            type: "image",
+            image: { ...section.imagen, url: imageUrl },
+          };
+        }
       case "posts.imagen-con-texto":
-        const textImageUrl = baseURL + section.imagen.url;
-        return {
-          type: "image-with-text",
-          image: { ...section.imagen, url: textImageUrl },
-          texto: section.texto,
-          alineacion: section.alineacion,
-        };
+        if (section.imagen.data.attributes) {
+          const textImageUrl = baseURL + section.imagen.data.attributes.url;
+          return {
+            type: "image-with-text",
+            image: { ...section.imagen.data.attributes, url: textImageUrl },
+            texto: section.texto,
+            alineacion: section.alineacion,
+          };
+        } else {
+          const textImageUrl = baseURL + section.imagen.data.url;
+          return {
+            type: "image-with-text",
+            image: { ...section.imagen.data, url: textImageUrl },
+            texto: section.texto,
+            alineacion: section.alineacion,
+          };
+        }
+
       case "posts.encabezado":
         return {
           type: "header",

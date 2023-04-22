@@ -15,6 +15,7 @@ const NewsArticle = () => {
 
   const news = useNews(id);
 
+  // True means loading
   if (news === true) {
     return <main className="main"></main>;
   }
