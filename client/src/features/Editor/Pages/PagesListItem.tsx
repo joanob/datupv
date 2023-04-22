@@ -24,7 +24,7 @@ const PagesListItem = ({ page }: Props) => {
       </td>
       <td>{page.url}</td>
       <td>
-        <Link to={"/editor/paginas/" + page.id}>Editar</Link>
+        <Link to={"/editor/paginas/ver/" + page.id}>Ver</Link>
       </td>
     </tr>
   );

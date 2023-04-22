@@ -7,7 +7,6 @@ export const getPage = async (id: string): Promise<Page> => {
   return await axios
     .get(baseURL + "/api/pages/" + id + "?populate=*")
     .then((res) => {
-      console.log(res.data)
       const pageRes: StrapiSinglePopulatedRes<Page & { cuerpo: any }> =
         res.data;
 
