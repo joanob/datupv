@@ -60,27 +60,32 @@
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
-  margin-bottom: 10px;
+  // border on focus is 2px, without focus is 1px. Add remaining 2px to avoid displacement
+  margin-bottom: 12px; // 10px + 2px
+  border-width: 1px;
+  border-style: solid;
   outline: none;
   border-radius: 10px;
   padding: 5px 10px;
   width: 100%;
   font-size: 14px;
 
+
   .light & {
-    border: 1px solid rgba($text-light, 0.35);
+    border-color: rgba($text-light, 0.35);
     background-color: $primary-light;
     color: $text-light;
   }
 
   .dark & {
-    border: 1px solid rgba($text-dark, 0.35);
+    border-color: rgba($text-dark, 0.35);
     background-color: $bg-dark;
     color: $text-dark;
   }
 
   &:focus {
     border: 2px solid $datupv;
+    margin-bottom: 10px;
   }
 }
 
@@ -89,11 +94,15 @@
   height: 200px;
   resize: none;
 
-  .light & {
+  &:focus {
+    margin-bottom: 12px;
+  }
+
+  .light &:not(:focus) {
     border: 1px solid rgba($text-light, 0.35);
   }
 
-  .dark & {
+  .dark &:not(:focus) {
     border: 1px solid rgba($text-dark, 0.35);
   }
 }
