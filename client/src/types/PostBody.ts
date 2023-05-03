@@ -54,3 +54,7 @@ export interface ExternalLink {
   texto: string;
   url: string;
 }
+
+export interface BoldText {
+  boldText: string
+}

@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
-import { linkParser } from "../../../helpers/linkParser";
+import { textParser } from "../../../helpers/textParser";
 
 interface Props {
   text: string;
 }
 
 const TextSection = ({ text }: Props) => {
-  return linkParser(text);
+  return textParser(text);
 };
 
 export default TextSection;
