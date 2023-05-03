@@ -17,6 +17,7 @@
 }
 
 .footer-social {
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -60,15 +61,24 @@
   .footer-logo {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    img {
+      margin: 0;
+    }
+
+    .dat {
+      width: 125px; 
+    }
 
     .etsit {
-      width: 250px;
+      width: 190px; 
     }
 
     .upv {
-      width: 260px;
-    }
+      width: 220px; 
+    } 
   }
 }
