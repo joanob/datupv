@@ -1,3 +1,4 @@
+import { textParser } from "../../../helpers/textParser";
 import { TableComponent } from "../../../types/PostBody";
 
 interface Props {
@@ -20,7 +21,7 @@ const TableSection = ({ header, rows }: Props) => {
           {rows.map((row, i) => (
             <tr key={i}>
               {row.map((col) => (
-                <td key={col}>{col}</td>
+                <td key={col}>{textParser(col)}</td>
               ))}
             </tr>
           ))}

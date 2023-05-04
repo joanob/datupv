@@ -9,7 +9,7 @@ const ListSection = ({ list }: Props) => {
   return (
     <ul>
       {list.map((item) => (
-        <li key={item}>{item}</li>
+        <li key={item}>{textParser(item)}</li>
       ))}
     </ul>
   );

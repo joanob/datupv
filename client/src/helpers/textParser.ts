@@ -1,4 +1,4 @@
-import { createElement } from "react";
+import { createElement, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { InternalLink, ExternalLink, BoldText } from "../types/PostBody";
 import { textToJSON } from "./textToJSON";
@@ -7,7 +7,7 @@ export const textParser = (text: string) => {
   const parts = textToJSON(text);
 
   return createElement(
-    "p",
+    Fragment,
     {},
     ...parts.map((part) => {
       if (typeof part === "string") {

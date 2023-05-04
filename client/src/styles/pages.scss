@@ -163,11 +163,10 @@
   .image-with-text {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
 
     & > * {
-      display: grid;
-      flex-grow: 1;
-      place-items: center;
       width: 100%;
     }
   }

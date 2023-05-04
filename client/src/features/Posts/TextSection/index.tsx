@@ -5,7 +5,7 @@ interface Props {
 }
 
 const TextSection = ({ text }: Props) => {
-  return textParser(text);
+  return <p>{textParser(text)}</p>;
 };
 
 export default TextSection;
