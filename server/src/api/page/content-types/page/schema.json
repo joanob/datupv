@@ -23,7 +23,8 @@
         "posts.texto",
         "posts.imagen-con-texto",
         "posts.encabezado",
-        "posts.tabla"
+        "posts.tabla",
+        "posts.lista"
       ]
     }
   }
