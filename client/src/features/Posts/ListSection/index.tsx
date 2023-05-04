@@ -1,3 +1,4 @@
+import { textParser } from "../../../helpers/textParser";
 import { ListComponent } from "../../../types/PostBody";
 
 interface Props {
