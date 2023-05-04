@@ -14,6 +14,7 @@ import EditorPage from "./pages/Editor";
 
 import NavPage from "./pages/NavPage";
 import NotFound from "./pages/NotFound";
+import HelpPage from "./pages/Help";
 
 const Router = () => (
   <BrowserRouter>
@@ -23,6 +24,7 @@ const Router = () => (
       <Route path="noticias/:id" element={<NewsArticle />} />
       <Route path="actividades" element={<Activities />} />
       <Route path="contacto" element={<Contact />} />
+      <Route path="ayuda" element={<HelpPage />} />
       <Route
         path="politica-privacidad"
         element={<div className="main">Politica privacidad estática</div>}
