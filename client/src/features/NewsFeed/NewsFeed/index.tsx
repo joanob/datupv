@@ -59,10 +59,22 @@ const NewsFeed = () => {
             setPages((page) => page + 1);
           }}
         >
-          {/* Ver más */}
+          <p>Ver más</p>
           <div className="triangle-down"></div>
         </button>
-      ) : null}
+      ) :
+        pages !== 1 ?
+          <button
+            className="newsfeed-load-more"
+            onClick={() => {
+              setPages(1);
+            }}
+          >
+            <div className="triangle-up"></div>
+            <p>Volver a inicio</p>
+          </button>
+          : null
+      }
     </div>
   );
 };
