@@ -6,8 +6,12 @@
   justify-content: center;
   margin: 0 10px;
 
-  & > h2 {
+  &>h2 {
     margin: 10px 0;
+  }
+
+  &>p {
+    text-align: center;
   }
 }
 
@@ -16,7 +20,7 @@
     margin: auto;
     width: 1240px;
 
-    & > h2 {
+    &>h2 {
       text-align: center;
     }
   }

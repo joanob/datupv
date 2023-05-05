@@ -13,7 +13,7 @@ const TWO_NEWS_PER_ROW = 400 * 2 + 20;
 
 const NewsFeed = () => {
   const news = useNews();
-  const { ref, width } = useContainerSize(news.length);
+  const { ref, width } = useContainerSize(typeof news !== "boolean" ? news.length : 0);
   const [pages, setPages] = useState(1);
   const [newsPerRow, setNewsPerRow] = useState(3);
 
@@ -30,7 +30,7 @@ const NewsFeed = () => {
     }
   }, [width]);
 
-  if (news.length === 0) {
+  if (news === true) {
     return null;
   }
 
@@ -41,6 +41,7 @@ const NewsFeed = () => {
 
   return (
     <div ref={ref} className="newsfeed">
+      {news.length === 0 ? <p>Aún no tenemos noticias para ti, vuelve pronto.</p> : null}
       <div className="newsfeed-feed">
         {Array(newsPerRow === 1 ? 3 * pages : 2 * pages)
           .fill(undefined)
@@ -66,16 +67,18 @@ const NewsFeed = () => {
   );
 };
 
-const useNews = (): News[] => {
+const useNews = () => {
   const [news, setNews] = useState<News[]>([]);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getNewsfeed().then((res) => {
       setNews(res);
+      setLoading(false)
     });
   }, []);
 
-  return news;
+  return loading ? loading : news;
 };
 
 export default NewsFeed;
