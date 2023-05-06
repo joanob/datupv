@@ -4,6 +4,7 @@
   position: relative;
   width: 100%;
   max-width: 400px;
+  text-align: justify;
 }
 
 .newsfeed-news-image {
@@ -23,10 +24,6 @@
     .light & {
       box-shadow: 1px 1px 3px $shadow-light;
     }
-
-    .dark & {
-      box-shadow: 1px 1px 3px $shadow-dark;
-    }
   }
 }
 
@@ -41,7 +38,6 @@
   }
 
   .dark & {
-    box-shadow: 0px 0px 3px $shadow-dark;
     background-color: $primary-dark;
   }
 }
@@ -66,16 +62,17 @@
 
 .newsfeed-card-date {
   font-size: 14px;
+  font-weight: 600;
 }
 
 a.newsfeed-card-link {
   border-radius: 10px;
   background-color: $datupv;
   padding: 8px;
-  color: #fff;
+  color: #fff !important;
 
   &:hover {
-    color: #fff;
+    color: #fff !important;
   }
 }
 

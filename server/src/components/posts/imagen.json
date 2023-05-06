@@ -7,13 +7,17 @@
   "options": {},
   "attributes": {
     "imagen": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
       "allowedTypes": [
-        "images"
+        "images",
+        "files",
+        "videos",
+        "audios"
       ],
-      "private": true
+      "type": "media",
+      "multiple": false
+    },
+    "texto": {
+      "type": "string"
     }
   }
 }

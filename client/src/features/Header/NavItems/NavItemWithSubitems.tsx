@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavItem from "./NavItem";
 import { NavLink } from "../../../types";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
@@ -7,10 +7,20 @@ import "./styles.scss";
 
 interface Props {
   navlink: NavLink;
+  navbarCollapsable: boolean
 }
 
-const NavItemWithSubitems = ({ navlink }: Props) => {
+// FIXME: i'm not sure navbarCollapsable is working to avoid extend and collapse on desktop (hover works there)
+
+const NavItemWithSubitems = ({ navlink, navbarCollapsable }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!navbarCollapsable) {
+      setIsOpen(false)
+    }
+  }, [navbarCollapsable])
+
   return (
     <ul
       className={
@@ -21,7 +31,9 @@ const NavItemWithSubitems = ({ navlink }: Props) => {
     >
       <p
         onClick={() => {
-          setIsOpen(!isOpen);
+          if (navbarCollapsable) {
+            setIsOpen(!isOpen);
+          }
         }}
       >
         {navlink.texto}

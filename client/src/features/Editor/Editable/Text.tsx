@@ -1,9 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import {
-  ExternalLink,
-  InternalLink,
-  textToLinkObjects,
-} from "../../../helpers/linkParser";
+import { textToJSON } from "../../../helpers/textToJSON";
+import { ExternalLink, InternalLink } from "../../../types/PostBody";
 import EditableLink from "./Link";
 
 interface Props {
@@ -20,7 +17,7 @@ const EditableText = ({
   deleteSection,
 }: Props) => {
   const ref = useRef<HTMLParagraphElement>(null);
-  const [parts, setParts] = useState(textToLinkObjects(text));
+  const [parts, setParts] = useState(textToJSON(text));
   const [isReloading, setIsReloading] = useState(false);
 
   const save = () => {
@@ -29,7 +26,7 @@ const EditableText = ({
     }
     const textHTML = htmlToText(ref.current);
     setText(textHTML);
-    setParts(textToLinkObjects(textHTML));
+    setParts(textToJSON(textHTML));
     setIsReloading(true);
   };
 
@@ -44,7 +41,7 @@ const EditableText = ({
     if (!ref.current) {
       return;
     }
-    setParts(textToLinkObjects(htmlToText(ref.current)));
+    setParts(textToJSON(htmlToText(ref.current)));
     setIsReloading(true);
   };
 

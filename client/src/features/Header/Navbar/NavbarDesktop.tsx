@@ -16,7 +16,7 @@ const Navbar = ({ nav }: Props) => {
     <ul className="nav nav-desktop">
       {nav.map((navlink) =>
         navlink.subenlaces ? (
-          <NavItemWithSubitems key={navlink.url} navlink={navlink} />
+          <NavItemWithSubitems key={navlink.url} navlink={navlink} navbarCollapsable={false} />
         ) : (
           <NavItem key={navlink.url} navLink={navlink} />
         )

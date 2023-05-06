@@ -46,10 +46,10 @@ export const getNews = async (id: string): Promise<News | null> => {
         News & { imagen: StrapiImgResponse } & { cuerpo: any }
       > = res.data;
 
-      const body = resBodyToPostBody(newsRes.data.attributes.results[0].cuerpo);
+      const body = resBodyToPostBody(newsRes.data[0].attributes.cuerpo);
 
       const news: News = {
-        ...newsRes.data.attributes.results[0],
+        ...newsRes.data[0].attributes,
         cuerpo: body,
       };
 

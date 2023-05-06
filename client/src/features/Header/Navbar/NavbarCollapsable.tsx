@@ -47,7 +47,7 @@ const NavbarCollapsable = ({ nav, theme, toggleTheme }: Props) => {
         <ul className="nav">
           {nav.map((navlink) =>
             navlink.subenlaces ? (
-              <NavItemWithSubitems key={navlink.url} navlink={navlink} />
+              <NavItemWithSubitems key={navlink.url} navlink={navlink} navbarCollapsable={true} />
             ) : (
               <NavItem key={navlink.url} navLink={navlink} />
             )

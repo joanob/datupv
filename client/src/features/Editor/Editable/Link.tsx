@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ExternalLink, InternalLink } from "../../../helpers/linkParser";
+import { ExternalLink, InternalLink } from "../../../helpers/textParser";
 
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
 
@@ -25,15 +25,15 @@ const EditableLink = ({ link, setLink, deleteLink }: Props) => {
   const [formData, setFormData] = useState<FormData>(
     (link as InternalLink).link !== undefined
       ? {
-          texto: link.texto,
-          link: (link as InternalLink).link,
-          isExternal: false,
-        }
+        texto: link.texto,
+        link: (link as InternalLink).link,
+        isExternal: false,
+      }
       : {
-          texto: link.texto,
-          link: (link as ExternalLink).url,
-          isExternal: true,
-        }
+        texto: link.texto,
+        link: (link as ExternalLink).url,
+        isExternal: true,
+      }
   );
 
   const ref = useOutsideClick(() => {

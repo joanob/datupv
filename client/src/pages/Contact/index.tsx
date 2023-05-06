@@ -3,6 +3,8 @@ import { FormEvent, useEffect, useState } from "react";
 import { sendContactMsg } from "../../services/contactService";
 
 import "./styles.scss";
+import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -10,8 +12,7 @@ const Contact = () => {
   const [message, setMessage] = useState("");
   const [token, setToken] = useState("");
   const [cookiesConsent, setcookiesConsent] = useState<boolean>(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [acceptsPrivacyPolice, setAcceptsPrivacyPolice] = useState(false)
 
   useEffect(() => {
     const storedCookiesConsent = localStorage.getItem("cookiesConsent");
@@ -23,28 +24,37 @@ const Contact = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setSuccess("");
-
     if (!cookiesConsent) {
+      toast.error("Debes aceptar las cookies")
       return;
     }
 
     if (name === "" || email === "" || message === "") {
-      setError("Los campos no pueden estar vacíos");
+      toast.error("Los campos no pueden estar vacíos")
       return;
     }
 
     if (token === "") {
-      setError("Completa el captcha para continuar");
+      toast.error("Completa el captcha para continuar");
+      return 
+    } 
+
+    if (!acceptsPrivacyPolice) {
+      toast.error("Acepta la política de privacidad")
+      return
     }
 
     sendContactMsg(name, email, message, token)
       .then(() => {
-        setError("");
-        setSuccess("Se ha enviado tu mensaje");
+        toast.success("Se ha enviado tu mensaje");
+        setName("")
+        setEmail("")
+        setMessage("")
+        setToken("")
+        setAcceptsPrivacyPolice(false)
       })
       .catch(() => {
-        setError("No se pudo enviar tu mensaje");
+        toast.error("No se pudo enviar tu mensaje");
       });
   };
 
@@ -52,10 +62,6 @@ const Contact = () => {
     <main className="main">
       <h2>Contacto</h2>
       <form className="contact-form" onSubmit={handleSubmit}>
-        {error === "" ? null : <label className="error-label">{error}</label>}
-        {success === "" ? null : (
-          <label className="success-label">{success}</label>
-        )}
         <label htmlFor="contact-name">Nombre</label>
         <input
           type="text"
@@ -101,7 +107,6 @@ const Contact = () => {
             </button>
           </div>
         ) : (
-          <>
             <HCaptcha
               sitekey="80b5a658-bb23-41e3-b979-e9153dc49546"
               onVerify={setToken}
@@ -112,9 +117,11 @@ const Contact = () => {
                 setToken("");
               }}
             />
-          </>
         )}
-        <input type="submit" value="Enviar" disabled={!cookiesConsent} />
+        <label className="privacy" htmlFor="contact-privacy">
+          <input type="checkbox" name="privacy-policy" id="contact-privacy" checked={acceptsPrivacyPolice} onChange={(e) => {setAcceptsPrivacyPolice(e.target.checked)}}/> Acepto la <Link to="/politica-privacidad" target="__blank">política de privacidad</Link>
+          </label>
+        <input type="submit" value="Enviar" />
       </form>
     </main>
   );

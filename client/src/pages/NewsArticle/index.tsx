@@ -5,6 +5,9 @@ import { getNews } from "../../services/newsService";
 import { News } from "../../types";
 import NotFound from "../NotFound";
 
+import "../../styles/pages.scss";
+import { textParser } from "../../helpers/textParser";
+
 const NewsArticle = () => {
   const { id } = useParams();
   if (id === undefined) {
@@ -13,6 +16,7 @@ const NewsArticle = () => {
 
   const news = useNews(id);
 
+  // True means loading
   if (news === true) {
     return <main className="main"></main>;
   }
@@ -25,7 +29,7 @@ const NewsArticle = () => {
     <main className="main newspage">
       <header>
         <h2>{news.titulo}</h2>
-        <p className="subtitulo">{news.subtitulo}</p>
+        <p className="subtitulo">{textParser(news.subtitulo)}</p>
         <p className="date">
           {new Date(news.fecha)
             .toLocaleDateString("es-ES", {

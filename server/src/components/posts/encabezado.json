@@ -7,7 +7,8 @@
   "options": {},
   "attributes": {
     "texto": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "tipo": {
       "type": "enumeration",
@@ -15,7 +16,8 @@
         "primario",
         "secundario",
         "terciario"
-      ]
+      ],
+      "required": true
     }
   }
 }

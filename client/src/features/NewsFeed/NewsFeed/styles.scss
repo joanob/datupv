@@ -6,8 +6,12 @@
   justify-content: center;
   margin: 0 10px;
 
-  & > h2 {
+  &>h2 {
     margin: 10px 0;
+  }
+
+  &>p {
+    text-align: center;
   }
 }
 
@@ -16,7 +20,7 @@
     margin: auto;
     width: 1240px;
 
-    & > h2 {
+    &>h2 {
       text-align: center;
     }
   }
@@ -24,13 +28,43 @@
 
 .newsfeed-load-more {
   cursor: pointer;
-  margin: 16px auto;
+  margin: auto;
+  margin-top: 10px;
   border: none;
   border-radius: 10px;
   background-color: $datupv;
   padding: 8px;
-  color: #fff;
-  font-size: 20px;
+  color: $datupv;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: bold;
+
+  & p {
+    background-color: $datupv;
+    border-radius: 10px;
+    padding: 8px;
+    color: #fff;
+  }
+}
+
+.triangle-down {
+  margin: auto;
+  margin-top: 2px;
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 15px solid $datupv;
+}
+
+.triangle-up {
+  margin: auto;
+  margin-bottom: 2px;
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 15px solid $datupv;
 }
 
 .newsfeed-feed {

@@ -1,0 +1,134 @@
+@import "../../styles/variables";
+
+.loader-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.loader {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1;
+    position: relative;
+
+    &>* {
+        position: absolute;
+        aspect-ratio: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+    }
+
+    & .loader-vertical-wall,
+    & .loader-horizontal-wall {
+        border-radius: 0;
+        transform: none;
+    }
+
+    & .loader-blank {
+        .light & {
+            background-color: $bg-light;
+        }
+
+        .dark & {
+            background-color: $bg-dark;
+        }
+    }
+
+    & .loader-signal {
+        background-color: $datupv;
+    }
+}
+
+.loader-vertical-wall {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 50%;
+    z-index: 7;
+
+    .light & {
+        background-color: $bg-light;
+    }
+
+    .dark & {
+        background-color: $bg-dark;
+    }
+}
+
+.loader-horizontal-wall {
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    border-radius: none !important;
+    z-index: 8;
+
+    .light & {
+        background-color: $bg-light;
+    }
+
+    .dark & {
+        background-color: $bg-dark;
+    }
+}
+
+.loader-dot {
+    width: 8%;
+    z-index: 9;
+    background-color: $datupv;
+    border-radius: 50%;
+}
+
+@keyframes antenna-loader {
+    from {
+        width: 8%;
+    }
+
+    50% {
+        width: 50%; // 50% of the parent
+    }
+
+    51% {
+        width: 8%;
+    }
+}
+
+.loader-signal,
+.loader-blank {
+    animation: antenna-loader 5s linear infinite;
+}
+
+.loader-signal-1 {
+    z-index: 1;
+    animation-delay: 0;
+}
+
+.loader-blank-1 {
+    z-index: 2;
+    animation-delay: 0.25s;
+}
+
+.loader-signal-2 {
+    z-index: 3;
+    animation-delay: 1s;
+}
+
+.loader-blank-2 {
+    z-index: 4;
+    animation-delay: 1.25s;
+}
+
+.loader-signal-3 {
+    z-index: 5;
+    animation-delay: 2s;
+}
+
+.loader-blank-3 {
+    z-index: 6;
+    animation-delay: 2.25s;
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useContainerSize } from "../../../hooks/useContainerSize";
 import { Image } from "../../../types";
+import { textParser } from "../../../helpers/textParser";
 
 interface Props {
   image: Image;
@@ -24,7 +25,7 @@ const ImgWithTextSection = ({ image, text, alignment }: Props) => {
 
   return (
     <section className="image-with-text">
-      {alignment === "texto-izquierda" ? <p>{text}</p> : null}
+      {alignment === "texto-izquierda" ? <p>{textParser(text)}</p> : null}
       <div ref={ref} className="img-container">
         <div style={{ width: imgWidth === 0 ? "100%" : imgWidth + "px" }}>
           <img
@@ -36,7 +37,7 @@ const ImgWithTextSection = ({ image, text, alignment }: Props) => {
           />
         </div>
       </div>
-      {alignment === "texto-derecha" ? <p>{text}</p> : null}
+      {alignment === "texto-derecha" ? <p>{textParser(text)}</p> : null}
     </section>
   );
 };

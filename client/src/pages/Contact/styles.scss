@@ -6,10 +6,6 @@
 
 .cookie-container {
   display: flex !important;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
   flex-direction: column;
   align-items: flex-end;
   padding: 5px;
@@ -27,7 +23,7 @@
     margin: 5px;
     border: none;
     border-radius: 10px;
-    background-color: $shadow-light;
+    background-color: $datupv;
     padding: 8px;
     color: #fff;
   }
@@ -43,6 +39,14 @@
     padding-left: 8px;
     font-weight: 600;
   }
+
+  .privacy {
+    margin-top: 5px;
+  }
+
+  a {
+    color: $datupv !important;
+  }
 }
 
 .error-label {
@@ -56,27 +60,32 @@
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
-  margin-bottom: 10px;
+  // border on focus is 2px, without focus is 1px. Add remaining 2px to avoid displacement
+  margin-bottom: 12px; // 10px + 2px
+  border-width: 1px;
+  border-style: solid;
   outline: none;
   border-radius: 10px;
   padding: 5px 10px;
   width: 100%;
   font-size: 14px;
 
+
   .light & {
-    border: 1px solid rgba($text-light, 0.35);
+    border-color: rgba($text-light, 0.35);
     background-color: $primary-light;
     color: $text-light;
   }
 
   .dark & {
-    border: 1px solid rgba($text-dark, 0.35);
-    background-color: $primary-dark;
+    border-color: rgba($text-dark, 0.35);
+    background-color: $bg-dark;
     color: $text-dark;
   }
 
   &:focus {
     border: 2px solid $datupv;
+    margin-bottom: 10px;
   }
 }
 
@@ -85,11 +94,15 @@
   height: 200px;
   resize: none;
 
-  .light & {
+  &:focus {
+    margin-bottom: 12px;
+  }
+
+  .light &:not(:focus) {
     border: 1px solid rgba($text-light, 0.35);
   }
 
-  .dark & {
+  .dark &:not(:focus) {
     border: 1px solid rgba($text-dark, 0.35);
   }
 }
@@ -108,24 +121,11 @@
   padding: 8px;
   color: #fff;
   font-size: 20px;
-
-  &:disabled {
-    cursor: not-allowed;
-    background-color: gray;
-  }
 }
 
 @media (min-width: 420px) {
   .contact-form {
     margin: 0 auto;
     width: 400px;
-  }
-
-  .main > h2 {
-    text-align: center;
-  }
-
-  .cookie-container {
-    position: static;
   }
 }

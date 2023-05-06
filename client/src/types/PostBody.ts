@@ -5,6 +5,8 @@ export type PostBody = (
   | ImageComponent
   | ImageWithTextComponent
   | HeaderComponent
+  | TableComponent
+  | ListComponent
 )[];
 
 export interface TextComponent {
@@ -28,4 +30,31 @@ export interface HeaderComponent {
   type: "header";
   tipo: "primario" | "secundario" | "terciario";
   texto: string;
+}
+
+export interface TableComponent {
+  type: "table";
+  header: string[];
+  rows: string[][];
+}
+
+export interface ListComponent {
+  type: "list";
+  list: string[];
+}
+
+/* Text Modifiers */
+
+export interface InternalLink {
+  texto: string;
+  link: string; // absolute path. Can include domain
+}
+
+export interface ExternalLink {
+  texto: string;
+  url: string;
+}
+
+export interface BoldText {
+  boldText: string
 }

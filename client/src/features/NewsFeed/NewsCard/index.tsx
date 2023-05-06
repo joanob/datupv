@@ -4,6 +4,7 @@ import { useContainerSize } from "../../../hooks/useContainerSize";
 import { News } from "../../../types/News";
 
 import "./styles.scss";
+import { textParser } from "../../../helpers/textParser";
 
 interface Props {
   news: News;
@@ -39,7 +40,7 @@ const NewsCard = ({
     if (
       (titleSize.height !== 0 && titleHeight === "auto") ||
       titleSize.height >
-        parseInt(titleHeight.slice(0, titleHeight.length - 2), 10)
+      parseInt(titleHeight.slice(0, titleHeight.length - 2), 10)
     ) {
       onTitleHeightChange(titleSize.height);
     }
@@ -47,7 +48,7 @@ const NewsCard = ({
     if (
       (subtitleSize.height !== 0 && subtitleHeight === "auto") ||
       subtitleSize.height >
-        parseInt(subtitleHeight.slice(0, subtitleHeight.length - 2), 10)
+      parseInt(subtitleHeight.slice(0, subtitleHeight.length - 2), 10)
     ) {
       onSubtitleHeightChange(subtitleSize.height);
     }
@@ -86,7 +87,7 @@ const NewsCard = ({
           className="newsfeed-card-subtitle"
           style={{ height: subtitleHeight }}
         >
-          {news.subtitulo}
+          {textParser(news.subtitulo)}
         </p>
         <div className="newsfeed-card-extra">
           <p className="newsfeed-card-date">
