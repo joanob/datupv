@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "DATUPV",
+  "short_name": "Delegación de Alumnos de Teleco",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "Sitio web de la Delegación de Alumnos de Teleco de la Universitat Politècnica de València"
+}
