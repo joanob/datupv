@@ -54,23 +54,23 @@ const NewsFeed = () => {
       </div>
       {showLoadMoreButton ? (
         <button
-          className="newsfeed-load-more"
+          className="newsfeed-action-button"
           onClick={() => {
             setPages((page) => page + 1);
           }}
         >
           <p>Ver más</p>
-          <div className="triangle-down"></div>
+          {/* <div className="triangle-down"></div> */}
         </button>
       ) :
         pages !== 1 ?
           <button
-            className="newsfeed-load-more"
+            className="newsfeed-action-button"
             onClick={() => {
               setPages(1);
             }}
           >
-            <div className="triangle-up"></div>
+            {/* <div className="triangle-up"></div> */}
             <p>Volver a inicio</p>
           </button>
           : null
