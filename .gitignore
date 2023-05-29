@@ -5,3 +5,6 @@
 /.htaccess
 
 *.env
+
+server/public/index.html
+server/public/assets
