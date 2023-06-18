@@ -20,7 +20,6 @@ export const textParser = (text: string) => {
       const internalLink = part as InternalLink;
       if (internalLink.link !== undefined) {
         const link = internalLink.link
-          .replace("http://", "")
           .replace(import.meta.env.VITE_CLIENT_URL, "");
         return createElement(Link, { to: link }, internalLink.texto);
       }

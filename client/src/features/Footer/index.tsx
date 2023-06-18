@@ -15,7 +15,6 @@ const Footer = () => {
             <img src={instagramWhiteSVG} alt="Síguenos en Instagram" />
           </a>
         </div>
-        <div>653 63 54 38</div>
         <div>
           <a href="https://twitter.com/datupv" target="_blank">
             <img src={twitterWhiteSVG} alt="Síguenos en Twitter" />
@@ -32,7 +31,7 @@ const Footer = () => {
       <div>
         <a
           href={
-            "http://" + import.meta.env.VITE_CLIENT_URL + "/politica-privacidad"
+            import.meta.env.VITE_CLIENT_URL + "/politica-privacidad"
           }
         >
           Política de privacidad

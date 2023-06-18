@@ -10,7 +10,7 @@ const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [token, setToken] = useState("");
+  //const [token, setToken] = useState("");
   const [cookiesConsent, setcookiesConsent] = useState<boolean>(false);
   const [acceptsPrivacyPolice, setAcceptsPrivacyPolice] = useState(false)
 
@@ -34,23 +34,23 @@ const Contact = () => {
       return;
     }
 
-    if (token === "") {
+    /* if (token === "") {
       toast.error("Completa el captcha para continuar");
       return 
-    } 
+    } */
 
     if (!acceptsPrivacyPolice) {
       toast.error("Acepta la política de privacidad")
       return
     }
 
-    sendContactMsg(name, email, message, token)
+    sendContactMsg(name, email, message, "token")
       .then(() => {
         toast.success("Se ha enviado tu mensaje");
         setName("")
         setEmail("")
         setMessage("")
-        setToken("")
+        //setToken("")
         setAcceptsPrivacyPolice(false)
       })
       .catch(() => {
@@ -91,7 +91,7 @@ const Contact = () => {
           }}
           placeholder="Mensaje"
         />
-        {!cookiesConsent ? (
+        {/* {!cookiesConsent ? (
           <div className="cookie-container">
             <p>
               Utilizamos cookies de terceros para evitar bots en este
@@ -117,10 +117,10 @@ const Contact = () => {
                 setToken("");
               }}
             />
-        )}
+        )} */}
         <label className="privacy" htmlFor="contact-privacy">
-          <input type="checkbox" name="privacy-policy" id="contact-privacy" checked={acceptsPrivacyPolice} onChange={(e) => {setAcceptsPrivacyPolice(e.target.checked)}}/> Acepto la <Link to="/politica-privacidad" target="__blank">política de privacidad</Link>
-          </label>
+          <input type="checkbox" name="privacy-policy" id="contact-privacy" checked={acceptsPrivacyPolice} onChange={(e) => { setAcceptsPrivacyPolice(e.target.checked) }} /> Acepto la <Link to="/politica-privacidad" target="__blank">política de privacidad</Link>
+        </label>
         <input type="submit" value="Enviar" />
       </form>
     </main>

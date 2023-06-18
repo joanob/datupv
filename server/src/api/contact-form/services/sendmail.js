@@ -15,7 +15,7 @@ module.exports = {
     await transporter.sendMail({
       from: `Delegación de Alumnos de Teleco - UPV ${process.env.EMAIL_FROM}`,
       cc: to,
-      bcc: process.env.EMAIL_FROM,
+      bcc: process.env.EMAIL_USER + "@upvnet.upv.es",
       subject,
       html
     })

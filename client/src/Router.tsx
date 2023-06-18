@@ -25,10 +25,6 @@ const Router = () => (
       <Route path="actividades" element={<Activities />} />
       <Route path="contacto" element={<Contact />} />
       <Route path="ayuda" element={<HelpPage />} />
-      <Route
-        path="politica-privacidad"
-        element={<div className="main">Politica privacidad estática</div>}
-      />
       <Route path="editor/*" element={<EditorPage />} />
       <Route path="*" element={<AllRoutesRouter />} />
     </Routes>
