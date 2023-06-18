@@ -99,7 +99,7 @@ const NewsCard = ({
               })
               .replaceAll("/", "-")}
           </p>
-          <Link className="newsfeed-card-link" to={"/noticias/" + news.url}>
+          <Link className="newsfeed-card-link" to={news.url_pagina === "" ? "/noticias/" + news.url : news.url_pagina}>
             Leer más
           </Link>
         </div>

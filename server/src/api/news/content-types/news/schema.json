@@ -49,6 +49,9 @@
         "posts.tabla",
         "posts.lista"
       ]
+    },
+    "url_pagina": {
+      "type": "string"
     }
   }
 }

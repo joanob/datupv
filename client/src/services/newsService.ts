@@ -28,6 +28,7 @@ export const getNewsfeed = async (): Promise<News[]> => {
         titulo: attributes.titulo,
         subtitulo: attributes.subtitulo,
         url: attributes.url,
+        url_pagina: attributes.url_pagina,
         // Datetime comes as an ISO string
         fecha: new Date(attributes.fecha).getTime(),
         imagen: image,
