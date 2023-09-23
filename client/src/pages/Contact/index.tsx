@@ -1,4 +1,3 @@
-import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { FormEvent, useEffect, useState } from "react";
 import { sendContactMsg } from "../../services/contactService";
 
@@ -24,10 +23,10 @@ const Contact = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!cookiesConsent) {
+    /* if (!cookiesConsent) {
       toast.error("Debes aceptar las cookies")
       return;
-    }
+    } */
 
     if (name === "" || email === "" || message === "") {
       toast.error("Los campos no pueden estar vacíos")
@@ -106,18 +105,7 @@ const Contact = () => {
               Aceptar
             </button>
           </div>
-        ) : (
-            <HCaptcha
-              sitekey="80b5a658-bb23-41e3-b979-e9153dc49546"
-              onVerify={setToken}
-              onError={() => {
-                setToken("");
-              }}
-              onExpire={() => {
-                setToken("");
-              }}
-            />
-        )} */}
+        ) : null */}
         <label className="privacy" htmlFor="contact-privacy">
           <input type="checkbox" name="privacy-policy" id="contact-privacy" checked={acceptsPrivacyPolice} onChange={(e) => { setAcceptsPrivacyPolice(e.target.checked) }} /> Acepto la <Link to="/politica-privacidad" target="__blank">política de privacidad</Link>
         </label>
